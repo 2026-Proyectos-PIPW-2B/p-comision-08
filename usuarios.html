@@ -11,7 +11,9 @@
       crossorigin="anonymous"
     />
 </head>
-<header>
+
+<body>
+    <header>
       <nav
         class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
         aria-label="Eighth navbar example"
@@ -52,7 +54,54 @@
         </div>
       </nav>
     </header>
-<body>
-    
+    <main class="mt-5 pt-4 container">
+      <header>
+        <h2 class="text-center py-3">Lista de usuarios</h2>
+      </header>
+      <table class="table table-stripped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Habilitar/Deshabilitar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pepito</td>
+            <td>
+              Usuario
+            </td>
+            <td>
+                Activo
+            </td>
+            <td></td>
+            <td></td>
+            <tr>
+            <td>Martin</td>
+            <td>
+              Admin
+            </td>
+            <td>
+                Activo
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Fabri</td>
+            <td>
+              Admin
+            </td>
+            <td>
+                Inactivo
+            </td>
+            <td></td>
+            <td></td>
+        </tbody>
+      </table>
+    </main>
 </body>
 </html>
