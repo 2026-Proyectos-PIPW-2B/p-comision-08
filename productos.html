@@ -11,7 +11,10 @@
       crossorigin="anonymous"
     />
 </head>
-<header>
+
+<body>
+    
+  <header>
       <nav
         class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
         aria-label="Eighth navbar example"
@@ -53,7 +56,64 @@
         </div>
       </nav>
     </header>
-<body>
-    
+
+
+  <div class="mt-5 pt-4 container">
+      <div class="col-md-10 mx-auto col-lg-8">
+      <h1 class="text-center py-3">Gestionar productos</h1>
+      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="nombreproducto"
+              />
+              <label for="floatingInput">Nombre del producto</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="descripcionproducto"
+              />
+              <label for="floatingInput">Descripcion</label>
+            </div>
+
+            <div class="row g-3">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Precio" aria-label="precioproducto">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Stock" aria-label="stockproducto">
+              </div>
+            </div>
+
+            <select class="form-select form-floating mt-3 mb-3 p-2" aria-label="Default select example">
+              <option selected disabled>Seleccione una categoria..</option>
+              <option value="alfajor">Alfajor</option>
+              <option value="gomita">Gomita</option>
+              <option value="chocolate">Chocolate</option>
+              <option value="chupetin">Chupetin</option>
+            </select>
+
+            <select class="form-select form-floating mb-3 p-2" aria-label="Default select example">
+              <option selected disabled>Seleccione una etiqueta..</option>
+              <option value="">Ninguna</option>
+              <option value="oferta">Oferta</option>
+            </select>
+
+            <div class="mb-3">
+              <input class="form-control" type="file" id="formFile">
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">
+              Añadir producto al catalogo
+            </button>
+            
+          </form>
+          </div>
+    </div>
 </body>
 </html>
