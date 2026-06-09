@@ -55,10 +55,53 @@
       </nav>
     </header>
     <main class="mt-5 pt-4 container">
+      <div class="col-md-10 mx-auto col-lg-8">
+      <h1 class="text-center py-3">Registro de usuarios</h1>
+      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingInput"
+                placeholder="tunombredeusuario"
+              />
+              <label for="floatingInput">Nombre de usuario</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+              />
+              <label for="floatingPassword">Contraseña</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+              />
+              <label for="floatingPassword">Repetir contraseña</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">
+              Registrar
+            </button>
+            <hr class="my-4" />
+            <small class="text-body-secondary"
+              >Al hacer click en registrar, estas aceptando los términos de
+              uso.</small
+            >
+          </form>
+          </div>
+
+
       <header>
-        <h2 class="text-center py-3">Lista de usuarios</h2>
+        <h2 class="text-center py-3 mt-5">Lista de usuarios</h2>
       </header>
-      <table class="table table-stripped">
+      <table class="table table-stripped mt-3">
         <thead>
           <tr>
             <th>Nombre</th>
