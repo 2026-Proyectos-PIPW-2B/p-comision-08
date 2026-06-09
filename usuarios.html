@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Usuarios</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -10,9 +10,13 @@
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
       <nav
         class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
@@ -34,11 +38,12 @@
           <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Usuarios</a>
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Usuarios</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="productos.html">Productos</a
-                >
+                <a class="nav-link" href="productos.html">Productos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="clasificacion.html">Clasificacion</a>
@@ -56,95 +61,110 @@
     </header>
     <main class="mt-5 pt-4 container">
       <div class="col-md-10 mx-auto col-lg-8">
-      <h1 class="text-center py-3">Registro de usuarios</h1>
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingInput"
-                placeholder="tunombredeusuario"
-              />
-              <label for="floatingInput">Nombre de usuario</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="password"
-                class="form-control"
-                id="floatingPassword"
-                placeholder="Password"
-              />
-              <label for="floatingPassword">Contraseña</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="password"
-                class="form-control"
-                id="floatingPassword"
-                placeholder="Password"
-              />
-              <label for="floatingPassword">Repetir contraseña</label>
-            </div>
-
-            <button class="w-100 btn btn-lg btn-primary" type="submit">
-              Registrar
-            </button>
-            <hr class="my-4" />
-            <small class="text-body-secondary"
-              >Al hacer click en registrar, estas aceptando los términos de
-              uso.</small
-            >
-          </form>
+        <h1 class="text-center py-3">Registro de usuarios</h1>
+        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="tunombredeusuario"
+            />
+            <label for="floatingInput">Nombre de usuario</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+            />
+            <label for="floatingPassword">Contraseña</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+            />
+            <label for="floatingPassword">Repetir contraseña</label>
           </div>
 
+          <button class="w-100 btn btn-lg btn-primary" type="submit">
+            Registrar
+          </button>
+        </form>
+      </div>
 
       <header>
         <h2 class="text-center py-3 mt-5">Lista de usuarios</h2>
       </header>
-      <table class="table table-stripped mt-3">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Rol</th>
-            <th>Estado</th>
-            <th>Habilitar/Deshabilitar</th>
-            <th>Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Pepito</td>
-            <td>
-              Usuario
-            </td>
-            <td>
-                Activo
-            </td>
-            <td></td>
-            <td></td>
+      <div class="table-responsive">
+        <table class="table table-striped mt-3 text-center">
+          <thead>
             <tr>
-            <td>Martin</td>
-            <td>
-              Admin
-            </td>
-            <td>
-                Activo
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Fabri</td>
-            <td>
-              Admin
-            </td>
-            <td>
-                Inactivo
-            </td>
-            <td></td>
-            <td></td>
-        </tbody>
-      </table>
+              <th>Nombre</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Gestionar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pepito</td>
+              <td>Usuario</td>
+              <td>Habilitado</td>
+              <td>
+                <button type="button" class="btn btn-outline-danger">
+                  Deshabilitar
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Juancito</td>
+              <td>Usuario</td>
+              <td>Deshabilitado</td>
+              <td>
+                <button type="button" class="btn btn-outline-success">
+                  Habilitar
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Mengano</td>
+              <td>Administrador</td>
+              <td>Habilitado</td>
+              <td>
+                <button type="button" class="btn btn-outline-danger">
+                  Deshabilitar
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
