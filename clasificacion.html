@@ -1,19 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Categorias y Etiquetas</title>
-     <link
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
       crossorigin="anonymous"
     />
-</head>
+  </head>
 
-<body>
-  <header>
+  <body>
+    <header>
       <nav
         class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
         aria-label="Eighth navbar example"
@@ -37,11 +37,12 @@
                 <a class="nav-link" href="usuarios.html">Usuarios</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="productos.html">Productos</a
-                >
+                <a class="nav-link" href="productos.html">Productos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Clasificacion</a>
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Clasificacion</a
+                >
               </li>
             </ul>
             <div class="row align-items-center gap-3">
@@ -57,39 +58,45 @@
 
     <div class="mt-5 pt-4 container">
       <div class="col-md-10 mx-auto col-lg-8">
-      <h1 class="text-center py-3">Crear categorias y etiquetas</h1>
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingInput"
-                placeholder="tunombredeusuario"
-              />
-              <label for="floatingInput">Nombre</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingInput"
-                placeholder="nombreproducto"
-              />
-              <label for="floatingInput">Descripcion</label>
-            </div>
-            <select class="form-select form-floating mb-3 p-2" aria-label="Default select example">
-              <option selected disabled>Seleccione una opcion..</option>
-              <option value="categoria">Categoria</option>
-              <option value="etiqueta">Etiqueta</option>
-            </select>
-
-            <button class="w-100 btn btn-lg btn-primary" type="submit">
-              Crear
-            </button>
-            
-          </form>
+        <h1 class="text-center py-3">Crear categorias y etiquetas</h1>
+        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="tunombredeusuario"
+            />
+            <label for="floatingInput">Nombre</label>
           </div>
-    </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="nombreproducto"
+            />
+            <label for="floatingInput">Descripcion</label>
+          </div>
+          <select
+            class="form-select form-floating mb-3 p-2"
+            aria-label="Default select example"
+          >
+            <option selected disabled>Seleccione una opcion..</option>
+            <option value="categoria">Categoria</option>
+            <option value="etiqueta">Etiqueta</option>
+          </select>
 
-</body>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">
+            Crear
+          </button>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
