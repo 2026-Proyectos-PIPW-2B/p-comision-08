@@ -1,0 +1,8 @@
+th,
+td {
+  vertical-align: middle;
+}
+
+.selector-cantidad input {
+  width: 70px;
+}
