@@ -71,31 +71,51 @@
             <input
               type="text"
               class="form-control"
-              id="floatingInput"
+              id="inputNombre"
               placeholder="tunombredeusuario"
+              name="nombre"
             />
-            <label for="floatingInput">Nombre de usuario</label>
+            <label for="inputNombre">Nombre de usuario</label>
+          </div>
+          <div class="form-floating mb-3">
+            <select
+              name="rol"
+              class="form-select"
+              id="selectRol"
+              aria-label="Floating label select"
+            >
+              <option value="" disabled selected>Seleccione una opción</option>
+              <option value="admin">Administrador</option>
+              <option value="usuario">Usuario</option>
+            </select>
+            <label for="selectRol">Rol</label>
           </div>
           <div class="form-floating mb-3">
             <input
               type="password"
               class="form-control"
-              id="floatingPassword"
-              placeholder="Password"
+              id="inputContrasenia"
+              placeholder="Contraseña"
+              name="contrasenia"
             />
-            <label for="floatingPassword">Contraseña</label>
+            <label for="inputContrasenia">Contraseña</label>
           </div>
           <div class="form-floating mb-3">
             <input
               type="password"
               class="form-control"
-              id="floatingPassword"
-              placeholder="Password"
+              id="inputRepetirContrasenia"
+              placeholder="Repetir la contraseña"
+              name="repetirContrasenia"
             />
-            <label for="floatingPassword">Repetir contraseña</label>
+            <label for="inputRepetirContrasenia">Repetir contraseña</label>
           </div>
 
-          <button class="w-100 btn btn-lg btn-primary" type="submit">
+          <button
+            class="w-100 btn btn-lg btn-primary"
+            type="submit"
+            id="btnRegistrarUsuario"
+          >
             Registrar
           </button>
         </form>
@@ -209,5 +229,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="js/usuarios.js"></script>
   </body>
 </html>

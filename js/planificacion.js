@@ -99,12 +99,9 @@ window.onload = () => {
 }
   - iniciarSesion()
     - trae los valores del form nombre y contraseña
-    - llama a la funcion autenticar(nombre y contraseña)
-      - si estaba ok devolvio el usuario 
-        - creo una sesion, es un objeto con el nombre y rol del usuario que devolvio antes
-
-          sube al localstorage esto "sesion": "{"nombre": "pepito", "rol": "usuario" }"
-        - redirijo
+    - llama a la funcion gestorAutenticacion.autenticar(nombre y contraseña)
+      - si estaba ok redirijo a la pagina que corresponde por el rol
+      - si falla muestra error
 
 
 ----------------------------------
@@ -116,9 +113,11 @@ gestorAutenticacion.js
     - si existe un usuario con ese nombre con buscar(nombre)
       - si coincide la contraseña con la del usuario
       - si esta todo ok
+        - crea una sesion, es un objeto con el nombre y rol del usuario que devolvio antes
+          sube al localstorage esto "sesion": "{"nombre": "pepito", "rol": "usuario" }"
        - devuelve el usuario
-      - si esta todo mal devuelve vacio
-    - si esta todo mal devuelve vacio 
+      - si esta todo mal devuelve vacioo error
+    - si esta todo mal devuelve vacio o error
 
   - cerrarSesion()
     - borrar del localstorage la clave "sesion"
@@ -305,6 +304,7 @@ catalogo.js
 
 usuario = {
   nombre: "pepito",
+  contrasenia: "asdfasd"
   rol: "usuario",
   estado: true,
   carrito: idCarrito
@@ -346,6 +346,10 @@ carrito = {
       cant
     }
   ]
+}
+
+sesion = {
+
 }
 
 */
