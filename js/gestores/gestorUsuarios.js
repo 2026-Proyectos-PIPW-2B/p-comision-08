@@ -28,7 +28,7 @@ export function buscar(nombre) {
 export function eliminarUsuario(nombre) {
   const listaUsuarios = traerTodosLosUsuarios();
   const nuevaLista = listaUsuarios.filter(
-    (usuario) => usuario.nombre === nombre,
+    (usuario) => usuario.nombre !== nombre,
   );
   actualizarListadoUsuarios(nuevaLista);
 }
