@@ -25,6 +25,19 @@ export function buscar(nombre) {
   return encontrado;
 }
 
+export function cambiarDisponibilidad(nombre) {
+  const listaUsuarios = traerTodosLosUsuarios();
+  let cambiado = false;
+  for (const usuario of listaUsuarios) {
+    if (usuario.nombre === nombre) {
+      usuario.estado = !usuario.estado;
+      cambiado = true;
+    }
+  }
+  actualizarListadoUsuarios(listaUsuarios);
+  return cambiado;
+}
+
 export function eliminarUsuario(nombre) {
   const listaUsuarios = traerTodosLosUsuarios();
   const nuevaLista = listaUsuarios.filter(
