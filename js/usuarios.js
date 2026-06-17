@@ -13,8 +13,6 @@ const inputRepetirContrasenia = document.getElementById(
   "inputRepetirContrasenia",
 );
 const formAltaUsuario = document.getElementById("formAltaUsuario");
-const btnRegistrarUsuario = document.getElementById("btnRegistrarUsuario");
-
 const tablaUsuarios = document.getElementById("tablaUsuarios");
 const divTabla = document.getElementById("divTabla");
 const divMensajeTabla = document.getElementById("divMensajeTabla");
