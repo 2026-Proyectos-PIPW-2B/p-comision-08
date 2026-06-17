@@ -3,6 +3,7 @@ import {
   eliminarUsuario,
   traerTodosLosUsuarios,
   cambiarDisponibilidad,
+  buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
 
 const inputNombre = document.getElementById("inputNombre");
@@ -11,28 +12,130 @@ const inputContrasenia = document.getElementById("inputContrasenia");
 const inputRepetirContrasenia = document.getElementById(
   "inputRepetirContrasenia",
 );
+const formAltaUsuario = document.getElementById("formAltaUsuario");
 const btnRegistrarUsuario = document.getElementById("btnRegistrarUsuario");
+
 const tablaUsuarios = document.getElementById("tablaUsuarios");
+const divTabla = document.getElementById("divTabla");
+const divMensajeTabla = document.getElementById("divMensajeTabla");
 
 window.addEventListener("load", () => {
-  btnRegistrarUsuario.addEventListener("click", registrarUsuario);
+  inicializar();
   listarUsuarios();
 });
 
-function registrarUsuario() {
+function inicializar() {
+  formAltaUsuario.addEventListener("submit", (e) => {
+    e.preventDefault();
+    limpiarEstados();
+
+    const validacion = validarFormAltaUsuario();
+    if (validacion.resultado) {
+      formAltaUsuario.reset();
+      limpiarEstados();
+      agregarUsuario(validacion.obj);
+      listarUsuarios();
+      mensajeExitoso("Usuario creado correctamente");
+    }
+  });
+}
+
+function mensajeExitoso(msj) {
+  alert(msj);
+  //TO-DO: cambiarlo a modal o Toast
+}
+
+function validarFormAltaUsuario() {
   const nombre = inputNombre.value;
   const rol = selectRol.value;
   const contrasenia = inputContrasenia.value;
   const contraRepe = inputRepetirContrasenia.value;
 
-  // hacer las validaciones
-  // que el usuario no exista
-  // que la contraseña cumpla ciertas condiciones
-  // que las contraseñas coincidan
+  let validacion = { resultado: true };
 
-  // si esta todo ok
-  agregarUsuario(nombre, rol, contrasenia);
-  listarUsuarios();
+  // Validaciones
+  // que el nombre de usuario tenga ciertas condiciones
+  if (nombre.length < 5) {
+    validacion.resultado = false;
+    feedback(
+      inputNombre,
+      "feedbackNombre",
+      "ERROR: El nombre debe tener al menos 5 caracteres.",
+    );
+  } else {
+    // que el usuario no exista ya en la base
+    const usuarioExistente = buscarUsuario(nombre);
+    if (usuarioExistente) {
+      validacion.resultado = false;
+      feedback(
+        inputNombre,
+        "feedbackNombre",
+        "ERROR: El usuario ya existe en la base de datos.",
+      );
+    } else {
+      feedback(inputNombre, "feedbackNombre");
+    }
+  }
+
+  // que se haya seleccionado un rol
+  if (rol.length === 0) {
+    validacion.resultado = false;
+    feedback(selectRol, "feedbackRol", "ERROR: Debe seleccionar un rol.");
+  } else {
+    feedback(selectRol, "feedbackRol");
+  }
+
+  // que la contraseña cumpla ciertas condiciones
+  if (contrasenia.length < 5) {
+    validacion.resultado = false;
+    feedback(
+      inputContrasenia,
+      "feedbackContrasenia",
+      "ERROR: La contraseña debe tener al menos 5 caracteres.",
+    );
+  } else {
+    feedback(inputContrasenia, "feedbackContrasenia");
+  }
+
+  // que las contraseñas coincidan
+  if (contrasenia !== contraRepe) {
+    validacion.resultado = false;
+    feedback(
+      inputRepetirContrasenia,
+      "feedbackRepetirContra",
+      "ERROR: Las contraseñas deben coincidir.",
+    );
+  } else {
+    feedback(inputRepetirContrasenia, "feedbackRepetirContra");
+  }
+
+  validacion.obj = { nombre, rol, contrasenia };
+  return validacion;
+}
+
+function feedback(elemento, idFeedback, msjError) {
+  const feedbackDiv = document.getElementById(idFeedback);
+  feedbackDiv.classList.remove("valid-feedback", "invalid-feedback");
+
+  if (msjError) {
+    elemento.classList.add("is-invalid");
+    feedbackDiv.classList.add("invalid-feedback");
+    feedbackDiv.textContent = msjError;
+  } else {
+    elemento.classList.add("is-valid");
+    feedbackDiv.classList.add("valid-feedback");
+    feedbackDiv.textContent = `El campo ${elemento.name} está OK`;
+  }
+}
+
+function limpiarEstados() {
+  const inputs = document.querySelectorAll(
+    "#formAltaUsuario .form-control, #formAltaUsuario .form-select",
+  );
+  for (const input of inputs) {
+    input.classList.remove("is-invalid");
+    input.classList.remove("is-valid");
+  }
 }
 
 function borrarUsuario(nombre) {
@@ -50,9 +153,14 @@ function listarUsuarios() {
   const listado = traerTodosLosUsuarios();
 
   if (listado.length === 0) {
-    alert("no hay usuarios");
     // esconder la tabla y mostrar un mensaje de que aun no se han registrado usuarios
+    divTabla.classList.add("d-none");
+    divMensajeTabla.classList.remove("d-none");
   } else {
+    // esconder mensaje y mostrar tabla de usuarios
+    divTabla.classList.remove("d-none");
+    divMensajeTabla.classList.add("d-none");
+
     // generar la tabla con ese listado
     for (const usuario of listado) {
       const tr = document.createElement("tr");

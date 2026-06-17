@@ -1,9 +1,10 @@
-export function agregarUsuario(nombre, rol, contrasenia) {
+export function agregarUsuario(objUsuario) {
+  const {nombre, rol, contrasenia} = objUsuario
   const listaUsuarios = traerTodosLosUsuarios();
   const nuevoUsuario = {
     nombre,
-    contrasenia,
     rol,
+    contrasenia,
     estado: true,
     carrito: "",
   };
@@ -19,7 +20,7 @@ export function traerTodosLosUsuarios() {
   return JSON.parse(localStorage.getItem("usuarios")) || [];
 }
 
-export function buscar(nombre) {
+export function buscarUsuario(nombre) {
   const listaUsuarios = traerTodosLosUsuarios();
   let encontrado = listaUsuarios.find((usuario) => usuario.nombre === nombre);
   return encontrado;
