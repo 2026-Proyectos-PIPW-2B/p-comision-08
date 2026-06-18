@@ -1,18 +1,15 @@
-
-/* ==========================================================================
-   1. VARIABLES DE MARCA Y ESTILOS GENERALES
-   ========================================================================== */
+/* 1. VARIABLES DE MARCA Y ESTILOS GENERALES */
 :root {
-  --primary-candy: #ff477e;       /* Rosa/fucsia vibrante */
+  --primary-candy: #ff477e; /* Rosa/fucsia vibrante */
   --primary-candy-hover: #e03265; /* Hover de botones primarios */
-  --bg-subtle-candy: #fff0f3;     /* Fondo suave para detalles */
+  --bg-subtle-candy: #fff0f3; /* Fondo suave para detalles */
   --font-accent: "Poppins", "Segoe UI", sans-serif;
 }
 
 body {
   background-color: #fff0f3; /* Base rosa pastel */
   /* Ondas fluidas de alta visibilidad (Fucsia, Crema, Turquesa, Rosa, Violeta) */
-  background-image: 
+  background-image:
     radial-gradient(at 0% 0%, rgba(255, 71, 126, 0.4) 0px, transparent 50%),
     radial-gradient(at 50% 0%, rgba(255, 225, 168, 0.6) 0px, transparent 50%),
     radial-gradient(at 100% 0%, rgba(0, 212, 255, 0.35) 0px, transparent 50%),
@@ -24,8 +21,7 @@ body {
 }
 
 /* Títulos principales con contraste y tipografía de acento */
-#titulo-login{
-  
+#titulo-login {
   background: linear-gradient(
     90deg,
     #ff595e,
@@ -33,31 +29,32 @@ body {
     #8ac926,
     #1982c4,
     #6a4c93
-);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent !important;
-  font-weight: 700 !important; 
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 700 !important;
   font-size: 450%;
- -webkit-text-stroke: 1px black
+  -webkit-text-stroke: 1px black;
 }
 
-h1, h2 {
-  color: #2b2d42 !important; 
+h1,
+h2 {
+  color: #2b2d42 !important;
   font-family: var(--font-accent);
   font-weight: 700;
   font-style: oblique;
 }
 
-#descripcion-login{
+#descripcion-login {
   font-weight: bold;
   font-style: italic;
 }
 
-/* ==========================================================================
-   2. CONTENEDORES BASE Y BLOQUES DE INTERFAZ
-   ========================================================================== */
+/* ------------------------------------------------------------ */
+/* 2. CONTENEDORES BASE Y BLOQUES DE INTERFAZ */
+
 /* Bloques sólidos blancos para formularios y tablas (Mejora contraste sobre el fondo) */
-form.bg-body-tertiary, 
+form.bg-body-tertiary,
 .table-responsive {
   background-color: #ffffff !important;
   padding: 2rem;
@@ -78,9 +75,9 @@ form.bg-body-tertiary,
   object-fit: cover;
 }
 
-/* ==========================================================================
-   3. PERSONALIZACIÓN DE COMPONENTES BOOTSTRAP
-   ========================================================================== */
+/* ---------------------------------------------------------- */
+/* 3. PERSONALIZACIÓN DE COMPONENTES BOOTSTRAP */
+
 /* Botones Primarios con identidad de marca */
 .btn-primary {
   background-color: var(--primary-candy) !important;
@@ -107,7 +104,9 @@ form.bg-body-tertiary,
   border: none !important;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Efecto hover interactivo en el listado de productos */
@@ -126,9 +125,9 @@ form.bg-body-tertiary,
   height: 200px; /* Asegura simetría en la grilla */
 }
 
-/* ==========================================================================
-   4. COMPONENTES ESPECÍFICOS DEL CARRITO Y CATÁLOGO
-   ========================================================================== */
+/* --------------------------------------------------------- */
+/*  4. COMPONENTES ESPECÍFICOS DEL CARRITO Y CATÁLOGO */
+
 /* Contenedor del selector numérico (- [ ] +) */
 .selector-cantidad {
   max-width: 140px;
@@ -167,6 +166,6 @@ form.bg-body-tertiary,
 }
 
 /* Bloque destacado para el Total del carrito */
-#total-carrito{
+#total-carrito {
   color: var(--primary-candy-hover);
 }

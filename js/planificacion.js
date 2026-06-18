@@ -285,16 +285,27 @@ window.onload = () => {
 
 ----------------------------------
 gestorCarrito.js
-  - agregar
-  - buscar
+  - agregarProducto
+  - traerCarrito
   - editar
   - eliminar
 
 
 -----------------------------------
 catalogo.js
+import {agregarProducto} from gestorCarrito.js
 
+window.onload = () => {
+  autenticar()
+}
 
+- listarProductos
+- agregarProductoAlCarrito
+  - toma la cantidad del input y 
+- modificarCantidad
+  - cambia la cantidad en el input (min 1, max stock)
+  - FUNCTION calcularSubTotal
+- filtrarProductos
 
 
 ---------------------------------
@@ -349,7 +360,8 @@ carrito = {
 }
 
 sesion = {
-
+  nombre": "pepito",
+  rol: "usuario"
 }
 
 */
