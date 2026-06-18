@@ -30,24 +30,23 @@
           </p>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
-          <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <form id="formLogin" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
             <div class="form-floating mb-3">
               <input
                 type="text"
                 class="form-control"
-                id="floatingInput"
-                placeholder="tunombredeusuario"
+                id="inputNombre"
               />
-              <label for="floatingInput">Nombre de usuario</label>
+              <label for="inputNombre">Nombre de usuario</label>
             </div>
             <div class="form-floating mb-3">
               <input
                 type="password"
                 class="form-control"
-                id="floatingPassword"
+                id="inputContrasenia"
                 placeholder="Password"
               />
-              <label for="floatingPassword">Contraseña</label>
+              <label for="inputContrasenia">Contraseña</label>
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">
@@ -107,5 +106,5 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"
   ></script>
-  <!-- <script src="js/index.js"></script> -->
+  <script type="module" src="./js/login.js"></script>
 </html>
