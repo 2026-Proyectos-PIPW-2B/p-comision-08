@@ -5,14 +5,9 @@ import {
   cambiarDisponibilidad,
   buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
-import {
-  autorizacion,
-  cerrarSesion,
-  obtenerUsuarioAutenticado,
-} from "./gestores/gestorLogin.js";
+import { autorizacion } from "./gestores/gestorLogin.js";
+import { cargarDatosNavbar } from "./navbar.js";
 
-const divBienvenida = document.getElementById("divBienvenida");
-const btnCerrarSesion = document.getElementById("btnCerrarSesion");
 const inputNombre = document.getElementById("inputNombre");
 const selectRol = document.getElementById("selectRol");
 const inputContrasenia = document.getElementById("inputContrasenia");
@@ -26,12 +21,11 @@ const divMensajeTabla = document.getElementById("divMensajeTabla");
 
 window.addEventListener("load", () => {
   autorizacion("Administrador");
+  cargarDatosNavbar();
   inicializar();
 });
 
 function inicializar() {
-  cargarDatosNavbar();
-  btnCerrarSesion.addEventListener("click", cerrarSesion);
   listarUsuarios();
   formAltaUsuario.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -46,15 +40,6 @@ function inicializar() {
       mensajeExitoso("Usuario creado correctamente");
     }
   });
-}
-
-function cargarDatosNavbar() {
-  const usuarioAutenticado = obtenerUsuarioAutenticado();
-  if (usuarioAutenticado.rol === "Administrador") {
-    divBienvenida.innerHTML = `<span class="badge text-bg-secondary">${usuarioAutenticado.rol}</span> Bienvenid@ ${usuarioAutenticado.nombre}`;
-  } else {
-    divBienvenida.innerHTML = `Bienvenid@ ${usuarioAutenticado.nombre}`;
-  }
 }
 
 function mensajeExitoso(msj) {

@@ -1,23 +1,7 @@
-import { autorizacion, cerrarSesion, obtenerUsuarioAutenticado } from "./gestores/gestorLogin.js";
-
-const divBienvenida = document.getElementById("divBienvenida")
-const btnCerrarSesion = document.getElementById("btnCerrarSesion")
+import { autorizacion } from "./gestores/gestorLogin.js";
+import { cargarDatosNavbar } from "./navbar.js";
 
 window.addEventListener("load", () => {
-  autorizacion("Administrador")
-  inicializar()
-});
-
-function inicializar() {
+    autorizacion("Administrador")
     cargarDatosNavbar()
-    btnCerrarSesion.addEventListener("click", cerrarSesion)
-}
-
-function cargarDatosNavbar() {
-    const usuarioAutenticado = obtenerUsuarioAutenticado()
-    if(usuarioAutenticado.rol === "Administrador") {
-        divBienvenida.innerHTML = `<span class="badge text-bg-secondary">${usuarioAutenticado.rol}</span> Bienvenid@ ${usuarioAutenticado.nombre}`
-    } else {
-        divBienvenida.innerHTML = `Bienvenid@ ${usuarioAutenticado.nombre}`
-    }
-}
+});
