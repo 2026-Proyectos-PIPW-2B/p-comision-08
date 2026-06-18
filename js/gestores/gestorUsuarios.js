@@ -1,9 +1,10 @@
-export function agregarUsuario(nombre, rol, contrasenia) {
+export function agregarUsuario(objUsuario) {
+  const {nombre, rol, contrasenia} = objUsuario
   const listaUsuarios = traerTodosLosUsuarios();
   const nuevoUsuario = {
     nombre,
-    contrasenia,
     rol,
+    contrasenia,
     estado: true,
     carrito: "",
   };
@@ -19,16 +20,29 @@ export function traerTodosLosUsuarios() {
   return JSON.parse(localStorage.getItem("usuarios")) || [];
 }
 
-export function buscar(nombre) {
+export function buscarUsuario(nombre) {
   const listaUsuarios = traerTodosLosUsuarios();
   let encontrado = listaUsuarios.find((usuario) => usuario.nombre === nombre);
   return encontrado;
 }
 
+export function cambiarDisponibilidad(nombre) {
+  const listaUsuarios = traerTodosLosUsuarios();
+  let cambiado = false;
+  for (const usuario of listaUsuarios) {
+    if (usuario.nombre === nombre) {
+      usuario.estado = !usuario.estado;
+      cambiado = true;
+    }
+  }
+  actualizarListadoUsuarios(listaUsuarios);
+  return cambiado;
+}
+
 export function eliminarUsuario(nombre) {
   const listaUsuarios = traerTodosLosUsuarios();
   const nuevaLista = listaUsuarios.filter(
-    (usuario) => usuario.nombre === nombre,
+    (usuario) => usuario.nombre !== nombre,
   );
   actualizarListadoUsuarios(nuevaLista);
 }
