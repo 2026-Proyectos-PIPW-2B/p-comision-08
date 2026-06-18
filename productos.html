@@ -56,7 +56,9 @@
             <div class="row align-items-center gap-3">
               <div class="text-white col" id="divBienvenida"></div>
               <div class="col-12 col-lg-auto">
-                <button class="btn btn-danger" id="btnCerrarSesion">Cerrar sesion</button>
+                <button class="btn btn-danger" id="btnCerrarSesion">
+                  Cerrar sesion
+                </button>
               </div>
             </div>
           </div>
@@ -227,10 +229,16 @@
                 <td>400</td>
                 <td>Alfajor</td>
                 <td>Ninguna</td>
-                <td>
-                  <button class="btn btn-info">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
+                <td id="td-boton">
+                  <!-- <button class="btn btn-info"></button> -->
+                  <!-- <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalFormulario"
+                  >
+                    <i class="bi bi-pencil-square"></i> Editar
+                  </button> -->
                 </td>
                 <td>
                   <button type="button" class="btn btn-danger">
@@ -242,7 +250,121 @@
           </table>
         </div>
       </div>
+      <!-- Button trigger modal -->
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modalFormulario"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Editar Producto
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="p-4" id="modalFormEditar">
+                <!-- p-4 p-md-5 border rounded-3 bg-body-tertiary -->
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputNombre"
+                    placeholder="nombreproducto"
+                  />
+                  <label for="modalInputNombre">Nombre del producto</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputDescripcion"
+                    placeholder="descripcionproducto"
+                  />
+                  <label for="modalInputDescripcion">Descripcion</label>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Precio"
+                      aria-label="precioproducto"
+                      id="modalInputPrecio"
+                    />
+                    <label for="modalInputPrecio">Precio</label>
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Stock"
+                      aria-label="stockproducto"
+                      id="modalInputStock"
+                    />
+                  </div>
+                </div>
+
+                <select
+                  class="form-select form-floating mt-3 mb-3 p-2"
+                  aria-label="select categoria"
+                  id="modalSelectCategoria"
+                >
+                  <option selected disabled>Seleccione una categoria..</option>
+                  <option value="alfajor">Alfajor</option>
+                  <option value="gomita">Gomita</option>
+                  <option value="chocolate">Chocolate</option>
+                  <option value="chupetin">Chupetin</option>
+                </select>
+
+                <select
+                  class="form-select form-floating mb-3 p-2"
+                  aria-label="select etiqueta"
+                  id="modalSelectEtiqueta"
+                >
+                  <option selected disabled>Seleccione una etiqueta..</option>
+                  <option value="">Ninguna</option>
+                  <option value="oferta">Oferta</option>
+                </select>
+
+                <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">
+                  Añadir producto al catalogo
+                </button> -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnGuardarCambios"
+              >
+                Guardar cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
+
     <footer class="border-top mt-4">
       <div
         class="container d-flex flex-wrap justify-content-between align-items-center p-4"
