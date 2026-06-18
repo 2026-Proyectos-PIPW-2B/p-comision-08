@@ -5,6 +5,8 @@ import {
   cambiarDisponibilidad,
   buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
+import { autorizacion } from "./gestores/gestorLogin.js";
+import { cargarDatosNavbar } from "./navbar.js";
 
 const inputNombre = document.getElementById("inputNombre");
 const selectRol = document.getElementById("selectRol");
@@ -18,11 +20,13 @@ const divTabla = document.getElementById("divTabla");
 const divMensajeTabla = document.getElementById("divMensajeTabla");
 
 window.addEventListener("load", () => {
+  autorizacion("Administrador");
+  cargarDatosNavbar();
   inicializar();
-  listarUsuarios();
 });
 
 function inicializar() {
+  listarUsuarios();
   formAltaUsuario.addEventListener("submit", (e) => {
     e.preventDefault();
     limpiarEstados();
