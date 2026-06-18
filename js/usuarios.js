@@ -5,6 +5,7 @@ import {
   cambiarDisponibilidad,
   buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
+import { autorizacion } from "./gestores/gestorLogin.js";
 
 const inputNombre = document.getElementById("inputNombre");
 const selectRol = document.getElementById("selectRol");
@@ -18,6 +19,7 @@ const divTabla = document.getElementById("divTabla");
 const divMensajeTabla = document.getElementById("divMensajeTabla");
 
 window.addEventListener("load", () => {
+  autorizacion("Administrador")
   inicializar();
   listarUsuarios();
 });
