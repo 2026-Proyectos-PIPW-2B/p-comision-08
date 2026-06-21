@@ -7,6 +7,7 @@ import {
 } from "./gestores/gestorUsuarios.js";
 import { autorizacion } from "./gestores/gestorLogin.js";
 import { cargarDatosNavbar } from "./navbar.js";
+import { feedback, limpiarEstados } from "./utilidades.js";
 
 const inputNombre = document.getElementById("inputNombre");
 const selectRol = document.getElementById("selectRol");
@@ -29,12 +30,12 @@ function inicializar() {
   listarUsuarios();
   formAltaUsuario.addEventListener("submit", (e) => {
     e.preventDefault();
-    limpiarEstados();
+    limpiarEstados("#formAltaUsuario");
 
     const validacion = validarFormAltaUsuario();
     if (validacion.resultado) {
       formAltaUsuario.reset();
-      limpiarEstados();
+      limpiarEstados("#formAltaUsuario");
       agregarUsuario(validacion.obj);
       listarUsuarios();
       mensajeExitoso("Usuario creado correctamente");
@@ -113,31 +114,6 @@ function validarFormAltaUsuario() {
 
   validacion.obj = { nombre, rol, contrasenia };
   return validacion;
-}
-
-function feedback(elemento, idFeedback, msjError) {
-  const feedbackDiv = document.getElementById(idFeedback);
-  feedbackDiv.classList.remove("valid-feedback", "invalid-feedback");
-
-  if (msjError) {
-    elemento.classList.add("is-invalid");
-    feedbackDiv.classList.add("invalid-feedback");
-    feedbackDiv.textContent = msjError;
-  } else {
-    elemento.classList.add("is-valid");
-    feedbackDiv.classList.add("valid-feedback");
-    feedbackDiv.textContent = `El campo ${elemento.name} está OK`;
-  }
-}
-
-function limpiarEstados() {
-  const inputs = document.querySelectorAll(
-    "#formAltaUsuario .form-control, #formAltaUsuario .form-select",
-  );
-  for (const input of inputs) {
-    input.classList.remove("is-invalid");
-    input.classList.remove("is-valid");
-  }
 }
 
 function borrarUsuario(nombre) {
