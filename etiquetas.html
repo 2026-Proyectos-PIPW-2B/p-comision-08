@@ -67,24 +67,26 @@
       <section class="mt-5 pt-4 container">
         <div class="col-md-10 mx-auto col-lg-8">
           <h1 class="text-center py-3">Crear etiquetas</h1>
-          <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <form id="formAltaEtiqueta" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
             <div class="form-floating mb-3">
               <input
                 type="text"
                 class="form-control"
-                id="floatingInput"
-                placeholder="tunombredeusuario"
+                id="inputNombre"
+                placeholder="Ingrese Etiqueta"
               />
-              <label for="floatingInput">Nombre</label>
+              <label for="inputNombre">Nombre</label>
+              <div id="feedbackNombre"></div>
             </div>
             <div class="form-floating mb-3">
               <input
                 type="text"
                 class="form-control"
-                id="floatingInput"
-                placeholder="nombreproducto"
+                id="inputDescripcion"
+                placeholder="Ingrese Descripcion"
               />
               <label for="floatingInput">Descripcion</label>
+              <div id="feedbackDescripcion"></div>
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">
@@ -108,49 +110,7 @@
                     <th>Eliminar</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Promo del dia</td>
-                    <td>...</td>
-                    <td>
-                      <button class="btn btn-info">
-                        <i class="bi bi-pencil-square"></i>
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Promo del mes</td>
-                    <td>...</td>
-                    <td>
-                      <button class="btn btn-info">
-                        <i class="bi bi-pencil-square"></i>
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Descuento los dias jueves</td>
-                    <td>...</td>
-                    <td>
-                      <button class="btn btn-info">
-                        <i class="bi bi-pencil-square"></i>
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
+                <tbody id="tablaEtiquetas">
                 </tbody>
               </table>
             </div>
