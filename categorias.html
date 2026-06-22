@@ -67,27 +67,31 @@
       <section class="mt-5 pt-4 container">
         <div class="col-md-10 mx-auto col-lg-8">
           <h1 class="text-center py-3">Crear categorias</h1>
-          <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <form id="formAltaCategoria" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
             <div class="form-floating mb-3">
               <input
                 type="text"
                 class="form-control"
-                id="floatingInput"
-                placeholder="tunombredeusuario"
+                id="inputNombre"
+                name="nombreCategoria"
+                placeholder="Ingrese categoria"
               />
-              <label for="floatingInput">Nombre</label>
+              <label for="inputNombre">Nombre</label>
+              <div id="feedbackNombre"></div>
             </div>
             <div class="form-floating mb-3">
               <input
                 type="text"
                 class="form-control"
-                id="floatingInput"
-                placeholder="nombreproducto"
+                id="inputDescripcion"
+                name="descripcionCategoria"
+                placeholder="Ingrese descripcion"
               />
-              <label for="floatingInput">Descripcion</label>
+              <label for="inputDescripcion">Descripcion</label>
+              <div id="feedbackDescripcion"></div>
             </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">
+            <button id="btnCreaCategorias" class="w-100 btn btn-lg btn-primary" type="submit">
               Crear
             </button>
           </form>
@@ -108,49 +112,7 @@
                     <th>Eliminar</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Alfajor</td>
-                    <td>...</td>
-                    <td>
-                      <button class="btn btn-info">
-                        <i class="bi bi-pencil-square"></i>
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Chocolate</td>
-                    <td>...</td>
-                    <td>
-                      <button class="btn btn-info">
-                        <i class="bi bi-pencil-square"></i>
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Gomita</td>
-                    <td>...</td>
-                    <td>
-                      <button class="btn btn-info">
-                        <i class="bi bi-pencil-square"></i>
-                      </button>
-                    </td>
-                    <td>
-                      <button type="button" class="btn btn-danger">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </td>
-                  </tr>
+                <tbody id="tablaCategorias">
                 </tbody>
               </table>
             </div>
