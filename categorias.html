@@ -56,7 +56,9 @@
             <div class="row align-items-center gap-3">
               <div class="text-white col" id="divBienvenida"></div>
               <div class="col-12 col-lg-auto">
-                <button class="btn btn-danger" id="btnCerrarSesion">Cerrar sesion</button>
+                <button class="btn btn-danger" id="btnCerrarSesion">
+                  Cerrar sesion
+                </button>
               </div>
             </div>
           </div>
@@ -67,7 +69,10 @@
       <section class="mt-5 pt-4 container">
         <div class="col-md-10 mx-auto col-lg-8">
           <h1 class="text-center py-3">Crear categorias</h1>
-          <form id="formAltaCategoria" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <form
+            id="formAltaCategoria"
+            class="p-4 p-md-5 border rounded-3 bg-body-tertiary"
+          >
             <div class="form-floating mb-3">
               <input
                 type="text"
@@ -91,7 +96,11 @@
               <div id="feedbackDescripcion"></div>
             </div>
 
-            <button id="btnCreaCategorias" class="w-100 btn btn-lg btn-primary" type="submit">
+            <button
+              id="btnCreaCategorias"
+              class="w-100 btn btn-lg btn-primary"
+              type="submit"
+            >
               Crear
             </button>
           </form>
@@ -99,24 +108,92 @@
       </section>
 
       <section class="mt-5 pt-4 container text-center">
-        
-            <h2>Listado categorias</h2>
+        <h2>Listado categorias</h2>
 
-            <div class="table-responsive mt-4">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Categoría</th>
-                    <th>Descripcion</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                  </tr>
-                </thead>
-                <tbody id="tablaCategorias">
-                </tbody>
-              </table>
-            </div>
+        <div class="table-responsive mt-4">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Categoría</th>
+                <th>Descripcion</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody id="tablaCategorias"></tbody>
+          </table>
+        </div>
       </section>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modalEditarCategoria"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Editar categoria
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                id="btnCerrarModal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form
+                id="modalFormAltaCategoria"
+                class="p-4 p-md-5 border rounded-3 bg-body-tertiary"
+              >
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputNombre"
+                    name="nombreCategoria"
+                    placeholder="Ingrese categoria"
+                  />
+                  <label for="modalInputNombre">Nombre</label>
+                  <div id="feedbackNombre"></div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputDescripcion"
+                    name="descripcionCategoria"
+                    placeholder="Ingrese descripcion"
+                  />
+                  <label for="modalInputDescripcion">Descripcion</label>
+                  <div id="feedbackDescripcion"></div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnGuardarCambios"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <footer class="border-top mt-4">
       <div

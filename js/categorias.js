@@ -1,37 +1,42 @@
 import { autorizacion } from "./gestores/gestorLogin.js";
 import { cargarDatosNavbar } from "./navbar.js";
-import { agregarCategoria,buscarCategoria,traerTodasLasCategorias, eliminarCategoria } from "./gestores/gestorCategorias.js";
+import {
+  agregarCategoria,
+  buscarCategoria,
+  traerTodasLasCategorias,
+  eliminarCategoria,
+  modificarCategoria,
+} from "./gestores/gestorCategorias.js";
 
-const inputNombre = document.getElementById("inputNombre")
-const inputDescripcion = document.getElementById("inputDescripcion")
-const formAltaCategoria = document.getElementById("formAltaCategoria")
+const inputNombre = document.getElementById("inputNombre");
+const inputDescripcion = document.getElementById("inputDescripcion");
+const formAltaCategoria = document.getElementById("formAltaCategoria");
 
 window.addEventListener("load", () => {
-    autorizacion("Administrador")
-    cargarDatosNavbar()
-    listarCategorias()
+  autorizacion("Administrador");
+  cargarDatosNavbar();
+  listarCategorias();
 });
 
-formAltaCategoria.addEventListener("submit", (e) =>{
-    e.preventDefault();
+formAltaCategoria.addEventListener("submit", (e) => {
+  e.preventDefault();
 
+  limpiarEstados();
+
+  const validacion = validarFormAltaCategoria();
+
+  if (validacion.resultado) {
     limpiarEstados();
 
-    const validacion = validarFormAltaCategoria()
+    agregarCategoria(validacion.obj);
 
-    if (validacion.resultado) {
-        
-      limpiarEstados();
-      
-      agregarCategoria(validacion.obj);
-      
-      alert("Categoria creada correctamente")
-      
-      formAltaCategoria.reset()
+    alert("Categoria creada correctamente");
 
-      listarCategorias()  
-    }
-})
+    formAltaCategoria.reset();
+
+    listarCategorias();
+  }
+});
 
 function validarFormAltaCategoria() {
   const nombre = inputNombre.value.trim();
@@ -45,21 +50,15 @@ function validarFormAltaCategoria() {
     feedback(
       inputNombre,
       "feedbackNombre",
-      "ERROR: Debe ingresar un nombre para la categoría."
+      "ERROR: Debe ingresar un nombre para la categoría.",
     );
-
   } else {
     const categoriaExistente = buscarCategoria(nombre);
 
     if (categoriaExistente) {
       validacion.resultado = false;
 
-      feedback(
-        inputNombre,
-        "feedbackNombre",
-        "ERROR: La categoría ya existe."
-      );
-
+      feedback(inputNombre, "feedbackNombre", "ERROR: La categoría ya existe.");
     } else {
       feedback(inputNombre, "feedbackNombre");
     }
@@ -71,9 +70,8 @@ function validarFormAltaCategoria() {
     feedback(
       inputDescripcion,
       "feedbackDescripcion",
-      "ERROR: Debe ingresar una descripción."
+      "ERROR: Debe ingresar una descripción.",
     );
-
   } else {
     feedback(inputDescripcion, "feedbackDescripcion");
   }
@@ -83,14 +81,10 @@ function validarFormAltaCategoria() {
   return validacion;
 }
 
-
 function feedback(elemento, idFeedback, msjError) {
   const feedbackDiv = document.getElementById(idFeedback);
 
-  feedbackDiv.classList.remove(
-    "valid-feedback",
-    "invalid-feedback"
-  );
+  feedbackDiv.classList.remove("valid-feedback", "invalid-feedback");
 
   if (msjError) {
     elemento.classList.add("is-invalid");
@@ -108,9 +102,7 @@ function feedback(elemento, idFeedback, msjError) {
 }
 
 function limpiarEstados() {
-  const inputs = document.querySelectorAll(
-    "#formAltaCategoria .form-control"
-  );
+  const inputs = document.querySelectorAll("#formAltaCategoria .form-control");
 
   for (const input of inputs) {
     input.classList.remove("is-invalid");
@@ -126,7 +118,6 @@ function listarCategorias() {
   const listado = traerTodasLasCategorias();
 
   for (const categoria of listado) {
-
     const tr = document.createElement("tr");
 
     const tdNombre = document.createElement("td");
@@ -140,37 +131,58 @@ function listarCategorias() {
     tdNombre.textContent = categoria.nombre;
     tdDescripcion.textContent = categoria.descripcion;
 
-
     // Botón editar
     btnEditar.classList.add("btn", "btn-info");
+    btnEditar.setAttribute("data-bs-toggle", "modal");
+    btnEditar.setAttribute("data-bs-target", "#modalEditarCategoria");
     btnEditar.innerHTML = `<i class="bi bi-pencil-square"></i>`;
-
+    btnEditar.addEventListener("click", () =>
+      cargarCategoriaEnElModal(categoria),
+    );
 
     // Botón eliminar
     btnEliminar.classList.add("btn", "btn-danger");
     btnEliminar.innerHTML = `<i class="bi bi-trash"></i>`;
 
     btnEliminar.addEventListener("click", () =>
-    borrarCategoria(categoria.nombre))
-
+      borrarCategoria(categoria.nombre),
+    );
 
     tdEditar.appendChild(btnEditar);
     tdEliminar.appendChild(btnEliminar);
 
-
-    tr.append(
-      tdNombre,
-      tdDescripcion,
-      tdEditar,
-      tdEliminar
-    );
+    tr.append(tdNombre, tdDescripcion, tdEditar, tdEliminar);
 
     tablaCategorias.appendChild(tr);
   }
 }
 
-function borrarCategoria(nombre) {
-    eliminarCategoria(nombre);
-    listarCategorias();
+function cargarCategoriaEnElModal(categoria) {
+  const nombre = document.getElementById("modalInputNombre");
+  const descripcion = document.getElementById("modalInputDescripcion");
+
+  nombre.value = categoria.nombre;
+  descripcion.value = categoria.descripcion;
+
+  const btnGuardar = document.getElementById("btnGuardarCambios");
+  btnGuardar.addEventListener("click", () => editarCategoria(categoria.id));
 }
 
+function editarCategoria(id) {
+  const nuevoNombre = document.getElementById("modalInputNombre").value;
+  const nuevaDescripcion = document.getElementById(
+    "modalInputDescripcion",
+  ).value;
+
+  const obj = { nombre: nuevoNombre, descripcion: nuevaDescripcion };
+
+  const btnCerrarModal = document.getElementById("btnCerrarModal");
+  modificarCategoria(id, obj);
+  btnCerrarModal.click();
+  listarCategorias();
+}
+
+function borrarCategoria(nombre) {
+  eliminarCategoria(nombre);
+  listarCategorias();
+}
