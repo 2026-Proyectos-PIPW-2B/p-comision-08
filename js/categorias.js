@@ -132,17 +132,17 @@ function listarCategorias() {
     tdDescripcion.textContent = categoria.descripcion;
 
     // Botón editar
-    btnEditar.classList.add("btn", "btn-info");
+    btnEditar.classList.add("btn", "btn-primary", "btn-sm");
     btnEditar.setAttribute("data-bs-toggle", "modal");
     btnEditar.setAttribute("data-bs-target", "#modalEditarCategoria");
-    btnEditar.innerHTML = `<i class="bi bi-pencil-square"></i>`;
+    btnEditar.innerHTML = `<i class="bi bi-pencil-square"></i> Editar`;
     btnEditar.addEventListener("click", () =>
       cargarCategoriaEnElModal(categoria),
     );
 
     // Botón eliminar
-    btnEliminar.classList.add("btn", "btn-danger");
-    btnEliminar.innerHTML = `<i class="bi bi-trash"></i>`;
+    btnEliminar.classList.add("btn", "btn-danger", "btn-sm");
+    btnEliminar.innerHTML = `<i class="bi bi-trash"></i> Eliminar`;
 
     btnEliminar.addEventListener("click", () =>
       borrarCategoria(categoria.nombre),
