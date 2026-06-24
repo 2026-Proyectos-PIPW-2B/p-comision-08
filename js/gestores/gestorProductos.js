@@ -6,18 +6,16 @@
   //   descripcion: "alfajor nacional artesanal",
 //   precioMinorista: 1200,
 //   precioMayorista: 1000,
-//   cantmin: 10,
+//   cantMayorista: 10,
 //   stock: 300,
 //   categoria: "alfajor",
 //   etiquetas: ["idEtiqueta1"],
-//   imagen: "",
+//   imagenURL: "",
 // }
 
 export function agregarProducto(producto) {
   const listadoProductos = traerTodosLosProductos();
-  const nuevoProd = producto
-  nuevoProd.id = crearID()
-  listadoProductos.push(nuevoProd);
+  listadoProductos.push(producto);
   actualizarListadoProductos(listadoProductos);
 }
 
@@ -34,27 +32,26 @@ export function buscarProducto(id) {
   return listadoProductos.find((prod) => prod.id === id);
 }
 
-export function modificarProducto(id, nuevoProd) {
-  const listadoProductos = traerTodosLosProductos();
-  const producto = listadoProductos.find((prod) => prod.id === id);
-  if (producto) {
-    producto.nombre = nuevoProd.nombre
-    producto.descripcion = nuevoProd.descripcion
-    producto.precioMinorista = nuevoProd.precioMinorista
-    producto.precioMayorista = nuevoProd.precioMayorista
-    producto.cantmin = nuevoProd.cantmin
-    producto.stock = nuevoProd.stock
-    producto.categoria = nuevoProd.categoria
-    producto.etiquetas = nuevoProd.etiquetas
-    producto.imagen = nuevoProd.imagen
-  }
-  actualizarListadoProductos(listadoProductos)
-}
-
 export function eliminarProducto(id) {
   const listadoProductos = traerTodosLosProductos();
-  const nuevaLista = listadoProductos.filter(
-    (prod) => prod.id !== id,
-  );
+  const nuevaLista = listadoProductos.filter(prod => prod.id !== id);
   actualizarListadoProductos(nuevaLista);
 }
+
+export function modificarProducto(id, nuevoProd) {
+  // const listadoProductos = traerTodosLosProductos();
+  // const producto = listadoProductos.find((prod) => prod.id === id);
+  // if (producto) {
+  //   producto.nombre = nuevoProd.nombre
+  //   producto.descripcion = nuevoProd.descripcion
+  //   producto.precioMinorista = nuevoProd.precioMinorista
+  //   producto.precioMayorista = nuevoProd.precioMayorista
+  //   producto.cantmin = nuevoProd.cantmin
+  //   producto.stock = nuevoProd.stock
+  //   producto.categoria = nuevoProd.categoria
+  //   producto.etiquetas = nuevoProd.etiquetas
+  //   producto.imagen = nuevoProd.imagen
+  // }
+  // actualizarListadoProductos(listadoProductos)
+}
+

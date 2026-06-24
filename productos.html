@@ -49,49 +49,58 @@
   </header>
 
   <main class="container pb-4 flex-fill">
-    <div class="mt-5 pt-4">
+    <section class="mt-5 pt-4">
       <div class="col-md-10 mx-auto col-lg-8">
         <h1 class="text-center py-3">Gestionar productos</h1>
 
         <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" id="formRegistrarProducto">
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputNombre" placeholder="nombreproducto" />
+            <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="nombreproducto" />
             <label for="inputNombre">Nombre del producto</label>
+            <div id="feedbackNombre"></div>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputDescripcion" placeholder="descripcionproducto" />
+            <input type="text" class="form-control" id="inputDescripcion" name="descripción"
+              placeholder="descripcionproducto" />
             <label for="inputDescripcion">Descripcion</label>
+            <div id="feedbackDescripcion"></div>
           </div>
 
           <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
             <div class="col">
               <div class="form-floating">
-                <input type="number" class="form-control" placeholder="precio minorista" id="inputPrecioMinorista" />
+                <input type="number" class="form-control" name="precio minorista" placeholder="precio minorista"
+                  id="inputPrecioMinorista" min="0" />
                 <label for="inputPrecioMinorista">Precio minorista</label>
+                <div id="feedbackPrecioMinorista"></div>
               </div>
             </div>
 
             <div class="col">
               <div class="form-floating">
-                <input type="number" class="form-control" placeholder="precio mayorista" id="inputPrecioMayorista" />
+                <input type="number" class="form-control" placeholder="precio mayorista" id="inputPrecioMayorista"
+                  name="precio mayorista" min="0" />
                 <label for="inputPrecioMayorista">Precio mayorista</label>
+                <div id="feedbackPrecioMayorista"></div>
               </div>
             </div>
 
             <div class="col">
               <div class="col form-floating">
                 <input type="number" class="form-control" placeholder="cantidad minima para precio mayorista"
-                  id="inputCantMin" />
+                  id="inputCantMay" name="cantidad mayorista" min="0" />
                 <label for="inputCantMay">Cant mayorista</label>
+                <div id="feedbackCantMay"></div>
               </div>
             </div>
 
             <div class="col">
               <div class="form-floating">
-                <input type="number" class="form-control" placeholder="stock" id="inputStock" />
+                <input type="number" class="form-control" placeholder="stock" id="inputStock" name="stock" min="0" />
                 <label for="inputStock">Stock</label>
+                <div id="feedbackStock"></div>
               </div>
             </div>
 
@@ -99,13 +108,14 @@
 
           <div class="form-floating my-3">
             <select class="form-select" id="selectCategoria">
-              <option selected disabled>Seleccione una categoria...</option>
+              <option selected disabled value="">Seleccione una categoria...</option>
               <option value="alfajor">Alfajor</option>
               <!-- <option value="gomita">Gomita</option>
               <option value="chocolate">Chocolate</option> -->
               <option value="chupetin">Chupetin</option>
             </select>
             <label for="selectCategoria">Categoría</label>
+            <div id="feedbackCategoria"></div>
           </div>
 
           <div class="mb-3 px-3 py-2 border rounded bg-white">
@@ -134,7 +144,7 @@
                   id="tagPromoInvierno" name="promo-invierno">
                 <label class="form-check-label" for="tagPromoInvierno">Promoción Invierno</label>
               </div>
-              
+
             </div>
           </div>
 
@@ -167,7 +177,7 @@
               </div>
 
               <div class="col text-center">
-                <img src="" class="img-thumbnail" alt="..." id="imgPreview"/>
+                <img src="" class="img-thumbnail" alt="..." id="imgPreview" />
               </div>
 
             </div>
@@ -178,59 +188,16 @@
           </button>
         </form>
       </div>
-    </div>
+    </section>
 
-    <div class="mt-5 pt-4">
-      <h2 class="text-center py-3">Lista de productos</h2>
-      <div class="table-responsive mt-4">
-        <table class="table table-striped text-center">
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Imagen</th>
-              <th>Precios</th>
-              <th>Stock</th>
-              <th>Categoria</th>
-              <th>Etiqueta</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alfajor RASTA Negro x70g.</td>
-              <td colspan="1">
-                <img src="https://www.golomax.com.ar/uploads/centum/articles/home/13018622_1.jpg" class="img-thumbnail"
-                  alt="..." width="80" height="80" />
-              </td>
-              <td>
-                <p>$1000</p>
-                <p>$900 <small>(10u)</small></p>
-              </td>
-              <td>400</td>
-              <td>Alfajor</td>
-              <td>Ninguna</td>
-              <td id="td-boton">
-                <!-- <button class="btn btn-info"></button> -->
-                <!-- <button
-                    type="button"
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modalFormulario"
-                  >
-                    <i class="bi bi-pencil-square"></i> Editar
-                  </button> -->
-              </td>
-              <td>
-                <button type="button" class="btn btn-danger">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <section class="mt-5 pt-4">
+      <h2 class="text-center py-3">Listado de productos</h2>
+      <div class="row row-cols-1 mt-4" id="divContenedorListado"></div>
+    </section>
+
+
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
