@@ -1,20 +1,8 @@
-
-
-//   {
-  //   idProd: "123",
-  //   nombre: "alfajor rasta",
-  //   descripcion: "alfajor nacional artesanal",
-//   precioMinorista: 1200,
-//   precioMayorista: 1000,
-//   cantMayorista: 10,
-//   stock: 300,
-//   categoria: "alfajor",
-//   etiquetas: ["idEtiqueta1"],
-//   imagenURL: "",
-// }
+import { generarID } from "../utilidades.js";
 
 export function agregarProducto(producto) {
   const listadoProductos = traerTodosLosProductos();
+  producto.id = generarID("PROD")
   listadoProductos.push(producto);
   actualizarListadoProductos(listadoProductos);
 }
@@ -39,19 +27,19 @@ export function eliminarProducto(id) {
 }
 
 export function modificarProducto(id, nuevoProd) {
-  // const listadoProductos = traerTodosLosProductos();
-  // const producto = listadoProductos.find((prod) => prod.id === id);
-  // if (producto) {
-  //   producto.nombre = nuevoProd.nombre
-  //   producto.descripcion = nuevoProd.descripcion
-  //   producto.precioMinorista = nuevoProd.precioMinorista
-  //   producto.precioMayorista = nuevoProd.precioMayorista
-  //   producto.cantmin = nuevoProd.cantmin
-  //   producto.stock = nuevoProd.stock
-  //   producto.categoria = nuevoProd.categoria
-  //   producto.etiquetas = nuevoProd.etiquetas
-  //   producto.imagen = nuevoProd.imagen
-  // }
-  // actualizarListadoProductos(listadoProductos)
+  const listadoProductos = traerTodosLosProductos();
+  const producto = listadoProductos.find((prod) => prod.id === id);
+  if (producto) {
+    producto.nombre = nuevoProd.nombre
+    producto.descripcion = nuevoProd.descripcion
+    producto.precioMinorista = nuevoProd.precioMinorista
+    producto.precioMayorista = nuevoProd.precioMayorista
+    producto.cantMayorista = nuevoProd.cantMayorista
+    producto.stock = nuevoProd.stock
+    producto.categoria = nuevoProd.categoria
+    producto.etiquetas = nuevoProd.etiquetas
+    producto.imagenURL = nuevoProd.imagenURL
+  }  
+  actualizarListadoProductos(listadoProductos)
 }
 

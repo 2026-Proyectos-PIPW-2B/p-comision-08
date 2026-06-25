@@ -107,53 +107,20 @@
           </div>
 
           <div class="form-floating my-3">
-            <select class="form-select" id="selectCategoria">
-              <option selected disabled value="">Seleccione una categoria...</option>
-              <option value="alfajor">Alfajor</option>
-              <!-- <option value="gomita">Gomita</option>
-              <option value="chocolate">Chocolate</option> -->
-              <option value="chupetin">Chupetin</option>
-            </select>
+            <select class="form-select" id="selectCategoria"></select>
             <label for="selectCategoria">Categoría</label>
             <div id="feedbackCategoria"></div>
           </div>
 
           <div class="mb-3 px-3 py-2 border rounded bg-white">
             <label class="form-label text-muted small mb-2">Etiquetas</label>
-            <div class="d-flex flex-wrap gap-3">
-
-              <div class="form-check">
-                <input class="form-check-input check-etiqueta" type="checkbox" value="oferta" id="tagOferta"
-                  name="oferta">
-                <label class="form-check-label" for="tagOferta">Oferta</label>
-              </div>
-
-              <div class="form-check">
-                <input class="form-check-input check-etiqueta" type="checkbox" value="nuevo" id="tagNuevo" name="nuevo">
-                <label class="form-check-label" for="tagNuevo">Nuevo</label>
-              </div>
-
-              <div class="form-check">
-                <input class="form-check-input check-etiqueta" type="checkbox" value="sin-tacc" id="tagSinTacc"
-                  name="sin-tacc">
-                <label class="form-check-label" for="tagSinTacc">Sin TACC</label>
-              </div>
-
-              <div class="form-check">
-                <input class="form-check-input check-etiqueta" type="checkbox" value="promo-invierno"
-                  id="tagPromoInvierno" name="promo-invierno">
-                <label class="form-check-label" for="tagPromoInvierno">Promoción Invierno</label>
-              </div>
-
-            </div>
+            <div class="d-flex flex-wrap gap-3" id="contenedorEtiquetas"></div>
           </div>
 
           <div class=" my-3 border rounded bg-white p-3">
             <div class="row g-4 align-items-center">
-
               <div class="col-md-8">
                 <div class="d-flex flex-column">
-
                   <div class="form-floating">
                     <select class="form-select " id="selectImagen">
                       <option selected value="sin-foto">Sin foto</option>
@@ -165,21 +132,16 @@
                     </select>
                     <label for="selectImagen">Imagenes precargadas</label>
                   </div>
-
                   <p class="text-center my-1">o</p>
-
                   <div class="form-floating">
                     <input type="text" name="url-imagen" id="inputImgURL" class="form-control" placeholder="url-imagen">
                     <label for="inputImgURL">URL Imagen personalizada</label>
                   </div>
-
                 </div>
               </div>
-
               <div class="col text-center">
                 <img src="" class="img-thumbnail" alt="..." id="imgPreview" />
               </div>
-
             </div>
           </div>
 
@@ -210,121 +172,100 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="p-3" id="modalFormEditar">
+              <form class="p-3" id="modalFormEditar">
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="modalInputNombre" placeholder="nombreproducto" />
+                <input type="text" class="form-control" id="modalInputNombre" name="nombre" placeholder="nombreproducto" />
                 <label for="modalInputNombre">Nombre del producto</label>
+                <div id="feedbackNombreModal"></div>
               </div>
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="modalInputDescripcion" placeholder="descripcionproducto" />
+                <input type="text" class="form-control" id="modalInputDescripcion" name="descripción"
+                  placeholder="descripcionproducto" />
                 <label for="modalInputDescripcion">Descripcion</label>
+                <div id="feedbackDescripcionModal"></div>
               </div>
 
-              <div class="row row-cols-1 row-cols-md-2 g-3">
+              <div class="row row-cols-1 row-cols-sm-2 g-3">
                 <div class="col">
                   <div class="form-floating">
-                    <input type="number" class="form-control" placeholder="precio minorista"
-                      id="modalInputPrecioMinorista" />
+                    <input type="number" class="form-control" name="precio minorista" placeholder="precio minorista"
+                      id="modalInputPrecioMinorista" min="0" />
                     <label for="modalInputPrecioMinorista">Precio minorista</label>
+                    <div id="feedbackPrecioMinoristaModal"></div>
                   </div>
                 </div>
 
                 <div class="col">
                   <div class="form-floating">
-                    <input type="number" class="form-control" placeholder="precio mayorista"
-                      id="modalInputPrecioMayorista" />
+                    <input type="number" class="form-control" placeholder="precio mayorista" id="modalInputPrecioMayorista"
+                      name="precio mayorista" min="0" />
                     <label for="modalInputPrecioMayorista">Precio mayorista</label>
+                    <div id="feedbackPrecioMayoristaModal"></div>
                   </div>
                 </div>
 
                 <div class="col">
                   <div class="col form-floating">
                     <input type="number" class="form-control" placeholder="cantidad minima para precio mayorista"
-                      id="modalInputCantMin" />
-                    <label for="modalInputCantMin">Cant. min. al por mayor</label>
+                      id="modalInputCantMay" name="cantidad mayorista" min="0" />
+                    <label for="modalInputCantMay">Cant mayorista</label>
+                    <div id="feedbackCantMayModal"></div>
                   </div>
                 </div>
 
                 <div class="col">
                   <div class="form-floating">
-                    <input type="number" class="form-control" placeholder="stock" id="modalInputStock" />
+                    <input type="number" class="form-control" placeholder="stock" id="modalInputStock" name="stock"
+                      min="0" />
                     <label for="modalInputStock">Stock</label>
+                    <div id="feedbackStockModal"></div>
                   </div>
                 </div>
-
               </div>
 
               <div class="form-floating my-3">
-                <select class="form-select " id="modalSelectCategoria">
-                  <option selected disabled>Seleccione una categoria...</option>
-                  <option value="alfajor">Alfajor</option>
-                  <option value="gomita">Gomita</option>
-                  <option value="chocolate">Chocolate</option>
-                  <option value="chupetin">Chupetin</option>
-                </select>
+                <select class="form-select" id="modalSelectCategoria"></select>
                 <label for="modalSelectCategoria">Categoría</label>
+                <div id="feedbackCategoriaModal"></div>
               </div>
 
               <div class="mb-3 px-3 py-2 border rounded bg-white">
                 <label class="form-label text-muted small mb-2">Etiquetas</label>
-                <div class="d-flex flex-wrap gap-3">
-
-                  <div class="form-check">
-                    <input class="form-check-input check-etiqueta-modal" type="checkbox" value="oferta"
-                      id="modalTagOferta" name="oferta">
-                    <label class="form-check-label" for="modalTagOferta">Oferta</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input check-etiqueta-modal" type="checkbox" value="nuevo"
-                      id="modalTagNuevo" name="nuevo">
-                    <label class="form-check-label" for="modalTagNuevo">Nuevo</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input check-etiqueta-modal" type="checkbox" value="sin-tacc"
-                      id="modalTagSinTacc" name="sin-tacc">
-                    <label class="form-check-label" for="modalTagSinTacc">Sin TACC</label>
-                  </div>
-
-                  <div class="form-check">
-                    <input class="form-check-input check-etiqueta-modal" type="checkbox" value="promo-invierno"
-                      id="modalTagPromoInvierno" name="promo-invierno">
-                    <label class="form-check-label" for="modalTagPromoInvierno">Promoción Invierno</label>
-                  </div>
-
-                </div>
+                <div class="d-flex flex-wrap gap-3" id="modalContenedorEtiquetas"></div>
               </div>
 
-              <div class=" my-3 border rounded bg-white">
-                <div class="row align-items-center g-4 p-3">
-
-                  <div class="col-sm-8">
-                    <div class="form-floating">
-                      <select class="form-select " id="modalSelectImagen">
-                        <option selected disabled>Seleccione una imagen...</option>
-                        <option value="alfajor">Alfajor</option>
-                        <option value="gomita">Gomita</option>
-                        <option value="chocolate">Chocolate</option>
-                        <option value="chupetin">Chupetin</option>
-                      </select>
-                      <label for="modalSelectImagen">Imagen</label>
+              <div class=" my-3 border rounded bg-white p-3">
+                <div class="row g-4 align-items-center">
+                  <div class="col-md-8">
+                    <div class="d-flex flex-column">
+                      <div class="form-floating">
+                        <select class="form-select " id="modalSelectImagen">
+                          <option selected value="sin-foto">Sin foto</option>
+                          <option value="alfajor-blanco">Alfajor blanco</option>
+                          <option value="alfajor-negro">Alfajor negro</option>
+                          <option value="chupetin">Chupetin</option>
+                        </select>
+                        <label for="modalSelectImagen">Imagenes precargadas</label>
+                      </div>
+                      <p class="text-center my-1">o</p>
+                      <div class="form-floating">
+                        <input type="text" name="url-imagen" id="modalInputImgURL" class="form-control"
+                          placeholder="url-imagen">
+                        <label for="modalInputImgURL">URL Imagen personalizada</label>
+                      </div>
                     </div>
                   </div>
-
                   <div class="col text-center">
-                    <img src="https://www.golomax.com.ar/uploads/centum/articles/home/13018622_1.jpg"
-                      class="img-thumbnail" alt="..." id="modalImgPreview" />
+                    <img src="" class="img-thumbnail" alt="..." id="modalImgPreview" />
                   </div>
-
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCerrarModal">
               Cancelar
             </button>
             <button type="button" class="btn btn-primary" id="btnGuardarCambios">
