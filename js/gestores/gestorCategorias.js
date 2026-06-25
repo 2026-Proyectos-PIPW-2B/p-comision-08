@@ -24,8 +24,12 @@ export function traerTodasLasCategorias() {
 
 export function buscarCategoria(nombre) {
   const listaCategorias = traerTodasLasCategorias();
-
   return listaCategorias.find((categoria) => categoria.nombre === nombre);
+}
+
+export function buscarCategoriaPorID(id) {
+  const listaCategorias = traerTodasLasCategorias();
+  return listaCategorias.find((categoria) => categoria.id === id);
 }
 
 export function modificarCategoria(id, obj) {
@@ -41,12 +45,14 @@ export function modificarCategoria(id, obj) {
   actualizarListadoCategorias(listaCategorias);
 }
 
-export function eliminarCategoria(nombre) {
+export function eliminarCategoria(id) {
   const listaCategorias = traerTodasLasCategorias();
 
-  const nuevaLista = listaCategorias.filter(
-    (categoria) => categoria.nombre !== nombre,
-  );
+  const nuevaLista = listaCategorias.filter((categoria) => categoria.id !== id);
 
   actualizarListadoCategorias(nuevaLista);
+}
+
+export function borrarTodasLasCategorias() {
+  localStorage.removeItem("categorias");
 }
