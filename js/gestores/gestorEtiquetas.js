@@ -1,3 +1,5 @@
+import { generarID } from "../utilidades.js";
+
 export function agregarEtiqueta(objEtiqueta) {
   const { nombre, descripcion } = objEtiqueta;
 
@@ -6,6 +8,7 @@ export function agregarEtiqueta(objEtiqueta) {
   const nuevaEtiqueta = {
     nombre,
     descripcion,
+    id: generarID("ETI")
   };
 
   listaEtiquetas.push(nuevaEtiqueta);
@@ -30,6 +33,19 @@ export function buscarEtiqueta(nombre) {
   return listaEtiquetas.find(
     (etiqueta) => etiqueta.nombre === nombre
   );
+}
+
+export function modificarEtiqueta(id, obj) {
+  const listaEtiquetas = traerTodasLasEtiquetas();
+
+  for (const etiqueta of listaEtiquetas) {
+    if (etiqueta.id === id) {
+      etiqueta.nombre = obj.nombre;
+      etiqueta.descripcion = obj.descripcion;
+    }
+  }
+
+  actualizarListadoEtiquetas(listaEtiquetas);
 }
 
 

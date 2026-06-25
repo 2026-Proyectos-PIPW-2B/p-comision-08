@@ -4,7 +4,8 @@ import {
   agregarEtiqueta,
   traerTodasLasEtiquetas,
   eliminarEtiqueta,
-  buscarEtiqueta
+  buscarEtiqueta,
+  modificarEtiqueta
 } from "./gestores/gestorEtiquetas.js";
 
 const inputNombre = document.getElementById("inputNombre");
@@ -22,9 +23,13 @@ window.addEventListener("load", () => {
 formAltaEtiqueta.addEventListener("submit", (e) => {
   e.preventDefault();
 
+  limpiarEstados();
+
   const validacion = validarFormAltaEtiqueta();
 
   if (validacion.resultado) {
+
+    limpiarEstados();
 
     agregarEtiqueta(validacion.obj);
 
@@ -139,13 +144,23 @@ function listarEtiquetas() {
     const tdEliminar = document.createElement("td");
 
 
+    const btnEditar = document.createElement("button")
     const btnEliminar = document.createElement("button");
 
 
     tdNombre.textContent = etiqueta.nombre;
     tdDescripcion.textContent = etiqueta.descripcion;
 
+    //Boton editar
+    btnEditar.classList.add("btn", "btn-primary", "btn-sm");
+    btnEditar.setAttribute("data-bs-toggle", "modal");
+    btnEditar.setAttribute("data-bs-target", "#modalEditarEtiqueta");
+    btnEditar.innerHTML = `<i class="bi bi-pencil-square"></i> Editar`;
+    btnEditar.addEventListener("click", () =>
+      cargarEtiquetaEnElModal(etiqueta),
+    );
 
+    // Boton eliminar
     btnEliminar.classList.add("btn", "btn-danger");
     btnEliminar.innerHTML = `<i class="bi bi-trash"></i>`;
 
@@ -154,13 +169,14 @@ function listarEtiquetas() {
       borrarEtiqueta(etiqueta.nombre);
     });
 
-
+    tdEditar.appendChild(btnEditar);
     tdEliminar.appendChild(btnEliminar);
 
 
     tr.append(
       tdNombre,
       tdDescripcion,
+      tdEditar,
       tdEditar,
       tdEliminar
     );
@@ -170,8 +186,44 @@ function listarEtiquetas() {
   }
 }
 
+function cargarEtiquetaEnElModal(etiqueta) {
+  const nombre = document.getElementById("modalInputNombre");
+  const descripcion = document.getElementById("modalInputDescripcion");
+
+  nombre.value = etiqueta.nombre;
+  descripcion.value = etiqueta.descripcion;
+
+  const btnGuardar = document.getElementById("btnGuardarCambios");
+  btnGuardar.addEventListener("click", () => editarEtiqueta(etiqueta.id));
+}
+
+function editarEtiqueta(id) {
+  const nuevoNombre = document.getElementById("modalInputNombre").value;
+  const nuevaDescripcion = document.getElementById(
+    "modalInputDescripcion",
+  ).value;
+
+  const obj = { nombre: nuevoNombre, descripcion: nuevaDescripcion };
+
+  const btnCerrarModal = document.getElementById("btnCerrarModal");
+  modificarEtiqueta(id, obj);
+  btnCerrarModal.click();
+  listarEtiquetas();
+}
+
+
+
 function borrarEtiqueta(nombre) {
 
     eliminarEtiqueta(nombre);
     listarEtiquetas();
   }
+
+function limpiarEstados() {
+  const inputs = document.querySelectorAll("#formAltaEtiqueta .form-control");
+
+  for (const input of inputs) {
+    input.classList.remove("is-invalid");
+    input.classList.remove("is-valid");
+  }
+}

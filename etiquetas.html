@@ -115,6 +115,74 @@
               </table>
             </div>
       </section>
+        <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modalEditarEtiqueta"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Editar etiqueta
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                id="btnCerrarModal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="modalFormAltaEtiqueta" class="p-4 p-md-5 rounded-3">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputNombre"
+                    name="nombreEtiqueta"
+                    placeholder="Ingrese etiqueta"
+                  />
+                  <label for="modalInputNombre">Nombre</label>
+                  <div id="feedbackNombre"></div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputDescripcion"
+                    name="descripcionEtiqueta"
+                    placeholder="Ingrese descripcion"
+                  />
+                  <label for="modalInputDescripcion">Descripcion</label>
+                  <div id="feedbackDescripcion"></div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnGuardarCambios"
+              >
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
     <footer class="border-top mt-4">
       <div
