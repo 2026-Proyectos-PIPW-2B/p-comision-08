@@ -61,3 +61,31 @@ export function eliminarEtiqueta(nombre) {
 export function borrarTodasLasEtiquetas() {
   localStorage.removeItem("etiquetas");
 }
+
+export function cargarListadoPredeterminadoEtiquetas() {
+  const listado = [
+    {
+      nombre: "Nuevo",
+      descripcion: "Producto nuevo en el catálogo.",
+    },
+    {
+      nombre: "Sin TACC",
+      descripcion: "Alimento que no contiene trigo, avena, cebada y centeno.",
+    },
+    {
+      nombre: "Oferta",
+      descripcion: "Precio disminuido sobre cierto tiempo.",
+    },
+    {
+      nombre: "Nacional",
+      descripcion: "Producto de industria nacional.",
+    },
+  ];
+
+  for (const etiqueta of listado) {
+    const etiq = buscarEtiqueta(etiqueta.nombre)
+    if (!etiq) {
+      agregarEtiqueta(etiqueta);
+    }
+  }
+}

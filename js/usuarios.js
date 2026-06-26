@@ -5,7 +5,7 @@ import {
   cambiarDisponibilidad,
   buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
-import { autorizacion } from "./gestores/gestorLogin.js";
+import { autorizacion, cerrarSesion, obtenerUsuarioAutenticado } from "./gestores/gestorLogin.js";
 import { cargarDatosNavbar } from "./navbar.js";
 import { feedback, limpiarEstados } from "./utilidades.js";
 
@@ -118,6 +118,10 @@ function validarFormAltaUsuario() {
 
 function borrarUsuario(nombre) {
   eliminarUsuario(nombre);
+  const sesion = obtenerUsuarioAutenticado()
+  if (sesion.nombre === nombre) {
+    cerrarSesion()
+  }
   listarUsuarios();
 }
 

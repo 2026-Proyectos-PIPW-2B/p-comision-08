@@ -1,3 +1,5 @@
+import { buscarCategoriaPorID, traerTodasLasCategorias, cargarListadoPredeterminadoCategorias } from "./gestores/gestorCategorias.js";
+import { traerTodasLasEtiquetas, cargarListadoPredeterminadoEtiquetas } from "./gestores/gestorEtiquetas.js";
 import { autorizacion } from "./gestores/gestorLogin.js";
 import {
   agregarProducto,
@@ -43,12 +45,14 @@ const modalSelectImagen = document.getElementById("modalSelectImagen");
 const modalInputImgURL = document.getElementById("modalInputImgURL");
 const btnCerrarModal = document.getElementById("btnCerrarModal");
 const btnGuardarCambios = document.getElementById("btnGuardarCambios");
+const btnListadoPred = document.getElementById("btnListadoPred");
 
 window.addEventListener("load", () => {
   autorizacion("Administrador");
   cargarDatosNavbar();
   inicializar();
   listarProductos();
+  btnListadoPred.addEventListener("click", cargarListadoPredeterminado)
 });
 
 function inicializar() {
@@ -153,13 +157,13 @@ function validarFormRegistrarProd() {
 
   // validaciones
 
-  const validacionNombre = validarCadena(nombre, 5, 20);
+  const validacionNombre = validarCadena(nombre, 5, 100);
   if (!validacionNombre) {
     validacion.resultado = false;
     feedback(
       inputNombre,
       "feedbackNombre",
-      `ERROR: El nombre debe tener entre 5 a 20 caracteres.`,
+      `ERROR: El nombre debe tener entre 5 a 100 caracteres.`,
     );
   } else {
     feedback(inputNombre, "feedbackNombre");
@@ -217,16 +221,17 @@ function validarFormRegistrarProd() {
     feedback(inputStock, "feedbackStock");
   }
 
-  if (categoria === "") {
-    validacion.resultado = false;
-    feedback(
-      selectCategoria,
-      "feedbackCategoria",
-      `ERROR: Debe seleccionar una categoría.`,
-    );
-  } else {
+  // if (categoria === "") {
+  //   validacion.resultado = false;
+  //   feedback(
+  //     selectCategoria,
+  //     "feedbackCategoria",
+  //     `ERROR: Debe seleccionar una categoría.`,
+  //   );
+  // } else {
+  //   feedback(selectCategoria, "feedbackCategoria");
+  // }
     feedback(selectCategoria, "feedbackCategoria");
-  }
 
   // es valido siempre porque son opcionales
   const checkEtiquetas = document.querySelectorAll(".check-etiqueta");
@@ -703,16 +708,17 @@ function validarFormModal(obj) {
     feedback(modalInputStock, "feedbackStockModal");
   }
 
-  if (obj.categoria === "") {
-    resultado = false;
-    feedback(
-      modalSelectCategoria,
-      "feedbackCategoriaModal",
-      `ERROR: Debe seleccionar una categoría.`,
-    );
-  } else {
-    feedback(modalSelectCategoria, "feedbackCategoriaModal");
-  }
+  // if (obj.categoria === "") {
+  //   resultado = false;
+  //   feedback(
+  //     modalSelectCategoria,
+  //     "feedbackCategoriaModal",
+  //     `ERROR: Debe seleccionar una categoría.`,
+  //   );
+  // } else {
+  //   feedback(modalSelectCategoria, "feedbackCategoriaModal");
+  // }
+  feedback(modalSelectCategoria, "feedbackCategoriaModal");
 
   // es valido siempre porque son opcionales
   const modalCheckEtiquetas = document.querySelectorAll(".check-etiqueta-modal");
@@ -730,51 +736,37 @@ function validarFormModal(obj) {
   return resultado;
 }
 
-// FUNCIONES AUXILIARES A BORRAR DESPUES CUANDO MERGEE Y REEMPLACE CON LAS DE LOS GESTORES
-function traerTodasLasCategorias() {
-  const listado = [
-    {
-      nombre: "Alfajores",
-      descripcion: "Alfajores de industria nacional e internacional",
-      id: "CAT-mqt3tii1-kx3p",
-    },
-    {
-      nombre: "Chupetines",
-      descripcion: "Chupetines de caramelo duro",
-      id: "CAT-mqt3tii1-pkoj",
-    },
-    {
-      nombre: "Gomitas",
-      descripcion: "Gomitas espolvoreadas en azúcar",
-      id: "CAT-mqt3tii1-ezqm",
-    },
-  ];
-  return listado;
+
+function cargarListadoPredeterminado() {
+  cargarListadoPredeterminadoCategorias()
+  cargarCategoriasEnSelect("selectCategoria");
+  cargarListadoPredeterminadoEtiquetas()
+  cargarEtiquetasEnCheckboxes("contenedorEtiquetas")
+  // const listado = [
+  //   {
+  //     nombre: "Nuevo",
+  //     descripcion: "Producto nuevo en el catálogo.",
+  //   },
+  //   {
+  //     nombre: "Sin TACC",
+  //     descripcion: "Alimento que no contiene trigo, avena, cebada y centeno.",
+  //   },
+  //   {
+  //     nombre: "Oferta",
+  //     descripcion: "Precio disminuido sobre cierto tiempo.",
+  //   },
+  //   {
+  //     nombre: "Nacional",
+  //     descripcion: "Producto de industria nacional.",
+  //   },
+  // ];
+  
+  // for (const prod of listado) {
+  //   const etiq = buscarProductoPorNombre(etiqueta.nombre)
+  //   if (!etiq) {
+  //     agregarEtiqueta(etiqueta);
+  //   }
+  // }
+  // listarProductos();
 }
 
-function buscarCategoriaPorID(idCategoria) {
-  const listado = traerTodasLasCategorias();
-  return listado.find((categoria) => categoria.id === idCategoria) || {};
-}
-
-function traerTodasLasEtiquetas() {
-  const listado = [
-    {
-      id: "ET-asd32ha-23ad",
-      nombre: "Oferta",
-      descripcion: "Ofertas de la semana",
-    },
-    { id: "ET-xcvweas-12zx", nombre: "Nuevo", descripcion: "Productos nuevos" },
-    {
-      id: "ET-hgjyjt3-j5yf",
-      nombre: "SINTACC",
-      descripcion: "Productos libres de gluten",
-    },
-    {
-      id: "ET-asdf2as-j5yf",
-      nombre: "Nacional",
-      descripcion: "Productos de Industria Nacional",
-    },
-  ];
-  return listado;
-}

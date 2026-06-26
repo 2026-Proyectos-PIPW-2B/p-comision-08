@@ -20,6 +20,11 @@ export function buscarProducto(id) {
   return listadoProductos.find((prod) => prod.id === id);
 }
 
+export function buscarProductoPorNombre(nombre) {
+  const listadoProductos = traerTodosLosProductos();
+  return listadoProductos.find((prod) => prod.nombre === nombre);
+}
+
 export function eliminarProducto(id) {
   const listadoProductos = traerTodosLosProductos();
   const nuevaLista = listadoProductos.filter(prod => prod.id !== id);

@@ -29,7 +29,7 @@ export function buscarCategoria(nombre) {
 
 export function buscarCategoriaPorID(id) {
   const listaCategorias = traerTodasLasCategorias();
-  return listaCategorias.find((categoria) => categoria.id === id);
+  return listaCategorias.find((categoria) => categoria.id === id) || {descripcion: "Sin clasificar"};
 }
 
 export function modificarCategoria(id, obj) {
@@ -55,4 +55,40 @@ export function eliminarCategoria(id) {
 
 export function borrarTodasLasCategorias() {
   localStorage.removeItem("categorias");
+}
+
+export function cargarListadoPredeterminadoCategorias() {
+  const listado = [
+    {
+      nombre: "Alfajores",
+      descripcion:
+        "Alfajores de dos capas de galletitas rellenas con dulce de leche cubiertos en chocolate.",
+    },
+    {
+      nombre: "Gomitas",
+      descripcion:
+        "Dulces suaves y masticables elaborados principalmente con azúcar.",
+    },
+    {
+      nombre: "Chupetines",
+      descripcion:
+        "Golosina de caramelo duro o blando que se sostiene mediante un palito",
+    },
+    {
+      nombre: "Chocolates",
+      descripcion:
+        "Alimento elaborado a partir de las semillas del árbol del cacao.",
+    },
+    {
+      nombre: "Caramelos",
+      descripcion:
+        "Golosinas populares elaboradas a base de azúcar fundido, agua y jarabe de glucosa.",
+    },
+  ];
+  for (const categoria of listado) {
+    const categ = buscarCategoria(categoria.nombre)
+    if (!categ) {
+      agregarCategoria(categoria);
+    }
+  }
 }

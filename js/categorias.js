@@ -7,6 +7,7 @@ import {
   eliminarCategoria,
   modificarCategoria,
   borrarTodasLasCategorias,
+  cargarListadoPredeterminadoCategorias,
 } from "./gestores/gestorCategorias.js";
 import { feedback, limpiarEstados } from "./utilidades.js";
 
@@ -20,7 +21,10 @@ window.addEventListener("load", () => {
   autorizacion("Administrador");
   cargarDatosNavbar();
   listarCategorias();
-  btnListadoPred.addEventListener("click", () => cargarListadoPredeterminado());
+  btnListadoPred.addEventListener("click", () => {
+    cargarListadoPredeterminadoCategorias()
+    listarCategorias()
+});
   btnBorrarTodasCat.addEventListener("click", () => {
     borrarTodasLasCategorias();
     listarCategorias();
@@ -226,40 +230,4 @@ function validarFormModal() {
   validacion.obj = { nombre, descripcion };
 
   return validacion;
-}
-
-function cargarListadoPredeterminado() {
-  console.log("funciona");
-
-  const listado = [
-    {
-      nombre: "Alfajores",
-      descripcion:
-        "Alfajores de dos capas de galletitas rellenas con dulce de leche cubiertos en chocolate.",
-    },
-    {
-      nombre: "Gomitas",
-      descripcion:
-        "Dulces suaves y masticables elaborados principalmente con azúcar.",
-    },
-    {
-      nombre: "Chupetines",
-      descripcion:
-        "Golosina de caramelo duro o blando que se sostiene mediante un palito",
-    },
-    {
-      nombre: "Chocolates",
-      descripcion:
-        "Alimento elaborado a partir de las semillas del árbol del cacao.",
-    },
-    {
-      nombre: "Caramelos",
-      descripcion:
-        "Golosinas populares elaboradas a base de azúcar fundido, agua y jarabe de glucosa.",
-    },
-  ];
-  for (const categoria of listado) {
-    agregarCategoria(categoria);
-  }
-  listarCategorias();
 }
