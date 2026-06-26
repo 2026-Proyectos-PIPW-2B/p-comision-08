@@ -132,8 +132,8 @@ function listarEtiquetas() {
     );
 
     // Boton eliminar
-    btnEliminar.classList.add("btn", "btn-danger");
-    btnEliminar.innerHTML = `<i class="bi bi-trash"></i>`;
+    btnEliminar.classList.add("btn", "btn-danger", "btn-sm");
+    btnEliminar.innerHTML = `<i class="bi bi-trash"></i> Eliminar`;
 
     btnEliminar.addEventListener("click", () => {
       borrarEtiqueta(etiqueta.nombre);
@@ -232,24 +232,22 @@ function validarFormModal() {
 }
 
 function cargarListadoPredeterminado() {
-  console.log("ola");
   const listado = [
     {
       nombre: "Nuevo",
-      descripcion: "Producto nuevo en el catálogo",
+      descripcion: "Producto nuevo en el catálogo.",
     },
     {
       nombre: "Sin TACC",
-      descripcion: "Alimento que no contiene trigo, avena, cebada y centeno",
+      descripcion: "Alimento que no contiene trigo, avena, cebada y centeno.",
     },
     {
       nombre: "Oferta",
-      descripcion: "Precio disminuido sobre cierto tiempo",
+      descripcion: "Precio disminuido sobre cierto tiempo.",
     },
     {
       nombre: "Nacional",
-      descripcion:
-        "Producto cuya producción conjunta representa una parte significativa de la producción total del país",
+      descripcion: "Producto de industria nacional.",
     },
   ];
   for (const etiqueta of listado) {
