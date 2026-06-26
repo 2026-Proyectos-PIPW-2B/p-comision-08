@@ -7,6 +7,7 @@ import {
   buscarEtiqueta,
   modificarEtiqueta,
   borrarTodasLasEtiquetas,
+  cargarListadoPredeterminadoEtiquetas,
 } from "./gestores/gestorEtiquetas.js";
 import { feedback, limpiarEstados } from "./utilidades.js";
 
@@ -20,7 +21,10 @@ window.addEventListener("load", () => {
   autorizacion("Administrador");
   cargarDatosNavbar();
   listarEtiquetas();
-  btnListadoPred.addEventListener("click", () => cargarListadoPredeterminado());
+  btnListadoPred.addEventListener("click", () => {
+    cargarListadoPredeterminadoEtiquetas()
+    listarEtiquetas()
+  });
   btnBorrarTodasEti.addEventListener("click", () => {
     borrarTodasLasEtiquetas();
     listarEtiquetas();
@@ -229,29 +233,4 @@ function validarFormModal() {
   validacion.obj = { nombre, descripcion };
 
   return validacion;
-}
-
-function cargarListadoPredeterminado() {
-  const listado = [
-    {
-      nombre: "Nuevo",
-      descripcion: "Producto nuevo en el catálogo.",
-    },
-    {
-      nombre: "Sin TACC",
-      descripcion: "Alimento que no contiene trigo, avena, cebada y centeno.",
-    },
-    {
-      nombre: "Oferta",
-      descripcion: "Precio disminuido sobre cierto tiempo.",
-    },
-    {
-      nombre: "Nacional",
-      descripcion: "Producto de industria nacional.",
-    },
-  ];
-  for (const etiqueta of listado) {
-    agregarEtiqueta(etiqueta);
-  }
-  listarEtiquetas();
 }
