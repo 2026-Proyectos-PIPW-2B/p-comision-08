@@ -50,7 +50,9 @@
             <div class="row align-items-center gap-3">
               <div class="text-white col" id="divBienvenida"></div>
               <div class="col-12 col-lg-auto">
-                <button class="btn btn-danger" id="btnCerrarSesion">Cerrar sesion</button>
+                <button class="btn btn-danger" id="btnCerrarSesion">
+                  Cerrar sesion
+                </button>
               </div>
             </div>
           </div>
@@ -112,7 +114,8 @@
         <h2 class="text-center py-3">Listado de productos</h2>
         <div class="container">
           <div
-            class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4"
+            class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4"
+            id="contenedorProductos"
           >
             <div class="col">
               <div class="card">
@@ -122,38 +125,153 @@
                   alt="..."
                 />
                 <div class="card-body justify-content-center">
-                  <h5 class="card-title text-center">
+                  <h3 class="card-title text-center h5">
                     Alfajor RASTA Negro x70g.
-                  </h5>
-
-                  <div class="d-flex justify-content-center selector-cantidad">
-                    <button class="btn btn-primary">-</button>
-                    <input type="text" value="1" min="0" name="" id="" class="form-control" />
-                    <button class="btn btn-primary">+</button>
+                  </h3>
+                  <div class="ms-3 card-text text-start">
+                    <span class="badge text-bg-secondary">Nuevo</span>
+                    <span class="badge text-bg-secondary">Oferta</span>
+                    <span class="badge text-bg-secondary">Nacional</span>
                   </div>
 
-                  <div class="card-text text-center">
-                    Precio unitario: <span>$1000</span>
+                  <div class="sub-total p-4 m-2 h5 text-center">
+                    <span>Precio: </span>
+                    <span>$1000</span>
                   </div>
 
-                  <div>
+                  <!-- <div>
                     <div class="card-text text-center">
                       Precio mayorista: <span>$900</span>
                     </div>
                     <p class="text-center small">(Minimo 10 unidades)</p>
+                  </div> -->
+
+                  <!-- <div class="card-text text-center">
+                    <span>Stock disponible: </span>
+                    <span>100u.</span>
+                  </div> -->
+                  <div class="row">
+                    <div class="col">
+                      <div
+                        class="d-flex justify-content-center selector-cantidad m-0"
+                      >
+                        <button class="btn btn-primary">-</button>
+                        <input
+                          type="text"
+                          value="1"
+                          min="0"
+                          name=""
+                          id=""
+                          class="form-control"
+                        />
+                        <button class="btn btn-primary">+</button>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <button type="button" class="btn btn-primary">
+                        Añadir
+                      </button>
+                    </div>
                   </div>
 
-                  <div class="sub-total p-4 m-4 h5 text-center">
-                    <span class="small">Total: </span>
-                    $4000
+                  <div class="fw-bold p-2">
+                    <span class="">Total: </span>
+                    <span>$4000</span>
                   </div>
-                  <button type="button" class="btn btn-primary w-100">
-                    Añadir al carrito
-                  </button>
                 </div>
               </div>
             </div>
+
             <div class="col">
+              <!---->
+              <!---->
+              <div class="info">
+                <div
+                  itemprop="image"
+                  alt="Gomitas FUNDIPPERZ x12u. x54g. + Gel Acido"
+                  class="image"
+                  style="cursor: pointer"
+                >
+                  <a href="javascript:void(0);" class="add-wish" tabindex="0"
+                    ><i aria-hidden="true" class="fa fa-heart"></i
+                  ></a>
+                  <img
+                    src="https://www.golomax.com.ar/uploads/centum/articles/home/13013386_1.jpg"
+                    alt="Golomax"
+                  />
+                </div>
+                <div class="content-text">
+                  <h3 itemprop="name" class="" style="cursor: pointer">
+                    Gomitas FUNDIPPERZ x12u. x54g. + Gel Acido
+                  </h3>
+                  <div itemprop="sku" class="sku">1329654</div>
+                  <div
+                    itemprop="offers"
+                    itemscope="itemscope"
+                    itemtype="https://schema.org/Offer"
+                    class="precio"
+                  >
+                    <div class="titulo">
+                      P. unitario
+                      <!---->
+                    </div>
+                    <div
+                      itemprop="price"
+                      content="804.3165551691667"
+                      class="precio-unitario"
+                    >
+                      $ 804,32
+                    </div>
+                  </div>
+                  <div class="meta-cart">
+                    <div class="form-control-quantity">
+                      <div
+                        type="button"
+                        data-type="minus"
+                        data-field=""
+                        class="arrows"
+                      >
+                        <span class="minus">-</span>
+                      </div>
+                      <div class="quantity">
+                        <input
+                          type="text"
+                          name="quantity"
+                          min="1"
+                          max="100"
+                          class="quantity form-control input-number"
+                          tabindex="0"
+                        />
+                      </div>
+                      <div
+                        type="button"
+                        data-type="plus"
+                        data-field=""
+                        class="arrows"
+                      >
+                        <span class="plus">+</span>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-cart" tabindex="0">
+                      Agregar
+                      <img
+                        src="https://www.golomax.com.ar/public/assets/img/cart.svg"
+                        alt="Golomax"
+                      />
+                    </button>
+                  </div>
+                  <div class="totales-prod">
+                    <div class="precio">
+                      <div class="precio-unitario">
+                        <span class="small">Total: </span>
+                        $ 28.955,40
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col">
               <div class="card">
                 <img
                   src="https://www.golomax.com.ar/uploads/centum/articles/home/13018622_1.jpg"
@@ -581,7 +699,7 @@
                   </button>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>
