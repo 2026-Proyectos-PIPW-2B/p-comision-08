@@ -1,5 +1,14 @@
-import { buscarCategoriaPorID, traerTodasLasCategorias, cargarListadoPredeterminadoCategorias } from "./gestores/gestorCategorias.js";
-import { traerTodasLasEtiquetas, cargarListadoPredeterminadoEtiquetas } from "./gestores/gestorEtiquetas.js";
+import {
+  buscarCategoriaPorID,
+  traerTodasLasCategorias,
+  cargarListadoPredeterminadoCategorias,
+  buscarCategoria,
+} from "./gestores/gestorCategorias.js";
+import {
+  traerTodasLasEtiquetas,
+  cargarListadoPredeterminadoEtiquetas,
+  buscarEtiqueta,
+} from "./gestores/gestorEtiquetas.js";
 import { autorizacion } from "./gestores/gestorLogin.js";
 import {
   agregarProducto,
@@ -25,7 +34,6 @@ const inputPrecioMayorista = document.getElementById("inputPrecioMayorista");
 const inputCantMay = document.getElementById("inputCantMay");
 const inputStock = document.getElementById("inputStock");
 const selectCategoria = document.getElementById("selectCategoria");
-// const checkEtiquetas = document.querySelectorAll(".check-etiqueta");
 const selectImagen = document.getElementById("selectImagen");
 const inputImgURL = document.getElementById("inputImgURL");
 
@@ -48,21 +56,21 @@ const modalInputImgURL = document.getElementById("modalInputImgURL");
 const btnCerrarModal = document.getElementById("btnCerrarModal");
 const btnGuardarCambios = document.getElementById("btnGuardarCambios");
 const btnListadoPred = document.getElementById("btnListadoPred");
-const btnBorrarProductos = document.getElementById("btnBorrarProductos")
+const btnBorrarProductos = document.getElementById("btnBorrarProductos");
 
 window.addEventListener("load", () => {
   autorizacion("Administrador");
   cargarDatosNavbar();
-  inicializar();
+  inicializarForm();
   listarProductos();
   btnListadoPred.addEventListener("click", cargarListadoPredeterminado);
-  btnBorrarProductos.addEventListener("click", () =>{
+  btnBorrarProductos.addEventListener("click", () => {
     borrarProductos();
     listarProductos();
-  })
+  });
 });
 
-function inicializar() {
+function inicializarForm() {
   cargarCategoriasEnSelect("selectCategoria");
   cargarEtiquetasEnCheckboxes("contenedorEtiquetas");
 
@@ -238,7 +246,7 @@ function validarFormRegistrarProd() {
   // } else {
   //   feedback(selectCategoria, "feedbackCategoria");
   // }
-    feedback(selectCategoria, "feedbackCategoria");
+  feedback(selectCategoria, "feedbackCategoria");
 
   // es valido siempre porque son opcionales
   const checkEtiquetas = document.querySelectorAll(".check-etiqueta");
@@ -347,7 +355,7 @@ function listarProductos() {
         "text-dark",
         "shadow-sm",
       );
-      let categ = buscarCategoriaPorID(prod.categoria)
+      let categ = buscarCategoriaPorID(prod.categoria);
       spanBadgeCategoria.textContent = categ.nombre || "Sin Clasificar";
       // tooltip de bootstrap en la categoria
       spanBadgeCategoria.setAttribute("data-bs-toggle", "tooltip");
@@ -638,14 +646,13 @@ function guardarCambios(id) {
   // Validar Form
   const validacion = validarFormModal(prodModificado);
   if (validacion) {
-      modificarProducto(id, prodModificado);
-      modalFormEditar.reset();
-      limpiarEstados("#modalFormEditar");
-      mensajeExitoso("Producto modificado correctamente");
-      btnCerrarModal.click();
-      listarProductos();
-    }
-
+    modificarProducto(id, prodModificado);
+    modalFormEditar.reset();
+    limpiarEstados("#modalFormEditar");
+    mensajeExitoso("Producto modificado correctamente");
+    btnCerrarModal.click();
+    listarProductos();
+  }
 }
 
 function validarFormModal(obj) {
@@ -710,7 +717,11 @@ function validarFormModal(obj) {
 
   if (obj.stock === 0) {
     resultado = false;
-    feedback(modalInputStock, "feedbackStockModal", `ERROR: Debe ingresar una cantidad.`);
+    feedback(
+      modalInputStock,
+      "feedbackStockModal",
+      `ERROR: Debe ingresar una cantidad.`,
+    );
   } else {
     feedback(modalInputStock, "feedbackStockModal");
   }
@@ -728,7 +739,9 @@ function validarFormModal(obj) {
   feedback(modalSelectCategoria, "feedbackCategoriaModal");
 
   // es valido siempre porque son opcionales
-  const modalCheckEtiquetas = document.querySelectorAll(".check-etiqueta-modal");
+  const modalCheckEtiquetas = document.querySelectorAll(
+    ".check-etiqueta-modal",
+  );
   modalCheckEtiquetas.forEach((cb) => {
     cb.classList.add("is-valid");
   });
@@ -743,195 +756,173 @@ function validarFormModal(obj) {
   return resultado;
 }
 
-
 function cargarListadoPredeterminado() {
-  cargarListadoPredeterminadoCategorias()
+  cargarListadoPredeterminadoCategorias();
   cargarCategoriasEnSelect("selectCategoria");
-  cargarListadoPredeterminadoEtiquetas()
-  cargarEtiquetasEnCheckboxes("contenedorEtiquetas")
-    const listado = 
-      [
+  cargarListadoPredeterminadoEtiquetas();
+  cargarEtiquetasEnCheckboxes("contenedorEtiquetas");
+  const listado = [
     {
-        nombre: "Bon o Bon Clásico 15g",
-        descripcion: "Oblea rellena con crema de maní y bañado en chocolate con leche.",
-        precioMinorista: 900,
-        precioMayorista: 750,
-        cantMayorista: 24,
-        stock: 180,
-        categoria: "CAT-mquoijxn-s66q",
-        etiquetas: [
-            "ETI-mquoijxn-yud8"
-        ],
-        imagenURL: "/img/bon-o-bon.png",
-        id: "PROD-mquqgkby-hjcr"
+      nombre: "Bon o Bon Clásico 15g",
+      descripcion:
+        "Oblea rellena con crema de maní y bañado en chocolate con leche.",
+      precioMinorista: 900,
+      precioMayorista: 750,
+      cantMayorista: 24,
+      stock: 180,
+      categoria: "Chocolates",
+      etiquetas: ["Nuevo"],
+      imagenURL: "/img/bon-o-bon.png",
     },
     {
-        nombre: "Jorgito Blanco",
-        descripcion: "Alfajor de dos tapas con dulce de leche, cobertura de chocolate blanco y baño azucarado.",
-        precioMinorista: 1300,
-        precioMayorista: 1100,
-        cantMayorista: 20,
-        stock: 120,
-        categoria: "CAT-mquoijxn-uoxn",
-        etiquetas: [
-            "ETI-mquoijxn-l5cf",
-            "ETI-mquoijxn-yud8"
-        ],
-        imagenURL: "/img/jorgito-blanco.png",
-        id: "PROD-mquqhg3z-mclx"
+      nombre: "Jorgito Blanco",
+      descripcion:
+        "Alfajor de dos tapas con dulce de leche, cobertura de chocolate blanco y baño azucarado.",
+      precioMinorista: 1300,
+      precioMayorista: 1100,
+      cantMayorista: 20,
+      stock: 120,
+      categoria: "Alfajores",
+      etiquetas: ["Nacional", "Oferta"],
+      imagenURL: "/img/jorgito-blanco.png",
     },
     {
-        nombre: "Guaymallén Triple Chocolate",
-        descripcion: "Alfajor triple relleno con dulce de leche y cubierto con chocolate.",
-        precioMinorista: 1600,
-        precioMayorista: 1350,
-        cantMayorista: 18,
-        stock: 95,
-        categoria: "CAT-mquoijxn-uoxn",
-        etiquetas: [
-            "ETI-mquoijxn-5m32"
-        ],
-        imagenURL: "/img/guaymallen-triple-chocolate.png",
-        id: "PROD-mquqic9z-cuk0"
+      nombre: "Guaymallén Triple Chocolate",
+      descripcion:
+        "Alfajor triple relleno con dulce de leche y cubierto con chocolate.",
+      precioMinorista: 1600,
+      precioMayorista: 1350,
+      cantMayorista: 18,
+      stock: 95,
+      categoria: "Alfajores",
+      etiquetas: ["Nacional"],
+      imagenURL: "/img/guaymallen-triple-chocolate.png",
     },
     {
-        nombre: "Mogul Extreme Frutilla",
-        descripcion: "Gomitas blandas sabor frutilla elaboradas con gelatina y saborizantes frutales.",
-        precioMinorista: 2500,
-        precioMayorista: 2100,
-        cantMayorista: 12,
-        stock: 70,
-        categoria: "CAT-mquoijxn-nu53",
-        etiquetas: [
-            "ETI-mquoijxn-l5cf"
-        ],
-        imagenURL: "/img/mogul-extreme-frutilla.png",
-        id: "PROD-mquqj8nc-5l8n"
+      nombre: "Mogul Extreme Frutilla",
+      descripcion:
+        "Gomitas blandas sabor frutilla elaboradas con gelatina y saborizantes frutales.",
+      precioMinorista: 2500,
+      precioMayorista: 2100,
+      cantMayorista: 12,
+      stock: 70,
+      categoria: "Gomitas",
+      etiquetas: ["Oferta"],
+      imagenURL: "/img/mogul-extreme-frutilla.png",
     },
     {
-        nombre: "Mogul Mix Ácido",
-        descripcion: "Mix de gomitas con cobertura ácida y sabor frutilla.",
-        precioMinorista: 2700,
-        precioMayorista: 2300,
-        cantMayorista: 12,
-        stock: 55,
-        categoria: "CAT-mquoijxn-nu53",
-        etiquetas: [
-            "ETI-mquoijxn-5m32",
-            "ETI-mquoijxn-yud8"
-        ],
-        imagenURL: "/img/mogul-mix-acido.png",
-        id: "PROD-mquqkp8g-z7bd"
+      nombre: "Mogul Mix Ácido",
+      descripcion: "Mix de gomitas con cobertura ácida y sabor frutilla.",
+      precioMinorista: 2700,
+      precioMayorista: 2300,
+      cantMayorista: 12,
+      stock: 55,
+      categoria: "Gomitas",
+      etiquetas: ["Nuevo", "Edición Limitada"],
+      imagenURL: "/img/mogul-mix-acido.png",
     },
     {
-        nombre: "Fini Ositos Veganos",
-        descripcion: "Gomitas con sabores frutales elaboradas sin ingredientes de origen animal.",
-        precioMinorista: 3400,
-        precioMayorista: 2900,
-        cantMayorista: 10,
-        stock: 45,
-        categoria: "CAT-mquoijxn-nu53",
-        etiquetas: [
-            "ETI-mquoijxn-5m32",
-            "ETI-mquoijxn-tbq8"
-        ],
-        imagenURL: "/img/fini-ositos-veganos.png",
-        id: "PROD-mquqll3s-3180"
+      nombre: "Fini Ositos Veganos",
+      descripcion:
+        "Gomitas con sabores frutales elaboradas sin ingredientes de origen animal.",
+      precioMinorista: 3400,
+      precioMayorista: 2900,
+      cantMayorista: 10,
+      stock: 45,
+      categoria: "Gomitas",
+      etiquetas: ["Nuevo", "Edición Limitada", "Importado"],
+      imagenURL: "/img/fini-ositos-veganos.png",
     },
     {
-        nombre: "Chupetín Pico Dulce",
-        descripcion: "Chupetín duro sabor multifruta elaborado con azúcar y saborizantes naturales.",
-        precioMinorista: 500,
-        precioMayorista: 380,
-        cantMayorista: 50,
-        stock: 500,
-        categoria: "CAT-mquoijxn-ngx0",
-        etiquetas: [
-            "ETI-mquoijxn-yud8"
-        ],
-        imagenURL: "/img/pico-dulce.png",
-        id: "PROD-mquqmoaw-uxf0"
+      nombre: "Chupetín Pico Dulce",
+      descripcion:
+        "Chupetín duro sabor multifruta elaborado con azúcar y saborizantes naturales.",
+      precioMinorista: 500,
+      precioMayorista: 380,
+      cantMayorista: 50,
+      stock: 500,
+      categoria: "Chupetines",
+      etiquetas: ["Oferta", "Nacional"],
+      imagenURL: "/img/pico-dulce.png",
     },
     {
-        nombre: "Chupetín Yummy Pop",
-        descripcion: "Chupetín de distintos sabores con centro relleno líquido de fruta.",
-        precioMinorista: 650,
-        precioMayorista: 520,
-        cantMayorista: 40,
-        stock: 320,
-        categoria: "CAT-mquoijxn-ngx0",
-        etiquetas: [
-            "ETI-mquoijxn-cj5b"
-        ],
-        imagenURL: "/img/chupetin.png",
-        id: "PROD-mquqnz3k-36hn"
+      nombre: "Chupetín Yummy Pop",
+      descripcion:
+        "Chupetín de distintos sabores con centro relleno líquido de fruta.",
+      precioMinorista: 650,
+      precioMayorista: 520,
+      cantMayorista: 40,
+      stock: 320,
+      categoria: "Chupetines",
+      etiquetas: ["Nuevo", "Importado"],
+      imagenURL: "/img/chupetin.png",
     },
     {
-        nombre: "Milka Chocolate con Leche 55g",
-        descripcion: "Tableta de chocolate con leche elaborada con cacao y leche de alta calidad.",
-        precioMinorista: 2300,
-        precioMayorista: 1950,
-        cantMayorista: 15,
-        stock: 90,
-        categoria: "CAT-mquoijxn-s66q",
-        etiquetas: [
-            "ETI-mquoijxn-5m32"
-        ],
-        imagenURL: "/img/milka-chocolate-con-leche.png",
-        id: "PROD-mquqosgo-ibav"
+      nombre: "Milka Chocolate con Leche 55g",
+      descripcion:
+        "Tableta de chocolate con leche elaborada con cacao y leche de alta calidad.",
+      precioMinorista: 2300,
+      precioMayorista: 1950,
+      cantMayorista: 15,
+      stock: 90,
+      categoria: "Chocolates",
+      etiquetas: ["Nuevo"],
+      imagenURL: "/img/milka-chocolate-con-leche.png",
     },
     {
-        nombre: "Arcor Butter Toffees",
-        descripcion: "Caramelos masticables elaborados con leche y manteca, de textura suave y sabor intenso.",
-        precioMinorista: 1900,
-        precioMayorista: 1600,
-        cantMayorista: 20,
-        stock: 240,
-        categoria: "CAT-mquoijxn-777g",
-        etiquetas: [
-            "ETI-mquoijxn-yud8"
-        ],
-        imagenURL: "/img/arcor-butter-toffees.png",
-        id: "PROD-mquqr174-w4vx"
+      nombre: "Arcor Butter Toffees",
+      descripcion:
+        "Caramelos masticables elaborados con leche y manteca, de textura suave y sabor intenso.",
+      precioMinorista: 1900,
+      precioMayorista: 1600,
+      cantMayorista: 20,
+      stock: 240,
+      categoria: "Caramelos",
+      etiquetas: ["Oferta"],
+      imagenURL: "/img/arcor-butter-toffees.png",
     },
     {
-        nombre: "Arcor Caramelos Mentol",
-        descripcion: "Caramelos duros sabor menta elaborados con aceites esenciales y azúcar.",
-        precioMinorista: 1700,
-        precioMayorista: 1450,
-        cantMayorista: 20,
-        stock: 210,
-        categoria: "CAT-mquoijxn-777g",
-        etiquetas: [
-            "ETI-mquoijxn-pkpx"
-        ],
-        imagenURL: "/img/arcor-caramelos-mentol.png",
-        id: "PROD-mquqse6o-sfqg"
+      nombre: "Arcor Caramelos Mentol",
+      descripcion:
+        "Caramelos duros sabor menta elaborados con aceites esenciales y azúcar.",
+      precioMinorista: 1700,
+      precioMayorista: 1450,
+      cantMayorista: 20,
+      stock: 210,
+      categoria: "Caramelos",
+      etiquetas: ["Oferta", "Edición Limitada"],
+      imagenURL: "/img/arcor-caramelos-mentol.png",
     },
     {
-        nombre: "Chocolate Águila Clásico 100g",
-        descripcion: "Chocolate semiamargo elaborado con pasta y manteca de cacao, ideal para consumir o cocinar.",
-        precioMinorista: 3200,
-        precioMayorista: 2700,
-        cantMayorista: 10,
-        stock: 65,
-        categoria: "CAT-mquoijxn-s66q",
-        etiquetas: [
-            "ETI-mquoijxn-pkpx",
-            "ETI-mquoijxn-yud8"
-        ],
-        imagenURL: "/img/chocolate-aguila-clasico.png",
-        id: "PROD-mquqv9g8-a75w"
-    }
-];
-    
-    for (const prod of listado) {
-      const produ = buscarProductoPorNombre(prod.nombre)
-      if (!produ) {
-        agregarProducto(prod);
+      nombre: "Chocolate Águila Clásico 100g",
+      descripcion:
+        "Chocolate semiamargo elaborado con pasta y manteca de cacao, ideal para consumir o cocinar.",
+      precioMinorista: 3200,
+      precioMayorista: 2700,
+      cantMayorista: 10,
+      stock: 65,
+      categoria: "Chocolates",
+      etiquetas: ["Nuevo", "Sin TACC"],
+      imagenURL: "/img/chocolate-aguila-clasico.png",
+    },
+  ];
+
+  for (const prod of listado) {
+    const produ = buscarProductoPorNombre(prod.nombre);
+    if (!produ) {
+      let idCateg = buscarCategoria(prod.categoria).id;
+
+      let listaEtiquetasID = [];
+      for (const etiqueta of prod.etiquetas) {
+        let idEtiq = buscarEtiqueta(etiqueta).id;        
+        listaEtiquetasID.push(idEtiq);
       }
+
+      prod.categoria = idCateg;
+      prod.etiquetas = listaEtiquetasID;
+
+      agregarProducto(prod);
     }
-    listarProductos();
+  }
+  listarProductos();
 }
-
-

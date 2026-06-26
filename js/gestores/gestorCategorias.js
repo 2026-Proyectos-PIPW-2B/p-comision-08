@@ -29,27 +29,27 @@ export function buscarCategoria(nombre) {
 
 export function buscarCategoriaPorID(id) {
   const listaCategorias = traerTodasLasCategorias();
-  return listaCategorias.find((categoria) => categoria.id === id) || {descripcion: "Sin clasificar"};
+  return (
+    listaCategorias.find((categoria) => categoria.id === id) || {
+      descripcion: "Sin clasificar",
+    }
+  );
 }
 
 export function modificarCategoria(id, obj) {
   const listaCategorias = traerTodasLasCategorias();
-
   for (const categoria of listaCategorias) {
     if (categoria.id === id) {
       categoria.nombre = obj.nombre;
       categoria.descripcion = obj.descripcion;
     }
   }
-
   actualizarListadoCategorias(listaCategorias);
 }
 
 export function eliminarCategoria(id) {
   const listaCategorias = traerTodasLasCategorias();
-
   const nuevaLista = listaCategorias.filter((categoria) => categoria.id !== id);
-
   actualizarListadoCategorias(nuevaLista);
 }
 
@@ -86,7 +86,7 @@ export function cargarListadoPredeterminadoCategorias() {
     },
   ];
   for (const categoria of listado) {
-    const categ = buscarCategoria(categoria.nombre)
+    const categ = buscarCategoria(categoria.nombre);
     if (!categ) {
       agregarCategoria(categoria);
     }
