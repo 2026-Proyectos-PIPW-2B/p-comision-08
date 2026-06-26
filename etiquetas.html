@@ -100,7 +100,7 @@
 
             <h2>Listado etiquetas</h2>
 
-            <div class="table-responsive mt-4">
+            <div class="table-responsive mt-4" id="contenedorTabla">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -114,6 +114,23 @@
                 </tbody>
               </table>
             </div>
+
+            <div id="msjEtiquetas" class="card p-4 mt-4">
+              Aun no has registrado etiquetas.
+            </div>
+            <div class="row justify-content-end mt-3 gap-0">
+              <div class="col-auto">
+                <button class="btn btn-outline-success" id="btnListadoPred">
+                  Listado predeterminado
+                </button>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-outline-danger" id="btnBorrarTodasEti">
+                  Borrar todas
+                </button>
+              </div>
+            </div>
+
       </section>
         <!-- Modal -->
       <div
@@ -144,22 +161,22 @@
                     type="text"
                     class="form-control"
                     id="modalInputNombre"
-                    name="nombreEtiqueta"
+                    name="nombre de la Etiqueta"
                     placeholder="Ingrese etiqueta"
                   />
                   <label for="modalInputNombre">Nombre</label>
-                  <div id="feedbackNombre"></div>
+                  <div id="feedbackNombreModal"></div>
                 </div>
                 <div class="form-floating mb-3">
                   <input
                     type="text"
                     class="form-control"
                     id="modalInputDescripcion"
-                    name="descripcionEtiqueta"
+                    name="descripcion de la Etiqueta"
                     placeholder="Ingrese descripcion"
                   />
                   <label for="modalInputDescripcion">Descripcion</label>
-                  <div id="feedbackDescripcion"></div>
+                  <div id="feedbackDescripcionModal"></div>
                 </div>
               </form>
             </div>
