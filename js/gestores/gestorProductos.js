@@ -48,3 +48,6 @@ export function modificarProducto(id, nuevoProd) {
   actualizarListadoProductos(listadoProductos)
 }
 
+export function borrarProductos(){
+  localStorage.removeItem("productos")
+}

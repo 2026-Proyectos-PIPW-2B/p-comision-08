@@ -80,6 +80,22 @@ export function cargarListadoPredeterminadoEtiquetas() {
       nombre: "Nacional",
       descripcion: "Producto de industria nacional.",
     },
+    {
+      nombre: "Edición Limitada",
+      descripcion: "Producto en cantidad restringida, por tiempo determinado",
+    },
+    {
+      nombre: "Vegano",
+      descripcion: "Elaborado sin ingredientes de origen animal ni derivados",
+    },
+    // {
+    //   nombre: "0% Azúcar",
+    //   descripcion: "Producto apto para diabéticos o dietas bajas en calorías",
+    // },
+    // {
+    //   nombre: "Artesanal",
+    //   descripcion: "Producto elaborado a mano o con herramientas manuales",
+    // },
   ];
 
   for (const etiqueta of listado) {
