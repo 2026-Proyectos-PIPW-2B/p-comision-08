@@ -285,10 +285,11 @@ window.onload = () => {
 
 ----------------------------------
 gestorCarrito.js
-  - agregarProducto
+  - agregarAlCarrito
+  - crearCarrito
   - traerCarrito
-  - editar
-  - eliminar
+  - actualizarCarrito
+  - vaciarCarrito
 
 
 -----------------------------------
