@@ -1,7 +1,7 @@
 import { obtenerUsuarioAutenticado } from "./gestorLogin.js"
 
 
-export function agregarAlCarrito(producto){
+export function agregarAlCarrito(producto, cant){
 
     let carrito = traerCarrito();
 
@@ -17,7 +17,7 @@ export function agregarAlCarrito(producto){
     } else {
         carrito.productos.push({
             idProd: producto.id,
-            cantidad: 1
+            cantidad: cant
         });
     }
 
@@ -66,5 +66,9 @@ export function vaciarCarrito(){
         `carrito_${user.id}`,
         JSON.stringify(carritoVacio)
     );
+}
+
+export function guardarCarrito(nuevoCarrito) {
+    localStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
 }
 
