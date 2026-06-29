@@ -1,3 +1,4 @@
+import { agregarAlCarrito } from "./gestores/gestorCarrito.js";
 import { buscarCategoriaPorID, traerTodasLasCategorias } from "./gestores/gestorCategorias.js";
 import { buscarEtiquetaPorID } from "./gestores/gestorEtiquetas.js";
 import { autorizacion } from "./gestores/gestorLogin.js";
@@ -267,21 +268,13 @@ function actualizarSubTotal(span, cantidad, cantMin, pMin, pMay) {
   span.textContent = `$${subTotal}`;
 }
 
-// - agregarProductoAlCarrito
 function agregarProdAlCarrito(prod, input) {
-  // llamar a la funcion del gestor carrito para agregar (ponerla cuando fabri mergee)
-  // agregarProdAlCarrito(prod,input.cant)
-
-  // mensaje exitoso
+  agregarAlCarrito(prod,input.value)
   alert(`Añadido al carrito: ${prod.nombre} x${input.value}`)
-  
-  // resetear la tarjeta
   input.value = 1
   modificarCantidad(prod)
 }
 
-
-// - filtrarProductos
 function cargarFiltrado() {
   const categorias = traerTodasLasCategorias()
   for (const categ of categorias) {
