@@ -5,6 +5,7 @@ import {
   autorizacion,
 } from "./gestores/gestorLogin.js";
 import { buscarUsuario } from "./gestores/gestorUsuarios.js";
+import { generarID } from "./utilidades.js";
 
 const formLogin = document.getElementById("formLogin");
 const inputNombre = document.getElementById("inputNombre");
@@ -34,7 +35,11 @@ function validarFormLogin() {
   if (usuario) {
     if (usuario.contrasenia === contrasenia) {
       validacion.resultado = true;
-      validacion.obj = { nombre: usuario.nombre, rol: usuario.rol };
+      validacion.obj = {
+        id: usuario.id,
+        nombre: usuario.nombre,
+        rol: usuario.rol,
+      };
     } else {
       feedback("Datos inválidos");
     }
@@ -46,7 +51,7 @@ function validarFormLogin() {
 }
 
 function iniciarSesion(usuario) {
-  crearSesion(usuario.nombre, usuario.rol);
+  crearSesion(usuario.id, usuario.nombre, usuario.rol);
   redirigir(usuario.rol);
 }
 
@@ -61,6 +66,7 @@ function cargarUsuarioAdmin() {
       "usuarios",
       JSON.stringify([
         {
+          id: "admin",
           nombre: "admin",
           contrasenia: "admin",
           rol: "Administrador",

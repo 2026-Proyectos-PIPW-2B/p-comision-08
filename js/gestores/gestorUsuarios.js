@@ -1,7 +1,10 @@
+import { generarID } from "../utilidades.js";
+
 export function agregarUsuario(objUsuario) {
-  const {nombre, rol, contrasenia} = objUsuario
+  const { nombre, rol, contrasenia } = objUsuario;
   const listaUsuarios = traerTodosLosUsuarios();
   const nuevoUsuario = {
+    id: generarID("USER"),
     nombre,
     rol,
     contrasenia,
@@ -23,6 +26,11 @@ export function traerTodosLosUsuarios() {
 export function buscarUsuario(nombre) {
   const listaUsuarios = traerTodosLosUsuarios();
   let encontrado = listaUsuarios.find((usuario) => usuario.nombre === nombre);
+  return encontrado;
+}
+export function buscarUsuarioPorID(id) {
+  const listaUsuarios = traerTodosLosUsuarios();
+  let encontrado = listaUsuarios.find((usuario) => usuario.id === id);
   return encontrado;
 }
 
