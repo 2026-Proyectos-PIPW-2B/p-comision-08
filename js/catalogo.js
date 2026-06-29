@@ -1,3 +1,5 @@
+import { buscarCategoriaPorID } from "./gestores/gestorCategorias.js";
+import { buscarEtiquetaPorID } from "./gestores/gestorEtiquetas.js";
 import { autorizacion } from "./gestores/gestorLogin.js";
 import { traerTodosLosProductos } from "./gestores/gestorProductos.js";
 import { cargarDatosNavbar } from "./navbar.js";
@@ -7,10 +9,9 @@ const contenedorProductos = document.getElementById("contenedorProductos");
 window.addEventListener("load", () => {
   autorizacion("Usuario");
   cargarDatosNavbar();
-  //   listarTodosLosProductos();
+  listarTodosLosProductos();
 });
 
-// - listarProductos
 function listarTodosLosProductos() {
   const listado = traerTodosLosProductos();
   contenedorProductos.innerHTML = "";
@@ -18,184 +19,248 @@ function listarTodosLosProductos() {
     const tarjetaProd = crearTarjetaProd(prod);
     contenedorProductos.appendChild(tarjetaProd);
   }
+  agregarPopoversDeBootstrap()
+}
+
+function agregarPopoversDeBootstrap() {
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
 }
 
 function crearTarjetaProd(prod) {
+  // div de la columna y card
   const divCol = document.createElement("div");
   divCol.classList.add("col");
 
   const divCard = document.createElement("div");
-  divCard.classList.add("card");
+  divCard.classList.add("card", "h-100", "shadow-sm", "mx-auto");
 
+  // --------- Encabezado de la tarjeta con la imagen y la categoria -------
+  const divContenedorImg = document.createElement("div");
+  divContenedorImg.classList.add("position-relative", "bg-white", "text-center", "rounded-top");
+  
+  // imagen
   const img = document.createElement("img");
-  img.classList.add("card-img-top");
+  img.classList.add("card-img-top", "p-4");
   img.setAttribute("src", prod.imagenURL);
   img.setAttribute("alt", prod.nombre);
-  img.addEventListener("click", () => alert("abre el modal"));
 
+  // categoria
+  const spanCategoria = document.createElement("span");
+  spanCategoria.classList.add("badge", "bg-danger-subtle", "text-dark", "position-absolute", "top-0", "start-0", "m-3", "shadow-sm", "extra-small");
+  const categoria = buscarCategoriaPorID(prod.categoria) || {nombre: "Sin clasificar", descripcion: "-"}
+  spanCategoria.textContent = categoria.nombre; 
+  // para el tooltip de bootstrap
+  spanCategoria.setAttribute("data-bs-toggle", "tooltip");
+  spanCategoria.setAttribute("data-bs-title", categoria.descripcion);
+
+  divContenedorImg.append(img, spanCategoria);
+
+  //--------------- Cuerpo de la tarjeta --------------------
   const divCardBody = document.createElement("div");
-  divCardBody.classList.add("card-body", "justify-content-center");
+  divCardBody.classList.add("card-body", "d-flex", "flex-column", "justify-content-between");
 
+  // BLOQUE SUPERIOR con la info del producto
+  const divDatosSuperiores = document.createElement("div");
+
+  // titulo
   const h3 = document.createElement("h3");
-  h3.classList.add("card-title", "text-center", "h5");
+  h3.classList.add("card-title", "text-center", "h5", "mb-1");
   h3.textContent = prod.nombre;
 
-  const divSelectorCant = document.createElement("div");
-  divSelectorCant.classList.add(
-    "d-flex",
-    "justify-content-center",
-    "selector-cantidad",
-  );
+  // etiquetas
+  const divEtiquetas = document.createElement("div");
+  divEtiquetas.classList.add("text-center", "mb-2");
+  generarEtiquetas(prod.etiquetas, divEtiquetas)
 
+  // descripcion
+  const pDescripcion = document.createElement("p");
+  pDescripcion.classList.add("text-muted", "text-center", "small", "px-2", "mb-3");
+  pDescripcion.textContent = prod.descripcion || "Sin descripción.";
+
+  // BLOQUE INFERIOR con las cajas de precios, selector de cantidad, boton añadir y subtotal -------
+
+  // cajas de precios (minorista y mayorista)
+  const divRowPrecios = document.createElement("div");
+  divRowPrecios.classList.add("row", "g-2", "text-center", "mb-3");
+
+  // minorista
+  const divColMinorista = document.createElement("div");
+  divColMinorista.classList.add("col-6");
+  const divBoxMinorista = document.createElement("div");
+  divBoxMinorista.classList.add("p-2", "border", "rounded", "border-success");
+  divBoxMinorista.setAttribute("id", `box-min-${prod.id}`)
+  const spanLabelMin = document.createElement("span");
+  spanLabelMin.classList.add("d-block", "small", "text-pink");
+  spanLabelMin.textContent = "Por unidad";
+  const spanPrecioMin = document.createElement("span");
+  spanPrecioMin.classList.add("fw-bold", "h5", "text-dark");
+  spanPrecioMin.textContent = `$${prod.precioMinorista}`;
+  divBoxMinorista.append(spanLabelMin, spanPrecioMin);
+  divColMinorista.appendChild(divBoxMinorista);
+
+  // mayorista
+  const divColMayorista = document.createElement("div");
+  divColMayorista.classList.add("col-6");
+  const divBoxMayorista = document.createElement("div");
+  divBoxMayorista.classList.add("p-2", "border", "rounded");
+  divBoxMayorista.setAttribute("id", `box-may-${prod.id}`)
+  const spanLabelMay = document.createElement("span");
+  spanLabelMay.classList.add("d-block", "small", "text-pink");
+  spanLabelMay.textContent = "Mayorista";
+  const spanPrecioMay = document.createElement("span");
+  spanPrecioMay.classList.add("fw-bold", "h5");
+  spanPrecioMay.textContent = `$${prod.precioMayorista}`;
+  divBoxMayorista.append(spanLabelMay, spanPrecioMay);
+  divColMayorista.appendChild(divBoxMayorista);
+
+  // aclaración de la cant minima para precio mayorista
+  const divColAclaracion = document.createElement("div");
+  divColAclaracion.classList.add("col-12", "mt-1");
+  const pAclaracion = document.createElement("p");
+  pAclaracion.classList.add("text-muted", "extra-small", "d-block", "text-center", "m-0");
+  pAclaracion.innerHTML = `*Precio mayorista llevando <strong>${prod.cantMayorista} unidades</strong> o más.`;
+  divColAclaracion.appendChild(pAclaracion);
+
+  divRowPrecios.append(divColMinorista, divColMayorista, divColAclaracion);
+
+  // Controles inferiores
+  const divControlesInferiores = document.createElement("div");
+
+  const divRowControles = document.createElement("div");
+  divRowControles.classList.add("row", "g-2", "mb-2");
+
+  // selector de cantidad -----
+  const divColInput = document.createElement("div");
+  divColInput.classList.add("col-6");
+  
+  const divInputGroup = document.createElement("div");
+  divInputGroup.classList.add("input-group", "input-group-sm", "mb-1");
+  //boton menos
   const btnMenosCant = document.createElement("button");
-  btnMenosCant.classList.add("btn", "btn-primary");
+  btnMenosCant.classList.add("btn", "btn-outline-primary");
   btnMenosCant.textContent = "-";
   btnMenosCant.setAttribute("type", "button");
-  btnMenosCant.addEventListener("click", () =>
-    modificarCantidad(prod.id, "restar"),
-  );
-
+  btnMenosCant.addEventListener("click", () => modificarCantidad(prod, "restar"));
+  //input de la cantidad
   const inputCant = document.createElement("input");
-  inputCant.classList.add("form-control");
-  inputCant.setAttribute("type", "text");
-  inputCant.setAttribute("value", 0);
-  inputCant.setAttribute("min", 0);
-  // inputCant.setAttribute("name", "")
-  inputCant.setAttribute("id", prod.id);
-
+  inputCant.classList.add("form-control", "text-center", "fw-bold");
+  inputCant.setAttribute("type", "number");
+  inputCant.setAttribute("value", 1);
+  inputCant.setAttribute("min", 1);
+  inputCant.setAttribute("id", `input-${prod.id}`);
+  inputCant.addEventListener("change", () => modificarCantidad(prod))
+  //boton mas
   const btnMasCant = document.createElement("button");
-  btnMasCant.classList.add("btn", "btn-primary");
+  btnMasCant.classList.add("btn", "btn-outline-primary");
   btnMasCant.textContent = "+";
   btnMasCant.setAttribute("type", "button");
-  btnMasCant.addEventListener("click", () =>
-    modificarCantidad(prod.id, "sumar"),
-  );
+  btnMasCant.addEventListener("click", () => modificarCantidad(prod, "sumar"));
 
-  const divPrecioMinorista = document.createElement("div");
-  divPrecioMinorista.classList.add("card-text", "text-center");
+  divInputGroup.append(btnMenosCant, inputCant, btnMasCant);
 
-  const spanPrecioMinorista = document.createElement("span");
-  spanPrecioMinorista.textContent = "Precio minorista: ";
+  // stock disponible
+  const smallStock = document.createElement("small");
+  smallStock.classList.add("text-muted", "extra-small", "d-block", "text-center", "mt-1");
+  smallStock.innerHTML = `Disponibles: <span class="fw-bold">${prod.stock} u.</span>`;
 
-  const spanCantPrecioMinorista = document.createElement("span");
-  spanCantPrecioMinorista.classList.add("p-4");
-  spanCantPrecioMinorista.textContent = `$${prod.precioMinorista}`;
+  divColInput.append(divInputGroup, smallStock);
 
-  const divPrecioMayorista = document.createElement("div");
-  divPrecioMayorista.classList.add("card-text", "text-center");
+  // boton agregar al carrito
+  const divColBtnAgregar = document.createElement("div");
+  divColBtnAgregar.classList.add("col-6");
+  
+  const btnAgregarAlCarrito = document.createElement("button");
+  btnAgregarAlCarrito.classList.add("btn", "btn-primary", "btn-sm", "w-100", "shadow-sm");
+  btnAgregarAlCarrito.innerHTML = `<i class="bi bi-cart-plus me-1"></i> Añadir`;
+  btnAgregarAlCarrito.addEventListener("click", () => {
+    alert(`Añadido al carrito: ${prod.nombre} x${inputCant.value}`);
+  });
+  divColBtnAgregar.appendChild(btnAgregarAlCarrito);
 
-  const spanPrecioMayorista = document.createElement("span");
-  spanPrecioMayorista.textContent = "Precio mayorista: ";
+  divRowControles.append(divColInput, divColBtnAgregar);
 
-  const spanCantPrecioMayorista = document.createElement("span");
-  spanCantPrecioMayorista.textContent = `$${prod.precioMayorista}`;
-
-  const pCantidadMayorista = document.createElement("p");
-  pCantidadMayorista.classList.add("text-center", "small");
-  pCantidadMayorista.textContent = `(Comprando +${prod.cantMayorista}u.)`;
-
-  const divStock = document.createElement("div");
-  divStock.classList.add("card-text", "text-center");
-
-  const spanStock = document.createElement("span");
-  spanStock.textContent = "Stock disponible: ";
-
-  const spanCantStock = document.createElement("span");
-  spanCantStock.textContent = `${prod.stock}u.`;
-
+  // Subtotal ----
   const divTotal = document.createElement("div");
-  divTotal.classList.add("sub-total", "p-4", "m-4", "h5", "text-center");
+  divTotal.classList.add("fw-bold", "border-top", "pt-2", "text-center", "d-flex", "justify-content-between", "align-items-center", "px-1");
+  
   const spanTotal = document.createElement("span");
-  spanTotal.classList.add("small");
-  spanTotal.textContent = "Total: ";
+  spanTotal.classList.add("small", "text-secondary");
+  spanTotal.textContent = "Subtotal: ";
 
   const spanCantTotal = document.createElement("span");
+  spanCantTotal.classList.add("h5", "m-0", "fw-bold", "text-success");
   spanCantTotal.setAttribute("id", `span-${prod.id}`);
-  spanCantTotal.textContent = calcularSubTotal(
-    inputCant.value,
-    prod.cantMayorista,
-    prod.precioMinorista,
-    prod.precioMayorista,
-  );
-
-  const btnAgregarAlCarrito = document.createElement("button");
-  btnAgregarAlCarrito.classList.add("btn", "btn-primary", "w-100");
-  btnAgregarAlCarrito.textContent = "Añadir al carrito";
-  btnAgregarAlCarrito.addEventListener("click", () => {
-    alert("Añadido al carrito (mentira)");
-  });
+  actualizarSubTotal(spanCantTotal, 1, prod.cantMayorista, prod.precioMinorista, prod.precioMayorista)
 
   divTotal.append(spanTotal, spanCantTotal);
-  divStock.append(spanStock, spanCantStock);
-  divPrecioMayorista.append(
-    spanPrecioMayorista,
-    spanCantPrecioMayorista,
-    pCantidadMayorista,
-  );
-  divPrecioMinorista.append(spanPrecioMinorista, spanCantPrecioMinorista);
-  divSelectorCant.append(btnMenosCant, inputCant, btnMasCant);
-  divCardBody.append(
-    h3,
-    divSelectorCant,
-    divPrecioMinorista,
-    divPrecioMayorista,
-    divStock,
-    divTotal,
-    btnAgregarAlCarrito,
-  );
-  divCard.append(img, divCardBody);
-  divCol.appendChild(divCard);
 
-  //   divTotal.append(spanTotal, spanCantTotal);
-  //   divStock.append(spanStock, spanCantStock);
-  //   divPrecioMayorista.append(
-  //     spanPrecioMayorista,
-  //     spanCantPrecioMayorista,
-  //     pCantidadMayorista,
-  //   );
-  //   divPrecioMinorista.append(spanPrecioMinorista, spanCantPrecioMinorista);
-  //   divSelectorCant.append(btnMenosCant, inputCant, btnMasCant);
-  //   divCardBody.append(
-  //     h3,
-  //     divSelectorCant,
-  //     divPrecioMinorista,
-  //     divPrecioMayorista,
-  //     divStock,
-  //     divTotal,
-  //     btnAgregarAlCarrito,
-  //   );
-  //   divCard.append(img, divCardBody);
-  //   divCol.appendChild(divCard);
+  // --- appends finales ---
+  divDatosSuperiores.append(h3, divEtiquetas, pDescripcion);
+  divControlesInferiores.append(divRowPrecios, divRowControles, divTotal);
+  divCardBody.append(divDatosSuperiores, divControlesInferiores);
+  divCard.append(divContenedorImg, divCardBody);
+  divCol.appendChild(divCard);
 
   return divCol;
 }
 
-function modificarCantidad(id, operacion) {
-  const input = document.getElementById(id);
+  function generarEtiquetas(idsEtiqEnProd, contenedor) {
+    idsEtiqEnProd.forEach(id => {
+      const etiqueta = buscarEtiquetaPorID(id)
+      const span = document.createElement("span");
+      span.classList.add("badge", "bg-light", "text-secondary", "border", "rounded-pill", "extra-small", "px-2", "me-1");
+      span.textContent = `#${etiqueta.nombre}`;
+      span.setAttribute("data-bs-toggle", "tooltip");
+      span.setAttribute("data-bs-title", etiqueta.descripcion);
+      contenedor.appendChild(span)
+    });
+  }
+
+function modificarCantidad(prod, operacion) {
+  const { id, cantMayorista, precioMinorista, precioMayorista, stock } = prod;
+  const input = document.getElementById(`input-${id}`);
   const span = document.getElementById(`span-${id}`);
-  let cant;
-  if (operacion === "restar") {
-    if (Number(input.value) > 0) {
-      cant = Number(input.value) - 1;
-      input.value = cant;
-      // span.value = calcularSubTotal(cant,)
-    }
+  
+  let cant = Number(input.value);
+  switch (operacion) {
+    case "restar":
+      cant = cant > 1 ? cant - 1 : cant;
+      break;
+    case "sumar":
+      cant = cant < stock ? cant + 1 : cant;
+      break;
+    default: // cuando borra o escribe a mano numeros mayores al stock
+      if( cant < 1){
+        cant = 1 // se lo reseteo a 1 si puso cero o numeros negativos
+      } else if (cant > stock ){
+        cant = stock; // si puso un numero mayor al stock le pongo el stock como tope
+      }
+      break;
+  }
+  input.value = cant;
+  destacarPrecio(prod, cant)
+  actualizarSubTotal(span, cant, cantMayorista, precioMinorista, precioMayorista)
+}
+
+function destacarPrecio(prod, cant) {
+  const { id, cantMayorista } = prod;
+  const boxMin = document.getElementById(`box-min-${id}`)
+  const boxMay = document.getElementById(`box-may-${id}`)
+  if (cant >= cantMayorista) {
+    boxMay.classList.add("border-success");
+    boxMin.classList.remove("border-success");
   } else {
-    input.value = Number(input.value) + 1;
+    boxMay.classList.remove("border-success");
+    boxMin.classList.add("border-success");
   }
 }
 
-function calcularSubTotal(cantidad, cantMin, pMin, pMay) {
-  if (cantidad < cantMin) {
-    return cantidad * pMin;
-  } else {
-    return cantidad * pMay;
-  }
+function actualizarSubTotal(span, cantidad, cantMin, pMin, pMay) {
+  const subTotal = cantidad < cantMin ? cantidad * pMin : cantidad * pMay
+  span.textContent = `$${subTotal}`;
 }
 
 // - agregarProductoAlCarrito
 //   - toma la cantidad del input y
-// - modificarCantidad
-//   - cambia la cantidad en el input (min 1, max stock)
-//   - FUNCTION calcularSubTotal
 // - filtrarProductos
