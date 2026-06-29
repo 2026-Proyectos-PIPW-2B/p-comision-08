@@ -13,34 +13,6 @@
 
 <body class="d-flex flex-column min-vh-100">
   <header>
-    <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
-      <div class="container">
-        <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
-          aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Catálogo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./carrito.html">Carrito</a>
-            </li>
-          </ul>
-          <div class="row align-items-center gap-3">
-            <div class="text-white col" id="divBienvenida"></div>
-            <div class="col-12 col-lg-auto">
-              <button class="btn btn-danger" id="btnCerrarSesion">
-                Cerrar sesion
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav> -->
-
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-violeta border-bottom-rosa shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold" href="#">
@@ -82,29 +54,23 @@
     <section class="mb-4">
       <div class="card shadow-sm border-0">
         <div class="card-body p-4 bg-white rounded-4">
-          <form>
+          <form id="formFiltrar">
             <div class="row g-3 align-items-center">
-              <div class="col-12 col-md-5">
-                <label class="form-label text-secondary small fw-bold" for="inputBusquedaDescripcion">
+              <div class="col-12 col-md-6">
+                <label class="form-label text-secondary small fw-bold" for="inputBusquedaNombre">
                   <i class="bi bi-search me-1"></i> Buscar producto
                 </label>
                 <input class="form-control bg-light border-0 shadow-none px-3" type="text"
-                  placeholder="Ej: Bon o Bon..." id="inputBusquedaDescripcion" />
+                  placeholder="Ej: Bon o Bon..." id="inputBusquedaNombre" />
               </div>
 
-              <div class="col-12 col-md-5">
+              <div class="col-12 col-md-6">
                 <label class="form-label text-secondary small fw-bold" for="selectCategoria">
                   <i class="bi bi-tag me-1"></i> Categoría
                 </label>
                 <select class="form-select bg-light border-0 shadow-none" id="selectCategoria">
-                  <option value="" selected disabled>Seleccione una categoría</option>
+                  <option value="" selected>Todas</option>
                 </select>
-              </div>
-
-              <div class="col-12 col-md-2 mt-md-4 pt-md-2">
-                <button class="btn btn-primary w-100 py-2 shadow-sm" id="btnFiltrar" type="button">
-                  Filtrar
-                </button>
               </div>
             </div>
           </form>
