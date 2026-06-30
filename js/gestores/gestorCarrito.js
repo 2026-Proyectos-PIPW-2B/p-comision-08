@@ -2,6 +2,7 @@ import { obtenerUsuarioAutenticado } from "./gestorLogin.js";
 
 export function agregarAlCarrito(producto, cant) {
   let carrito = traerCarrito();
+  cant = Number(cant);
 
   if (!carrito) {
     crearCarrito();
@@ -13,7 +14,7 @@ export function agregarAlCarrito(producto, cant) {
   );
 
   if (productoExistente) {
-    productoExistente.cantidad++;
+    productoExistente.cantidad += cant;
   } else {
     carrito.productos.push({
       idProd: producto.id,

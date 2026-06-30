@@ -50,55 +50,105 @@
             <div class="row align-items-center gap-3">
               <div class="text-white col" id="divBienvenida"></div>
               <div class="col-12 col-lg-auto">
-                <button class="btn btn-danger" id="btnCerrarSesion">Cerrar sesion</button>
+                <button class="btn btn-danger" id="btnCerrarSesion">
+                  Cerrar sesion
+                </button>
               </div>
             </div>
           </div>
         </div>
       </nav>
     </header>
-    
+
     <main class="mt-5 pt-4 container pb-5 flex-fill">
-        
-          <h1 class="text-center py-3">Mi carrito</h1>
+      <h1 class="text-center py-3">Mi carrito</h1>
 
-        <div class="row">
+      <div class="row" id="rowCarrito">
+        <!-- Productos -->
+        <div class="col-lg-7 mb-3">
+          <div id="contenedorCarrito">
+            <div class="card">
 
-            <!-- Productos -->
-            <div class="col-lg-7">
-                <div id="contenedorCarrito">
+
+              
+              <div class="row">
+                <div class="col-3">
+                  <div class="bg-light p-2 rounded-4 d-flex align-items-center">
+                    <img
+                      src="https://elnenearg.vtexassets.com/arquivos/ids/162150-800-auto?v=637971141968600000&width=800&height=auto&aspect=true"
+                      alt=""
+                      class="img-thumbnail"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-5">
+                  <div class="d-flex flex-column m-3 align-items-center">
+                    <h3 class="text-center h5">Alfajor milka</h3>
+                
+                <div class="">
                   
-                </div>
-            </div>
-
-            <!-- Resumen -->
-            <div class="col-lg-5">
-                <div class="card p-3">
-
-                    <h3>Resumen</h3>
-
-                    <div id="contenedorResumen">
-
+                  <div class="input-group input-group-sm mb-1">
+                    <button class="btn btn-outline-primary" type="button">
+                      -</button
+                      ><input
+                      class="form-control text-center fw-bold"
+                      type="number"
+                      value="1"
+                      min="1"
+                      id="input-PROD-mqzryvah-o5xl"
+                      /><button class="btn btn-outline-primary" type="button">
+                        +
+                      </button>
+                    </div>
+                    <div
+                      class="text-muted extra-small d-block text-center "
+                      >Disponibles: <span class="fw-bold">10u.</span>
                     </div>
 
-                    <hr>
-
-                    <h4 id="totalCarrito">$0</h4>
-
-                    <div class="d-flex">
-                    <button class="btn btn-success col-7 mx-auto mt-3">
-                        Finalizar compra
-                    </button>
-                    <button class="btn btn-danger col-4 mt-3">
-                        Vaciar Carrito
-                    </button>
                     </div>
-
+                  </div>
                 </div>
-            </div>
+                <div class="col-4 position-relative">
+                  <div class="d-flex flex-column justify-content-center h-100">
+                    <div class="">
+                      <span class="badge bg-primary rounded-pill bg-dark">May.</span>
+                    </div>
+                    <div class="position-absolute top-0 end-0 px-4 py-1">
+                      <button class="btn btn-danger btn-sm px-2 py-0 rounded-4 btn-close"></button>
+                    </div>
+                    <p class="text-success fw-bold">$5000</p>
+                  </div>
+                </div>
+                
+              </div>
 
+
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- Resumen -->
+        <div class="col-lg-5 d-none" id="colResumen">
+          <div class="card p-3 shadow-sm">
+            <h3 class="text-center">Resumen</h3>
+
+            <div id="contenedorResumen" class="text-center"></div>
+
+            <hr />
+
+            <h4 id="totalCarrito" class="text-end me-3">$0</h4>
+
+            <div class="d-flex">
+              <button class="btn btn-success col-7 mx-auto mt-3">
+                Finalizar compra
+              </button>
+              <button class="btn btn-danger col-4 mt-3">Vaciar Carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="border-top mt-4">
