@@ -1,11 +1,18 @@
-import { autorizacion, cerrarSesion } from "./gestores/gestorLogin.js";
+import {
+  autorizacion,
+  obtenerUsuarioAutenticado,
+} from "./gestores/gestorLogin.js";
 import { cargarDatosNavbar } from "./navbar.js";
 import {
   actualizarCarrito,
   vaciarCarrito,
   traerCarrito,
 } from "./gestores/gestorCarrito.js";
-import { buscarProducto } from "./gestores/gestorProductos.js";
+import {
+  buscarProducto,
+  modificarProducto,
+} from "./gestores/gestorProductos.js";
+import { agregarCarritoAlHistorial } from "./gestores/gestorUsuarios.js";
 
 const btnFinalizar = document.getElementById("btnFinalizarCompra");
 const btnVaciar = document.getElementById("btnVaciarCarrito");
@@ -27,9 +34,9 @@ function mostrarCarrito() {
   const contenedorCarrito = document.getElementById("contenedorCarrito");
   const carrito = traerCarrito();
 
-    contenedorCarrito.innerHTML = "";
+  contenedorCarrito.innerHTML = "";
 
-  if (!carrito || carrito.productos.length === 0) {
+  if (!carrito || !carrito.productos || carrito.productos.length === 0) {
     rowCarrito.classList.add("justify-content-center");
     contenedorCarrito.innerHTML = `
     <div class="text-center card p-4 shadow-sm">
@@ -46,7 +53,7 @@ function mostrarCarrito() {
     for (const producto of carrito.productos) {
       const prod = buscarProducto(producto.idProd);
       const card = crearTarjeta(prod, producto.cantidad);
-        contenedorCarrito.appendChild(card);
+      contenedorCarrito.appendChild(card);
     }
 
     actualizarResumen();
@@ -54,8 +61,16 @@ function mostrarCarrito() {
 }
 
 function crearTarjeta(prod, cant) {
-  const { id, nombre, cantMayorista, precioMinorista, precioMayorista, stock, imagenURL } = prod;
-  
+  const {
+    id,
+    nombre,
+    cantMayorista,
+    precioMinorista,
+    precioMayorista,
+    stock,
+    imagenURL,
+  } = prod;
+
   // que precio aplica y subtotal
   const esMayorista = cant >= cantMayorista;
   const precioUnitario = esMayorista ? precioMayorista : precioMinorista;
@@ -63,7 +78,16 @@ function crearTarjeta(prod, cant) {
 
   // crear card
   const card = document.createElement("div");
-  card.classList.add("card", "border-0", "shadow-sm", "p-3", "rounded-4", "bg-white", "mb-3", "position-relative");
+  card.classList.add(
+    "card",
+    "border-0",
+    "shadow-sm",
+    "p-3",
+    "rounded-4",
+    "bg-white",
+    "mb-3",
+    "position-relative",
+  );
 
   card.innerHTML = `
     <button class="btn text-danger border-0 bg-transparent position-absolute bottom-0 end-0 m-2 btn-eliminar" title="Eliminar">
@@ -81,11 +105,14 @@ function crearTarjeta(prod, cant) {
         <h3 class="h6 mb-1 fw-semibold text-dark text-capitalize text-start">${nombre}</h3>
         <div class="d-flex align-items-center gap-2">
           <span class="text-secondary extra-small">Precio minorista:</span>
-          <span class="fw-semibold ${!esMayorista ? 'text-pink' : 'text-dark'} small">$${precioMinorista}</span>
+          <span class="fw-semibold ${!esMayorista ? "text-pink" : "text-secondary"} small">$${precioMinorista}</span>
         </div>
         <div class="d-flex align-items-center gap-2">
           <span class="text-secondary extra-small">Precio mayorista:</span>
-          <span class="fw-semibold ${esMayorista ? 'text-pink' : 'text-dark'} small">$${precioMayorista}</span>
+          <span class="fw-semibold ${esMayorista ? "text-pink" : "text-secondary"} small">$${precioMayorista}</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <span class="text-secondary extra-small">(A partir de <strong class="${esMayorista ? "text-pink" : "text-secondary"}">${cantMayorista}u.</strong>)</span>
         </div>
       </div>
 
@@ -117,8 +144,6 @@ function crearTarjeta(prod, cant) {
   btnSumar.addEventListener("click", () => {
     if (cant < stock) {
       cambiarCantidad(id, 1);
-    } else {
-      alert("Llegaste al límite del stock disponible.");
     }
   });
 
@@ -126,13 +151,13 @@ function crearTarjeta(prod, cant) {
     let nuevaCant = Number(input.value);
     if (nuevaCant < 1) {
       nuevaCant = 1;
-      input.value = nuevaCant
+      input.value = nuevaCant;
     }
     if (nuevaCant > stock) {
       nuevaCant = stock;
-      input.value = stock
+      input.value = stock;
     }
-    
+
     const diferencia = nuevaCant - cant;
     if (diferencia !== 0) {
       cambiarCantidad(id, diferencia);
@@ -150,7 +175,7 @@ function actualizarResumen() {
   const contenedorResumen = document.getElementById("contenedorResumen");
   const totalCarrito = document.getElementById("totalCarrito");
 
-  if (carrito.productos.length === 0) {
+  if (!carrito || !carrito.productos || carrito.productos.length === 0) {
     colResumen.classList.add("d-none");
   } else {
     colResumen.classList.remove("d-none");
@@ -164,9 +189,11 @@ function actualizarResumen() {
       const infoProducto = buscarProducto(item.idProd);
       if (infoProducto) {
         const aplicaMayorista = item.cantidad >= infoProducto.cantMayorista;
-        const precioAplicado = aplicaMayorista ? infoProducto.precioMayorista : infoProducto.precioMinorista;
+        const precioAplicado = aplicaMayorista
+          ? infoProducto.precioMayorista
+          : infoProducto.precioMinorista;
         const subtotalProducto = precioAplicado * item.cantidad;
-        
+
         total += subtotalProducto;
 
         resumenHtml += `
@@ -225,18 +252,19 @@ function accionVaciarCarrito() {
 }
 
 function finalizarCompra() {
+  const sesion = obtenerUsuarioAutenticado();
   const objetoCarrito = traerCarrito();
-
-  if (
-    !objetoCarrito ||
-    !objetoCarrito.productos ||
-    objetoCarrito.productos.length === 0
-  ) {
-    alert("Tu carrito está vacío, agregá algún producto.");
-    return;
-  }
-
   alert("¡Gracias por tu compra!");
+  agregarCarritoAlHistorial(sesion.id, objetoCarrito.productos);
+  restarStock(objetoCarrito.productos);
   vaciarCarrito();
   mostrarCarrito();
+}
+
+function restarStock(listadoProductos) {
+  for (const objProd of listadoProductos) {
+    const prod = buscarProducto(objProd.idProd);
+    prod.stock = prod.stock - objProd.cantidad;
+    modificarProducto(objProd.idProd, prod);
+  }
 }

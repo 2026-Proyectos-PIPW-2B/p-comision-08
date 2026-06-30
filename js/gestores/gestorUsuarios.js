@@ -9,7 +9,7 @@ export function agregarUsuario(objUsuario) {
     rol,
     contrasenia,
     estado: true,
-    carrito: "",
+    historial: [],
   };
   listaUsuarios.push(nuevoUsuario);
   actualizarListadoUsuarios(listaUsuarios);
@@ -53,4 +53,14 @@ export function eliminarUsuario(nombre) {
     (usuario) => usuario.nombre !== nombre,
   );
   actualizarListadoUsuarios(nuevaLista);
+}
+
+export function agregarCarritoAlHistorial(id, carrito) {
+  const listaUsuarios = traerTodosLosUsuarios();
+  for (const usuario of listaUsuarios) {
+    if (usuario.id === id) {
+      usuario.historial.push(carrito);
+    }
+  }
+  actualizarListadoUsuarios(listaUsuarios);
 }
