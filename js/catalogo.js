@@ -1,4 +1,4 @@
-import { agregarAlCarrito } from "./gestores/gestorCarrito.js";
+import { agregarAlCarrito, traerCarrito } from "./gestores/gestorCarrito.js";
 import {
   buscarCategoriaPorID,
   traerTodasLasCategorias,
@@ -240,7 +240,7 @@ function crearTarjetaProd(prod) {
   );
   btnAgregarAlCarrito.innerHTML = `<i class="bi bi-cart-plus me-1"></i> Añadir`;
   btnAgregarAlCarrito.addEventListener("click", () =>
-    agregarProdAlCarrito(prod, inputCant),
+    agregarProdAlCarrito(prod, inputCant, prod.stock),
   );
   divColBtnAgregar.appendChild(btnAgregarAlCarrito);
 
@@ -357,7 +357,15 @@ function actualizarSubTotal(span, cantidad, cantMin, pMin, pMay) {
   span.textContent = `$${subTotal}`;
 }
 
-function agregarProdAlCarrito(prod, input) {
+function agregarProdAlCarrito(prod, input, stock) {
+  const carrito = traerCarrito();
+  const productoEnCarrito = carrito.productos.find(
+    (producto) => producto.idProd === prod.id,
+  );
+  if (productoEnCarrito && productoEnCarrito.cantidad + input.value > stock) {
+    alert("");
+  }
+
   agregarAlCarrito(prod, input.value);
   alert(`Añadido al carrito: ${prod.nombre} x${input.value}`);
   input.value = 1;
