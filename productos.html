@@ -1,331 +1,521 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <!-- <link rel="icon" href="./logo/logoDulceMax/logoDulceMaxCentroTransparente.png" type="image/x-icon"> -->
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Productos</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="./css/styles.css" />
-  <link rel="icon" href="./logo/logoDulceMax/logoDulceMaxCentroTransparente.png" type="image/x-icon">
-</head>
-
-<body class="d-flex flex-column min-vh-100">
-  <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-violeta border-bottom-rosa shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="#"> <img src="logo/logoDulceMax/logoDulceMaxCentroTransparente.png" width="44" alt="logoDulceMax"> 
-        <span class="fw-bold text-white">DulceMax</span>
-        </a>
-        <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false"
-          aria-label="Abrir barra de navegación">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarPrincipal">
-          <div id="contenedorLinks" class="me-auto"></div>
-          <div class="d-flex align-items-center gap-3">
-            <div class="text-white small fw-semibold" id="divBienvenida"></div>
-            <button class="btn btn-sm px-3 btn-cerrar-sesion" id="btnCerrarSesion">
-              <i class="bi bi-door-closed"></i> Cerrar sesión
-            </button>
+  <body class="d-flex flex-column min-vh-100">
+    <header>
+      <nav
+        class="navbar fixed-top navbar-expand-lg navbar-dark bg-violeta border-bottom-rosa shadow-sm"
+      >
+        <div class="container">
+          <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+            <img src="img/logo.png" width="44" alt="logoDulceMax" />
+            <span class="fw-bold text-white">DulceMax</span>
+          </a>
+          <button
+            class="navbar-toggler border-secondary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarPrincipal"
+            aria-controls="navbarPrincipal"
+            aria-expanded="false"
+            aria-label="Abrir barra de navegación"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarPrincipal">
+            <div id="contenedorLinks" class="me-auto"></div>
+            <div class="d-flex align-items-center gap-3">
+              <div
+                class="text-white small fw-semibold"
+                id="divBienvenida"
+              ></div>
+              <button
+                class="btn btn-sm px-3 btn-cerrar-sesion"
+                id="btnCerrarSesion"
+              >
+                <i class="bi bi-door-closed"></i> Cerrar sesión
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
-  <main class="container pb-4 flex-fill">
-    <section class="mt-5 pt-4">
-      <div class="col-md-10 mx-auto col-lg-8">
-        <h1 class="text-center py-3">Gestionar productos</h1>
+    <main class="container pb-4 flex-fill">
+      <section class="mt-5 pt-4">
+        <div class="col-md-10 mx-auto col-lg-8">
+          <h1 class="text-center py-3">Gestionar productos</h1>
 
-        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" id="formRegistrarProducto">
+          <form
+            class="p-4 p-md-5 border rounded-3 bg-body-tertiary"
+            id="formRegistrarProducto"
+          >
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="inputNombre"
+                name="nombre"
+                placeholder="nombreproducto"
+              />
+              <label for="inputNombre">Nombre del producto</label>
+              <div id="feedbackNombre"></div>
+            </div>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputNombre" name="nombre" placeholder="nombreproducto" />
-            <label for="inputNombre">Nombre del producto</label>
-            <div id="feedbackNombre"></div>
-          </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="inputDescripcion"
+                name="descripción"
+                placeholder="descripcionproducto"
+              />
+              <label for="inputDescripcion">Descripcion</label>
+              <div id="feedbackDescripcion"></div>
+            </div>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="inputDescripcion" name="descripción"
-              placeholder="descripcionproducto" />
-            <label for="inputDescripcion">Descripcion</label>
-            <div id="feedbackDescripcion"></div>
-          </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+              <div class="col">
+                <div class="form-floating">
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="precio minorista"
+                    placeholder="precio minorista"
+                    id="inputPrecioMinorista"
+                    min="0"
+                  />
+                  <label for="inputPrecioMinorista">Precio minorista</label>
+                  <div id="feedbackPrecioMinorista"></div>
+                </div>
+              </div>
 
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-            <div class="col">
-              <div class="form-floating">
-                <input type="number" class="form-control" name="precio minorista" placeholder="precio minorista"
-                  id="inputPrecioMinorista" min="0" />
-                <label for="inputPrecioMinorista">Precio minorista</label>
-                <div id="feedbackPrecioMinorista"></div>
+              <div class="col">
+                <div class="form-floating">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="precio mayorista"
+                    id="inputPrecioMayorista"
+                    name="precio mayorista"
+                    min="0"
+                  />
+                  <label for="inputPrecioMayorista">Precio mayorista</label>
+                  <div id="feedbackPrecioMayorista"></div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="col form-floating">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="cantidad minima para precio mayorista"
+                    id="inputCantMay"
+                    name="cantidad mayorista"
+                    min="0"
+                  />
+                  <label for="inputCantMay">Cant mayorista</label>
+                  <div id="feedbackCantMay"></div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-floating">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="stock"
+                    id="inputStock"
+                    name="stock"
+                    min="0"
+                  />
+                  <label for="inputStock">Stock</label>
+                  <div id="feedbackStock"></div>
+                </div>
               </div>
             </div>
 
-            <div class="col">
-              <div class="form-floating">
-                <input type="number" class="form-control" placeholder="precio mayorista" id="inputPrecioMayorista"
-                  name="precio mayorista" min="0" />
-                <label for="inputPrecioMayorista">Precio mayorista</label>
-                <div id="feedbackPrecioMayorista"></div>
-              </div>
+            <div class="form-floating my-3">
+              <select class="form-select" id="selectCategoria"></select>
+              <label for="selectCategoria">Categoría</label>
+              <div id="feedbackCategoria"></div>
             </div>
 
-            <div class="col">
-              <div class="col form-floating">
-                <input type="number" class="form-control" placeholder="cantidad minima para precio mayorista"
-                  id="inputCantMay" name="cantidad mayorista" min="0" />
-                <label for="inputCantMay">Cant mayorista</label>
-                <div id="feedbackCantMay"></div>
-              </div>
+            <div class="mb-3 px-3 py-2 border rounded bg-white">
+              <label class="form-label text-muted small mb-2">Etiquetas</label>
+              <div
+                class="d-flex flex-wrap gap-3"
+                id="contenedorEtiquetas"
+              ></div>
             </div>
 
-            <div class="col">
-              <div class="form-floating">
-                <input type="number" class="form-control" placeholder="stock" id="inputStock" name="stock" min="0" />
-                <label for="inputStock">Stock</label>
-                <div id="feedbackStock"></div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="form-floating my-3">
-            <select class="form-select" id="selectCategoria"></select>
-            <label for="selectCategoria">Categoría</label>
-            <div id="feedbackCategoria"></div>
-          </div>
-
-          <div class="mb-3 px-3 py-2 border rounded bg-white">
-            <label class="form-label text-muted small mb-2">Etiquetas</label>
-            <div class="d-flex flex-wrap gap-3" id="contenedorEtiquetas"></div>
-          </div>
-
-          <div class=" my-3 border rounded bg-white p-3">
-            <div class="row g-4 align-items-center">
-              <div class="col-md-8">
-                <div class="d-flex flex-column">
-                  <div class="form-floating">
-                    <select class="form-select " id="selectImagen">
-                      <option selected value="sin-foto">Sin foto</option>
-                      <option value="alfajor-blanco">Alfajor blanco</option>
-                      <option value="alfajor-negro">Alfajor negro</option>
-                      <option value="chupetin">Chupetin</option>
-                      <option value="arcor-butter-toffees">Caramelo Butter Toffee</option>
-                      <option value="arcor-caramelos-mentol">Caramelo mentol</option>
-                      <option value="bon-o-bon">Bon o Bon</option>
-                      <option value="chocolate-aguila-clasico">Chocolate Águila</option>
-                      <option value="pico-dulce">Pico dulce</option>
-                      <option value="fini-ositos-veganos">Fini Ositos</option>
-                      <option value="guaymallen-triple-chocolate">Guaymallén Triple</option>
-                      <option value="jorgito-blanco">Jorgito Blanco</option>
-                      <option value="milka-chocolate-con-leche">Milka chocolate</option>
-                      <option value="mogul-extreme-frutilla">Mogul Extreme Frutilla</option>
-                      <option value="mogul-mix-acido">Mogul Mix</option>
-                      <!-- <option value="gomita">Gomita</option>
+            <div class="my-3 border rounded bg-white p-3">
+              <div class="row g-4 align-items-center">
+                <div class="col-md-8">
+                  <div class="d-flex flex-column">
+                    <div class="form-floating">
+                      <select class="form-select" id="selectImagen">
+                        <option selected value="sin-foto">Sin foto</option>
+                        <option value="alfajor-blanco">Alfajor blanco</option>
+                        <option value="alfajor-negro">Alfajor negro</option>
+                        <option value="chupetin">Chupetin</option>
+                        <option value="arcor-butter-toffees">
+                          Caramelo Butter Toffee
+                        </option>
+                        <option value="arcor-caramelos-mentol">
+                          Caramelo mentol
+                        </option>
+                        <option value="bon-o-bon">Bon o Bon</option>
+                        <option value="chocolate-aguila-clasico">
+                          Chocolate Águila
+                        </option>
+                        <option value="pico-dulce">Pico dulce</option>
+                        <option value="fini-ositos-veganos">Fini Ositos</option>
+                        <option value="guaymallen-triple-chocolate">
+                          Guaymallén Triple
+                        </option>
+                        <option value="jorgito-blanco">Jorgito Blanco</option>
+                        <option value="milka-chocolate-con-leche">
+                          Milka chocolate
+                        </option>
+                        <option value="mogul-extreme-frutilla">
+                          Mogul Extreme Frutilla
+                        </option>
+                        <option value="mogul-mix-acido">Mogul Mix</option>
+                        <!-- <option value="gomita">Gomita</option>
                       <option value="chocolate">Chocolate</option> -->
-                    </select>
-                    <label for="selectImagen">Imagenes precargadas</label>
-                  </div>
-                  <p class="text-center my-1">o</p>
-                  <div class="form-floating">
-                    <input type="text" name="url-imagen" id="inputImgURL" class="form-control" placeholder="url-imagen">
-                    <label for="inputImgURL">URL Imagen personalizada</label>
-                  </div>
-                </div>
-              </div>
-              <div class="col text-center">
-                <img src="" class="img-thumbnail" alt="..." id="imgPreview" />
-              </div>
-            </div>
-          </div>
-
-          <button class="w-100 btn btn-lg btn-primary" type="submit">
-            Registrar producto
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <section class="mt-5 pt-4">
-      <h2 class="text-center py-3">Listado de productos</h2>
-      <div class="row row-cols-1 mt-4" id="divContenedorListado"></div>
-      <div class="row justify-content-end mt-3 gap-0">
-        <div class="col-auto">
-          <button class="btn btn-outline-success" id="btnListadoPred">
-            Listado predeterminado
-          </button>
-        </div>
-        <div class="col-auto">
-          <button class="btn btn-outline-danger" id="btnBorrarProductos">
-            Borrar todos
-          </button>
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="tituloModal">
-              Editar Producto
-            </h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form class="p-3" id="modalFormEditar">
-
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="modalInputNombre" name="nombre"
-                  placeholder="nombreproducto" />
-                <label for="modalInputNombre">Nombre del producto</label>
-                <div id="feedbackNombreModal"></div>
-              </div>
-
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="modalInputDescripcion" name="descripción"
-                  placeholder="descripcionproducto" />
-                <label for="modalInputDescripcion">Descripcion</label>
-                <div id="feedbackDescripcionModal"></div>
-              </div>
-
-              <div class="row row-cols-1 row-cols-sm-2 g-3">
-                <div class="col">
-                  <div class="form-floating">
-                    <input type="number" class="form-control" name="precio minorista" placeholder="precio minorista"
-                      id="modalInputPrecioMinorista" min="0" />
-                    <label for="modalInputPrecioMinorista">Precio minorista</label>
-                    <div id="feedbackPrecioMinoristaModal"></div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="form-floating">
-                    <input type="number" class="form-control" placeholder="precio mayorista"
-                      id="modalInputPrecioMayorista" name="precio mayorista" min="0" />
-                    <label for="modalInputPrecioMayorista">Precio mayorista</label>
-                    <div id="feedbackPrecioMayoristaModal"></div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="col form-floating">
-                    <input type="number" class="form-control" placeholder="cantidad minima para precio mayorista"
-                      id="modalInputCantMay" name="cantidad mayorista" min="0" />
-                    <label for="modalInputCantMay">Cant mayorista</label>
-                    <div id="feedbackCantMayModal"></div>
-                  </div>
-                </div>
-
-                <div class="col">
-                  <div class="form-floating">
-                    <input type="number" class="form-control" placeholder="stock" id="modalInputStock" name="stock"
-                      min="0" />
-                    <label for="modalInputStock">Stock</label>
-                    <div id="feedbackStockModal"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-floating my-3">
-                <select class="form-select" id="modalSelectCategoria" name="Categoria"></select>
-                <label for="modalSelectCategoria">Categoría</label>
-                <div id="feedbackCategoriaModal"></div>
-              </div>
-
-              <div class="mb-3 px-3 py-2 border rounded bg-white">
-                <label class="form-label text-muted small mb-2">Etiquetas</label>
-                <div class="d-flex flex-wrap gap-3" id="modalContenedorEtiquetas"></div>
-              </div>
-
-              <div class=" my-3 border rounded bg-white p-3">
-                <div class="row g-4 align-items-center">
-                  <div class="col-md-8">
-                    <div class="d-flex flex-column">
-                      <div class="form-floating">
-                        <select class="form-select " id="modalSelectImagen">
-                          <option selected value="sin-foto">Sin foto</option>
-                          <option value="alfajor-blanco">Alfajor blanco</option>
-                          <option value="alfajor-negro">Alfajor negro</option>
-                          <option value="chupetin">Chupetin</option>
-                          <option value="arcor-butter-toffees">Caramelo Butter Toffee</option>
-                          <option value="arcor-caramelos-mentol">Caramelo mentol</option>
-                          <option value="bon-o-bon">Bon o Bon</option>
-                          <option value="chocolate-aguila-clasico">Chocolate Águila</option>
-                          <option value="pico-dulce">Pico dulce</option>
-                          <option value="fini-ositos-veganos">Fini Ositos</option>
-                          <option value="guaymallen-triple-chocolate">Guaymallén Triple</option>
-                          <option value="jorgito-blanco">Jorgito Blanco</option>
-                          <option value="milka-chocolate-con-leche">Milka chocolate</option>
-                          <option value="mogul-extreme-frutilla">Mogul Extreme Frutilla</option>
-                          <option value="mogul-mix-acido">Mogul Mix</option>
-                        </select>
-                        <label for="modalSelectImagen">Imagenes precargadas</label>
-                      </div>
-                      <p class="text-center my-1">o</p>
-                      <div class="form-floating">
-                        <input type="text" name="url-imagen" id="modalInputImgURL" class="form-control"
-                          placeholder="url-imagen">
-                        <label for="modalInputImgURL">URL Imagen personalizada</label>
-                      </div>
+                      </select>
+                      <label for="selectImagen">Imagenes precargadas</label>
+                    </div>
+                    <p class="text-center my-1">o</p>
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        name="url-imagen"
+                        id="inputImgURL"
+                        class="form-control"
+                        placeholder="url-imagen"
+                      />
+                      <label for="inputImgURL">URL Imagen personalizada</label>
                     </div>
                   </div>
-                  <div class="col text-center">
-                    <img src="" class="img-thumbnail" alt="..." id="modalImgPreview" />
-                  </div>
+                </div>
+                <div class="col text-center">
+                  <img src="" class="img-thumbnail" alt="..." id="imgPreview" />
                 </div>
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCerrarModal">
-              Cancelar
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">
+              Registrar producto
             </button>
-            <button type="button" class="btn btn-primary" id="btnGuardarCambios">
-              Guardar cambios
+          </form>
+        </div>
+      </section>
+
+      <section class="mt-5 pt-4">
+        <h2 class="text-center py-3">Listado de productos</h2>
+        <div class="row row-cols-1 mt-4" id="divContenedorListado"></div>
+        <div class="row justify-content-end mt-3 gap-0">
+          <div class="col-auto">
+            <button class="btn btn-outline-success" id="btnListadoPred">
+              Listado predeterminado
+            </button>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-outline-danger" id="btnBorrarProductos">
+              Borrar todos
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </main>
+      </section>
 
-  <footer class="border-top mt-4">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center p-4">
-      <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">© 2026 Dulcemax, Inc</span>
-      </div>
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#" aria-label="WhatsAppBusiness" style="text-decoration: none">
-            <i class="bi bi-whatsapp"></i> 291-4543221
-          </a>
-        </li>
-        <li class="ms-3">
-          <a class="text-body-secondary" href="#" aria-label="Email" style="text-decoration: none">
-            <i class="bi bi-envelope-at"></i> contacto@dulcemax.com
-          </a>
-        </li>
-      </ul>
-    </div>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-  <script type="module" src="./js/productos.js"></script>
-</body>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modalFormulario"
+        tabindex="-1"
+        aria-labelledby="tituloModal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="tituloModal">Editar Producto</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="p-3" id="modalFormEditar">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputNombre"
+                    name="nombre"
+                    placeholder="nombreproducto"
+                  />
+                  <label for="modalInputNombre">Nombre del producto</label>
+                  <div id="feedbackNombreModal"></div>
+                </div>
 
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalInputDescripcion"
+                    name="descripción"
+                    placeholder="descripcionproducto"
+                  />
+                  <label for="modalInputDescripcion">Descripcion</label>
+                  <div id="feedbackDescripcionModal"></div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 g-3">
+                  <div class="col">
+                    <div class="form-floating">
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="precio minorista"
+                        placeholder="precio minorista"
+                        id="modalInputPrecioMinorista"
+                        min="0"
+                      />
+                      <label for="modalInputPrecioMinorista"
+                        >Precio minorista</label
+                      >
+                      <div id="feedbackPrecioMinoristaModal"></div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="form-floating">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="precio mayorista"
+                        id="modalInputPrecioMayorista"
+                        name="precio mayorista"
+                        min="0"
+                      />
+                      <label for="modalInputPrecioMayorista"
+                        >Precio mayorista</label
+                      >
+                      <div id="feedbackPrecioMayoristaModal"></div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="col form-floating">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="cantidad minima para precio mayorista"
+                        id="modalInputCantMay"
+                        name="cantidad mayorista"
+                        min="0"
+                      />
+                      <label for="modalInputCantMay">Cant mayorista</label>
+                      <div id="feedbackCantMayModal"></div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="form-floating">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="stock"
+                        id="modalInputStock"
+                        name="stock"
+                        min="0"
+                      />
+                      <label for="modalInputStock">Stock</label>
+                      <div id="feedbackStockModal"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-floating my-3">
+                  <select
+                    class="form-select"
+                    id="modalSelectCategoria"
+                    name="Categoria"
+                  ></select>
+                  <label for="modalSelectCategoria">Categoría</label>
+                  <div id="feedbackCategoriaModal"></div>
+                </div>
+
+                <div class="mb-3 px-3 py-2 border rounded bg-white">
+                  <label class="form-label text-muted small mb-2"
+                    >Etiquetas</label
+                  >
+                  <div
+                    class="d-flex flex-wrap gap-3"
+                    id="modalContenedorEtiquetas"
+                  ></div>
+                </div>
+
+                <div class="my-3 border rounded bg-white p-3">
+                  <div class="row g-4 align-items-center">
+                    <div class="col-md-8">
+                      <div class="d-flex flex-column">
+                        <div class="form-floating">
+                          <select class="form-select" id="modalSelectImagen">
+                            <option selected value="sin-foto">Sin foto</option>
+                            <option value="alfajor-blanco">
+                              Alfajor blanco
+                            </option>
+                            <option value="alfajor-negro">Alfajor negro</option>
+                            <option value="chupetin">Chupetin</option>
+                            <option value="arcor-butter-toffees">
+                              Caramelo Butter Toffee
+                            </option>
+                            <option value="arcor-caramelos-mentol">
+                              Caramelo mentol
+                            </option>
+                            <option value="bon-o-bon">Bon o Bon</option>
+                            <option value="chocolate-aguila-clasico">
+                              Chocolate Águila
+                            </option>
+                            <option value="pico-dulce">Pico dulce</option>
+                            <option value="fini-ositos-veganos">
+                              Fini Ositos
+                            </option>
+                            <option value="guaymallen-triple-chocolate">
+                              Guaymallén Triple
+                            </option>
+                            <option value="jorgito-blanco">
+                              Jorgito Blanco
+                            </option>
+                            <option value="milka-chocolate-con-leche">
+                              Milka chocolate
+                            </option>
+                            <option value="mogul-extreme-frutilla">
+                              Mogul Extreme Frutilla
+                            </option>
+                            <option value="mogul-mix-acido">Mogul Mix</option>
+                          </select>
+                          <label for="modalSelectImagen"
+                            >Imagenes precargadas</label
+                          >
+                        </div>
+                        <p class="text-center my-1">o</p>
+                        <div class="form-floating">
+                          <input
+                            type="text"
+                            name="url-imagen"
+                            id="modalInputImgURL"
+                            class="form-control"
+                            placeholder="url-imagen"
+                          />
+                          <label for="modalInputImgURL"
+                            >URL Imagen personalizada</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col text-center">
+                      <img
+                        src=""
+                        class="img-thumbnail"
+                        alt="..."
+                        id="modalImgPreview"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                id="btnCerrarModal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnGuardarCambios"
+              >
+                Guardar cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-top mt-4">
+      <div
+        class="container d-flex flex-wrap justify-content-between align-items-center p-4"
+      >
+        <div class="col-md-4 d-flex align-items-center">
+          <a
+            href="/"
+            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
+            aria-label="Bootstrap"
+          >
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary"
+            >© 2026 Dulcemax, Inc</span
+          >
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="#"
+              aria-label="WhatsAppBusiness"
+              style="text-decoration: none"
+            >
+              <i class="bi bi-whatsapp"></i> 291-4543221
+            </a>
+          </li>
+          <li class="ms-3">
+            <a
+              class="text-body-secondary"
+              href="#"
+              aria-label="Email"
+              style="text-decoration: none"
+            >
+              <i class="bi bi-envelope-at"></i> contacto@dulcemax.com
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/productos.js"></script>
+  </body>
 </html>
