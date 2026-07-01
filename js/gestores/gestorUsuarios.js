@@ -14,6 +14,20 @@ export function agregarUsuario(objUsuario) {
   listaUsuarios.push(nuevoUsuario);
   actualizarListadoUsuarios(listaUsuarios);
 }
+export function agregarAdminPorDefecto(objUsuario, esUsuario) {
+  const { nombre, rol, contrasenia } = objUsuario;
+  const listaUsuarios = traerTodosLosUsuarios();
+  const nuevoUsuario = {
+    id: esUsuario ? generarID("USER") : objUsuario.id,
+    nombre,
+    rol,
+    contrasenia,
+    estado: true,
+    historial: [],
+  };
+  listaUsuarios.push(nuevoUsuario);
+  actualizarListadoUsuarios(listaUsuarios);
+}
 
 function actualizarListadoUsuarios(arregloNuevo) {
   localStorage.setItem("usuarios", JSON.stringify(arregloNuevo));

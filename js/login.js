@@ -1,11 +1,13 @@
 import {
   crearSesion,
-  cerrarSesion,
   redirigir,
   autorizacion,
 } from "./gestores/gestorLogin.js";
-import { buscarUsuario } from "./gestores/gestorUsuarios.js";
-import { generarID } from "./utilidades.js";
+import {
+  agregarAdminPorDefecto,
+  buscarUsuario,
+} from "./gestores/gestorUsuarios.js";
+import { cargarListadoPredeterminado } from "./productos.js";
 
 const formLogin = document.getElementById("formLogin");
 const inputNombre = document.getElementById("inputNombre");
@@ -13,7 +15,7 @@ const inputContrasenia = document.getElementById("inputContrasenia");
 
 window.addEventListener("load", () => {
   autorizacion();
-  cargarUsuarioAdmin();
+  cargarAdministrador();
 
   formLogin.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -59,20 +61,36 @@ function feedback(msj) {
   alert(msj);
 }
 
-function cargarUsuarioAdmin() {
-  const userAdmin = buscarUsuario("admin");
-  if (!userAdmin || !userAdmin.estado) {
-    localStorage.setItem(
-      "usuarios",
-      JSON.stringify([
-        {
-          id: "admin",
-          nombre: "admin",
-          contrasenia: "admin",
-          rol: "Administrador",
-          estado: true,
-        },
-      ]),
-    );
+function cargarUsuario() {
+  const usuario = buscarUsuario("usuario");
+  if (!usuario) {
+    agregarAdminPorDefecto({
+      nombre: "usuario",
+      contrasenia: "usuario",
+      rol: "Usuario",
+      estado: true,
+    });
   }
 }
+
+function cargarAdministrador() {
+  const admin = buscarUsuario("administrador");
+  if (!admin || !admin.estado) {
+    agregarAdminPorDefecto({
+      id: "admin",
+      nombre: "administrador",
+      contrasenia: "administrador",
+      rol: "Administrador",
+      estado: true,
+    });
+  }
+}
+
+function inicializarWeb() {
+  cargarAdministrador();
+  cargarUsuario();
+  cargarListadoPredeterminado();
+}
+
+const btnIniciarWeb = document.getElementById("btnIniciarWeb");
+btnIniciarWeb.addEventListener("click", inicializarWeb);

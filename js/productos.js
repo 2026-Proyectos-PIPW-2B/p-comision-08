@@ -63,6 +63,9 @@ window.addEventListener("load", () => {
   cargarDatosNavbar();
   inicializarForm();
   listarProductos();
+  if (!btnListadoPred) {
+    return;
+  }
   btnListadoPred.addEventListener("click", cargarListadoPredeterminado);
   btnBorrarProductos.addEventListener("click", () => {
     borrarProductos();
@@ -75,6 +78,9 @@ function inicializarForm() {
   cargarEtiquetasEnCheckboxes("contenedorEtiquetas");
 
   cargarImagenVistaPrevia("imgPreview", "inputImgURL", "selectImagen");
+  if (!selectImagen) {
+    return;
+  }
   selectImagen.addEventListener("change", () =>
     cargarImagenVistaPrevia("imgPreview", "inputImgURL", "selectImagen"),
   );
@@ -101,6 +107,9 @@ function inicializarForm() {
 function cargarImagenVistaPrevia(idVistaPrevia, idInput, idSelect) {
   const imgVistaPrevia = document.getElementById(idVistaPrevia);
   const input = document.getElementById(idInput);
+  if (!input) {
+    return;
+  }
   const select = document.getElementById(idSelect);
   let urlPersonalizada = input.value;
   let nombreImagen = select.value;
@@ -268,6 +277,9 @@ function listarProductos() {
   const contenedorListado = document.getElementById("divContenedorListado");
   const listado = traerTodosLosProductos();
 
+  if (!contenedorListado) {
+    return;
+  }
   contenedorListado.innerHTML = "";
   if (listado.length === 0) {
     contenedorListado.innerHTML = `<p class=" text-center p-5 shadow-sm mx-auto bg-white rounded">Aun no has registrado productos.</p>`;
@@ -474,6 +486,9 @@ function crearBadgesDeEtiquetas(contenedor, etiquetasEnElProd) {
 
 function cargarCategoriasEnSelect(idSelect) {
   const select = document.getElementById(idSelect);
+  if (!select) {
+    return;
+  }
   select.innerHTML = "";
   const listadoCategorias = traerTodasLasCategorias();
 
@@ -494,6 +509,9 @@ function cargarCategoriasEnSelect(idSelect) {
 
 function cargarEtiquetasEnCheckboxes(idContenedor) {
   const contenedor = document.getElementById(idContenedor);
+  if (!contenedor) {
+    return;
+  }
   contenedor.innerHTML = "";
   const listadoEtiquetas = traerTodasLasEtiquetas();
 
@@ -756,7 +774,7 @@ function validarFormModal(obj) {
   return resultado;
 }
 
-function cargarListadoPredeterminado() {
+export function cargarListadoPredeterminado(desdeLogin) {
   cargarListadoPredeterminadoCategorias();
   cargarCategoriasEnSelect("selectCategoria");
   cargarListadoPredeterminadoEtiquetas();
@@ -914,7 +932,7 @@ function cargarListadoPredeterminado() {
 
       let listaEtiquetasID = [];
       for (const etiqueta of prod.etiquetas) {
-        let idEtiq = buscarEtiqueta(etiqueta).id;        
+        let idEtiq = buscarEtiqueta(etiqueta).id;
         listaEtiquetasID.push(idEtiq);
       }
 
@@ -923,6 +941,9 @@ function cargarListadoPredeterminado() {
 
       agregarProducto(prod);
     }
+  }
+  if (desdeLogin) {
+    return;
   }
   listarProductos();
 }
