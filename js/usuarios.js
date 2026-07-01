@@ -121,12 +121,18 @@ function borrarUsuario(nombre) {
   const sesion = obtenerUsuarioAutenticado()
   if (sesion.nombre === nombre) {
     cerrarSesion()
+    alert("Usuario eliminado, cerrando sesión")
   }
   listarUsuarios();
 }
 
 function cambiarEstado(nombre) {
   cambiarDisponibilidad(nombre);
+  const sesion = obtenerUsuarioAutenticado()
+  if (sesion.nombre === nombre) {
+    cerrarSesion()
+    alert("Usuario inhabilitado, cerrando sesión")
+  }
   listarUsuarios();
 }
 
@@ -178,6 +184,11 @@ function listarUsuarios() {
       btn_eliminar.addEventListener("click", () =>
         borrarUsuario(usuario.nombre),
       );
+
+      if (usuario.id === "admin") {
+        btn_eliminar.classList.add("disabled")
+        btn_gestionar.classList.add("disabled")
+      }
 
       td_gestionar.appendChild(btn_gestionar);
       td_eliminar.appendChild(btn_eliminar);
