@@ -14,7 +14,11 @@ export function agregarAlCarrito(producto, cant) {
   );
 
   if (productoExistente) {
-    productoExistente.cantidad += cant;
+    if (productoExistente.cantidad + cant > producto.stock) {
+      productoExistente.cantidad = producto.stock;
+    } else {
+      productoExistente.cantidad += cant;
+    } 
   } else {
     carrito.productos.push({
       idProd: producto.id,
@@ -38,8 +42,12 @@ export function crearCarrito() {
 
 export function traerCarrito() {
   const user = obtenerUsuarioAutenticado();
-
-  return JSON.parse(localStorage.getItem(`carrito_${user.id}`));
+  let carrito = localStorage.getItem(`carrito_${user.id}`)
+  if(!carrito) {
+    crearCarrito()
+    carrito = localStorage.getItem(`carrito_${user.id}`)
+  }
+  return JSON.parse(carrito)
 }
 
 export function actualizarCarrito(carrito) {

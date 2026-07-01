@@ -152,7 +152,7 @@ footer a:hover {
   max-height: 100%;
 }
 
-.input-group {
+#contenedorCarrito .input-group {
   max-width: 100px;
 }
 

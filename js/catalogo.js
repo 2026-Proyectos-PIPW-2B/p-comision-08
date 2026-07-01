@@ -358,18 +358,23 @@ function actualizarSubTotal(span, cantidad, cantMin, pMin, pMay) {
 }
 
 function agregarProdAlCarrito(prod, input, stock) {
-  const carrito = traerCarrito();
+  const carrito = traerCarrito();  
   const productoEnCarrito = carrito.productos.find(
     (producto) => producto.idProd === prod.id,
   );
-  if (productoEnCarrito && productoEnCarrito.cantidad + input.value > stock) {
-    alert("");
-  }
 
-  agregarAlCarrito(prod, input.value);
-  alert(`Añadido al carrito: ${prod.nombre} x${input.value}`);
-  input.value = 1;
-  modificarCantidad(prod);
+  if (stock > 0) {
+    if (productoEnCarrito && productoEnCarrito.cantidad + input.value > stock) {
+      alert(`Total en carrito: ${prod.nombre} x${stock} (max. disp.)`);
+    } else {
+      alert(`Añadido al carrito: ${prod.nombre} x${input.value}`);
+    }
+    agregarAlCarrito(prod, input.value);
+    input.value = 1;
+    modificarCantidad(prod);
+  } else {
+    alert("Producto sin stock")
+  }
 }
 
 function cargarFiltrado() {
