@@ -9,6 +9,17 @@
   --fuente-poppins: "Poppins", "Segoe UI", sans-serif;
 }
 
+/* --- ESTILOS LOGO --- */
+.navbar-brand img{
+    transition: transform .2s ease;
+}
+
+.navbar-brand:hover img{
+    transform: scale(1.08);
+}
+
+
+
 body {
   background-color: var(--blanco-rosita);
   background-image:
