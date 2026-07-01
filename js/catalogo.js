@@ -30,6 +30,13 @@ function listarProductos(listado) {
   contenedorProductos.innerHTML = "";
   for (const prod of listado) {
     const tarjetaProd = crearTarjetaProd(prod);
+    if (prod.stock < 1) {
+      const botones = tarjetaProd.querySelectorAll("button")
+      for (const boton of botones) {
+        boton.setAttribute("disabled", true)
+      }
+      tarjetaProd.classList.add("disabled")
+    }
     contenedorProductos.appendChild(tarjetaProd);
   }
   agregarPopoversDeBootstrap();
@@ -222,7 +229,14 @@ function crearTarjetaProd(prod) {
     "text-center",
     "mt-1",
   );
-  smallStock.innerHTML = `Disponibles: <span class="fw-bold">${prod.stock} u.</span>`;
+  smallStock.innerHTML = `Disponibles: <span class="fw-bold fs-6">${prod.stock} u.</span>`;
+  if (prod.stock === 0) {
+    smallStock.innerHTML = `Disponibles: <span class="fw-bold text-danger">Sin stock</span>`;
+  } else if (prod.stock <= prod.cantMayorista) {
+    smallStock.innerHTML = `Disponibles: <span class="fw-bold text-danger fs-6">${prod.stock} u.</span>`;
+
+  }
+
 
   divColInput.append(divInputGroup, smallStock);
 
