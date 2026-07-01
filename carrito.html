@@ -13,29 +13,21 @@
 
 <body class="d-flex flex-column min-vh-100">
   <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-violeta border-bottom-rosa shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
-          aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand fw-bold" href="#"> Dulcemax </a>
+        <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false"
+          aria-label="Abrir barra de navegación">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="catalogo.html">Catálogo</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Carrito</a>
-            </li>
-          </ul>
-          <div class="row align-items-center gap-3">
-            <div class="text-white col" id="divBienvenida"></div>
-            <div class="col-12 col-lg-auto">
-              <button class="btn btn-danger" id="btnCerrarSesion">
-                Cerrar sesion
-              </button>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarPrincipal">
+          <div id="contenedorLinks" class="me-auto"></div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="text-white small fw-semibold" id="divBienvenida"></div>
+            <button class="btn btn-sm px-3 btn-cerrar-sesion" id="btnCerrarSesion">
+              <i class="bi bi-door-closed"></i> Cerrar sesión
+            </button>
           </div>
         </div>
       </div>
@@ -51,24 +43,24 @@
       </div>
       <!-- Resumen -->
       <div class="col-12 col-lg-5" id="colResumen">
-          <div class="card p-4 shadow-sm border-0">
-            <h3 class="h5 mb-3 fw-bold text-dark border-bottom pb-2">Resumen</h3>
-            <div id="contenedorResumen" class="small text-secondary fw-semibold py-2"></div>
-            <hr>
-            <div class="d-flex justify-content-between align-items-center mb-4">
-              <span class="text-secondary h5 m-0">Total:</span>
-              <span id="totalCarrito" class="h3 m-0 fw-bold text-pink">$0</span>
-            </div>
-            <div class="d-flex flex-column gap-2">
-              <button class="btn btn-primary w-100 py-2 fw-bold shadow-sm" id="btnFinalizarCompra">
-                <i class="bi bi-credit-card me-1"></i> Finalizar compra
-              </button>
-              <button class="btn btn-sm btn-link text-danger text-decoration-none mt-1" id="btnVaciarCarrito">
-                <i class="bi bi-trash3 me-1"></i> Vaciar Carrito
-              </button>
-            </div>
+        <div class="card p-4 shadow-sm border-0">
+          <h3 class="h5 mb-3 fw-bold text-dark border-bottom pb-2">Resumen</h3>
+          <div id="contenedorResumen" class="small text-secondary fw-semibold py-2"></div>
+          <hr>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <span class="text-secondary h5 m-0">Total:</span>
+            <span id="totalCarrito" class="h3 m-0 fw-bold text-pink">$0</span>
+          </div>
+          <div class="d-flex flex-column gap-2">
+            <button class="btn btn-primary w-100 py-2 fw-bold shadow-sm" id="btnFinalizarCompra">
+              <i class="bi bi-credit-card me-1"></i> Finalizar compra
+            </button>
+            <button class="btn btn-sm btn-link text-danger text-decoration-none mt-1" id="btnVaciarCarrito">
+              <i class="bi bi-trash3 me-1"></i> Vaciar Carrito
+            </button>
           </div>
         </div>
+      </div>
     </div>
   </main>
 

@@ -1,173 +1,105 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catálogo</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
 
-  <body class="d-flex flex-column min-vh-100">
-    <header>
-      <nav
-        class="navbar fixed-top navbar-expand-lg navbar-dark bg-violeta border-bottom-rosa shadow-sm"
-      >
-        <div class="container">
-          <a class="navbar-brand fw-bold" href="#"> Dulcemax </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
 
-          <button
-            class="navbar-toggler border-secondary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarPrincipal"
-            aria-controls="navbarPrincipal"
-            aria-expanded="false"
-            aria-label="Abrir barra de navegación"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarPrincipal">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"
-                  >Catálogo</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./carrito.html">Carrito</a>
-              </li>
-            </ul>
-
-            <div class="d-flex align-items-center gap-3">
-              <div
-                class="text-white small fw-semibold"
-                id="divBienvenida"
-              ></div>
-              <button class="btn btn-sm btn-danger px-3" id="btnCerrarSesion">
-                Cerrar sesión
-              </button>
-            </div>
+<body class="d-flex flex-column min-vh-100">
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-violeta border-bottom-rosa shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#"> Dulcemax </a>
+        <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false"
+          aria-label="Abrir barra de navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarPrincipal">
+          <div id="contenedorLinks" class="me-auto"></div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="text-white small fw-semibold" id="divBienvenida"></div>
+            <button class="btn btn-sm px-3 btn-cerrar-sesion" id="btnCerrarSesion">
+              <i class="bi bi-door-closed"></i> Cerrar sesión
+            </button>
           </div>
         </div>
-      </nav>
-    </header>
-    <main class="mt-5 pt-4 container pb-5 flex-fill">
-      <header>
-        <h1 class="text-center py-3">Catálogo</h1>
-      </header>
-
-      <section class="mb-4">
-        <div class="card shadow-sm border-0">
-          <div class="card-body p-4 bg-white rounded-4">
-            <form id="formFiltrar">
-              <div class="row g-3 align-items-center">
-                <div class="col-12 col-md-6">
-                  <label
-                    class="form-label text-secondary small fw-bold"
-                    for="inputBusquedaNombre"
-                  >
-                    <i class="bi bi-search me-1"></i> Buscar producto
-                  </label>
-                  <input
-                    class="form-control bg-light border-0 shadow-none px-3"
-                    type="text"
-                    placeholder="Ej: Bon o Bon..."
-                    id="inputBusquedaNombre"
-                  />
-                </div>
-
-                <div class="col-12 col-md-6">
-                  <label
-                    class="form-label text-secondary small fw-bold"
-                    for="selectCategoria"
-                  >
-                    <i class="bi bi-tag me-1"></i> Categoría
-                  </label>
-                  <select
-                    class="form-select bg-light border-0 shadow-none"
-                    id="selectCategoria"
-                  >
-                    <option value="" selected>Todas</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <section class="mb-4">
-        <h2 class="text-center py-3">Listado de productos</h2>
-        <div class="container">
-          <div
-            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4"
-            id="contenedorProductos"
-          ></div>
-          <div
-            id="mensajeSinProductos"
-            class="d-none text-center p-5 shadow-sm mx-auto bg-white rounded mt-4"
-          >
-            No se han encontrado productos.
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="border-top border mt-4">
-      <div
-        class="container d-flex flex-wrap justify-content-between align-items-center p-4"
-      >
-        <div class="col-md-4 d-flex align-items-center">
-          <a
-            href="/"
-            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
-            aria-label="Bootstrap"
-          >
-          </a>
-          <span class="mb-3 mb-md-0 text-body-secondary"
-            >© 2026 Dulcemax, Inc</span
-          >
-        </div>
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-          <li class="ms-3">
-            <a
-              class="text-body-secondary"
-              href="#"
-              aria-label="WhatsAppBusiness"
-              style="text-decoration: none"
-            >
-              <i class="bi bi-whatsapp"></i> 291-4543221
-            </a>
-          </li>
-          <li class="ms-3">
-            <a
-              class="text-body-secondary"
-              href="#"
-              aria-label="Email"
-              style="text-decoration: none"
-            >
-              <i class="bi bi-envelope-at"></i> contacto@dulcemax.com
-            </a>
-          </li>
-        </ul>
       </div>
-    </footer>
-  </body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"
-  ></script>
-  <script type="module" src="./js/catalogo.js"></script>
+    </nav>
+  </header>
+  <main class="mt-5 pt-4 container pb-5 flex-fill">
+    <header>
+      <h1 class="text-center py-3">Catálogo</h1>
+    </header>
+
+    <section class="mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4 bg-white rounded-4">
+          <form id="formFiltrar">
+            <div class="row g-3 align-items-center">
+              <div class="col-12 col-md-6">
+                <label class="form-label text-secondary small fw-bold" for="inputBusquedaNombre">
+                  <i class="bi bi-search me-1"></i> Buscar producto
+                </label>
+                <input class="form-control bg-light border-0 shadow-none px-3" type="text"
+                  placeholder="Ej: Bon o Bon..." id="inputBusquedaNombre" />
+              </div>
+
+              <div class="col-12 col-md-6">
+                <label class="form-label text-secondary small fw-bold" for="selectCategoria">
+                  <i class="bi bi-tag me-1"></i> Categoría
+                </label>
+                <select class="form-select bg-light border-0 shadow-none" id="selectCategoria">
+                  <option value="" selected>Todas</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-4">
+      <h2 class="text-center py-3">Listado de productos</h2>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="contenedorProductos"></div>
+        <div id="mensajeSinProductos" class="d-none text-center p-5 shadow-sm mx-auto bg-white rounded mt-4">
+          No se han encontrado productos.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-top border mt-4">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center p-4">
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+        </a>
+        <span class="mb-3 mb-md-0 text-body-secondary">© 2026 Dulcemax, Inc</span>
+      </div>
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3">
+          <a class="text-body-secondary" href="#" aria-label="WhatsAppBusiness" style="text-decoration: none">
+            <i class="bi bi-whatsapp"></i> 291-4543221
+          </a>
+        </li>
+        <li class="ms-3">
+          <a class="text-body-secondary" href="#" aria-label="Email" style="text-decoration: none">
+            <i class="bi bi-envelope-at"></i> contacto@dulcemax.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script type="module" src="./js/catalogo.js"></script>
+
 </html>
