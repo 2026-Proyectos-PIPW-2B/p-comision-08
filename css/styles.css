@@ -104,6 +104,19 @@ form.bg-body-tertiary,
   font-weight: 600;
 }
 
+.btn-cerrar-sesion {
+  color: var(--blanco) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important; 
+  background-color: transparent !important;
+  transition: all 0.2s ease;
+}
+
+.btn-cerrar-sesion:hover {
+  background-color: var(--rosa-oscuro) !important; 
+  border-color: var(--rosa-oscuro) !important;
+  box-shadow: 0 0 10px var(--rosa-sombra) !important;
+}
+
 footer a {
   transition: color 0.2s ease;
 }
@@ -187,5 +200,6 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
 }
 input[type="number"] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }

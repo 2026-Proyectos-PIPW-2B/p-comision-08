@@ -13,33 +13,21 @@
 
 <body class="d-flex flex-column min-vh-100">
   <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-violeta border-bottom-rosa shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
-          aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand fw-bold" href="#"> Dulcemax </a>
+        <button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false"
+          aria-label="Abrir barra de navegación">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Usuarios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="productos.html">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="categorias.html">Categorias</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="etiquetas.html">Etiquetas</a>
-            </li>
-          </ul>
-          <div class="row align-items-center gap-3">
-            <div class="text-white col" id="divBienvenida"></div>
-            <div class="col-12 col-lg-auto">
-              <button class="btn btn-danger" id="btnCerrarSesion">Cerrar sesion</button>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarPrincipal">
+          <div id="contenedorLinks" class="me-auto"></div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="text-white small fw-semibold" id="divBienvenida"></div>
+            <button class="btn btn-sm px-3 btn-cerrar-sesion" id="btnCerrarSesion">
+              <i class="bi bi-door-closed"></i> Cerrar sesión
+            </button>
           </div>
         </div>
       </div>
