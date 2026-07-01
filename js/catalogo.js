@@ -1,4 +1,4 @@
-import { agregarAlCarrito } from "./gestores/gestorCarrito.js";
+import { agregarAlCarrito, traerCarrito } from "./gestores/gestorCarrito.js";
 import {
   buscarCategoriaPorID,
   traerTodasLasCategorias,
@@ -30,6 +30,13 @@ function listarProductos(listado) {
   contenedorProductos.innerHTML = "";
   for (const prod of listado) {
     const tarjetaProd = crearTarjetaProd(prod);
+    if (prod.stock < 1) {
+      const botones = tarjetaProd.querySelectorAll("button")
+      for (const boton of botones) {
+        boton.setAttribute("disabled", true)
+      }
+      tarjetaProd.classList.add("disabled")
+    }
     contenedorProductos.appendChild(tarjetaProd);
   }
   agregarPopoversDeBootstrap();
@@ -222,7 +229,14 @@ function crearTarjetaProd(prod) {
     "text-center",
     "mt-1",
   );
-  smallStock.innerHTML = `Disponibles: <span class="fw-bold">${prod.stock} u.</span>`;
+  smallStock.innerHTML = `Disponibles: <span class="fw-bold fs-6">${prod.stock} u.</span>`;
+  if (prod.stock === 0) {
+    smallStock.innerHTML = `Disponibles: <span class="fw-bold text-danger">Sin stock</span>`;
+  } else if (prod.stock <= prod.cantMayorista) {
+    smallStock.innerHTML = `Disponibles: <span class="fw-bold text-danger fs-6">${prod.stock} u.</span>`;
+
+  }
+
 
   divColInput.append(divInputGroup, smallStock);
 
@@ -240,7 +254,7 @@ function crearTarjetaProd(prod) {
   );
   btnAgregarAlCarrito.innerHTML = `<i class="bi bi-cart-plus me-1"></i> Añadir`;
   btnAgregarAlCarrito.addEventListener("click", () =>
-    agregarProdAlCarrito(prod, inputCant),
+    agregarProdAlCarrito(prod, inputCant, prod.stock),
   );
   divColBtnAgregar.appendChild(btnAgregarAlCarrito);
 
@@ -357,11 +371,24 @@ function actualizarSubTotal(span, cantidad, cantMin, pMin, pMay) {
   span.textContent = `$${subTotal}`;
 }
 
-function agregarProdAlCarrito(prod, input) {
-  agregarAlCarrito(prod, input.value);
-  alert(`Añadido al carrito: ${prod.nombre} x${input.value}`);
-  input.value = 1;
-  modificarCantidad(prod);
+function agregarProdAlCarrito(prod, input, stock) {
+  const carrito = traerCarrito();  
+  const productoEnCarrito = carrito.productos.find(
+    (producto) => producto.idProd === prod.id,
+  );
+
+  if (stock > 0) {
+    if (productoEnCarrito && productoEnCarrito.cantidad + input.value > stock) {
+      alert(`Total en carrito: ${prod.nombre} x${stock} (max. disp.)`);
+    } else {
+      alert(`Añadido al carrito: ${prod.nombre} x${input.value}`);
+    }
+    agregarAlCarrito(prod, input.value);
+    input.value = 1;
+    modificarCantidad(prod);
+  } else {
+    alert("Producto sin stock")
+  }
 }
 
 function cargarFiltrado() {

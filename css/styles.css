@@ -141,6 +141,24 @@ footer a:hover {
   box-shadow: 0px 5px 10px var(--rosa-sombra) !important;
 }
 
+ /* Carrito */
+.divImagen {
+  height: 70px; 
+  width: 70px; 
+  margin: 0 auto;
+}
+.divImagen img {
+  max-height: 100%;
+}
+
+#contenedorCarrito .input-group {
+  max-width: 100px;
+}
+
+.disabled {
+  filter: brightness(0.94);
+}
+
 /* --- CLASES AUXILIARES Y UTILIDADES --- */
 .extra-small {
   font-size: 0.75rem;

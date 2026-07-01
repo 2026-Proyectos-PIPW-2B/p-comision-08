@@ -1,3 +1,72 @@
-export function agregarAlCarrito(prod, cant) {
-    console.log(prod.nombre, " x", cant);
+import { obtenerUsuarioAutenticado } from "./gestorLogin.js";
+
+export function agregarAlCarrito(producto, cant) {
+  let carrito = traerCarrito();
+  cant = Number(cant);
+
+  if (!carrito) {
+    crearCarrito();
+    carrito = traerCarrito();
+  }
+
+  const productoExistente = carrito.productos.find(
+    (p) => p.idProd === producto.id,
+  );
+
+  if (productoExistente) {
+    if (productoExistente.cantidad + cant > producto.stock) {
+      productoExistente.cantidad = producto.stock;
+    } else {
+      productoExistente.cantidad += cant;
+    } 
+  } else {
+    carrito.productos.push({
+      idProd: producto.id,
+      cantidad: cant,
+    });
+  }
+
+  actualizarCarrito(carrito);
+}
+
+export function crearCarrito() {
+  const user = obtenerUsuarioAutenticado();
+
+  const nuevoCarrito = {
+    userID: user.id,
+    productos: [],
+  };
+
+  localStorage.setItem(`carrito_${user.id}`, JSON.stringify(nuevoCarrito));
+}
+
+export function traerCarrito() {
+  const user = obtenerUsuarioAutenticado();
+  let carrito = localStorage.getItem(`carrito_${user.id}`)
+  if(!carrito) {
+    crearCarrito()
+    carrito = localStorage.getItem(`carrito_${user.id}`)
+  }
+  return JSON.parse(carrito)
+}
+
+export function actualizarCarrito(carrito) {
+  const user = obtenerUsuarioAutenticado();
+
+  localStorage.setItem(`carrito_${user.id}`, JSON.stringify(carrito));
+}
+
+export function vaciarCarrito() {
+  const user = obtenerUsuarioAutenticado();
+
+  const carritoVacio = {
+    userID: user.id,
+    productos: [],
+  };
+
+  localStorage.setItem(`carrito_${user.id}`, JSON.stringify(carritoVacio));
+}
+
+export function guardarCarrito(nuevoCarrito) {
+  localStorage.setItem("carrito", JSON.stringify(nuevoCarrito));
 }
