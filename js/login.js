@@ -10,6 +10,7 @@ import {
   agregarAlInicializar,
   buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
+import { lanzarToast } from "./utilidades.js";
 
 const formLogin = document.getElementById("formLogin");
 const inputNombre = document.getElementById("inputNombre");
@@ -60,7 +61,7 @@ function iniciarSesion(usuario) {
 }
 
 function feedback(msj) {
-  alert(msj);
+  lanzarToast(msj,"rojo");
 }
 
 function cargarUsuario() {
@@ -94,6 +95,7 @@ function inicializarWeb() {
   cargarListadoPredeterminadoCategorias();
   cargarListadoPredeterminadoEtiquetas();
   cargarListadoPredeterminadoProductos()
+  lanzarToast("Web inicializada!","verde")
 }
 
 const btnIniciarWeb = document.getElementById("btnIniciarWeb");

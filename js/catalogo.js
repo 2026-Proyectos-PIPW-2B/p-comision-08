@@ -7,6 +7,7 @@ import { buscarEtiquetaPorID } from "./gestores/gestorEtiquetas.js";
 import { autorizacion } from "./gestores/gestorLogin.js";
 import { traerTodosLosProductos } from "./gestores/gestorProductos.js";
 import { cargarDatosNavbar } from "./navbar.js";
+import { lanzarToast } from "./utilidades.js";
 
 const contenedorProductos = document.getElementById("contenedorProductos");
 const formFiltrar = document.getElementById("formFiltrar");
@@ -379,15 +380,15 @@ function agregarProdAlCarrito(prod, input, stock) {
 
   if (stock > 0) {
     if (productoEnCarrito && productoEnCarrito.cantidad + input.value > stock) {
-      alert(`Total en carrito: ${prod.nombre} x${stock} (max. disp.)`);
+      lanzarToast(`Total en carrito: ${prod.nombre} x${stock} (max. disp.)`,"verde");
     } else {
-      alert(`Añadido al carrito: ${prod.nombre} x${input.value}`);
+      lanzarToast(`Añadido al carrito: ${prod.nombre} x${input.value}`,"verde");
     }
     agregarAlCarrito(prod, input.value);
     input.value = 1;
     modificarCantidad(prod);
   } else {
-    alert("Producto sin stock")
+    lanzarToast("Producto sin stock","rojo")
   }
 }
 

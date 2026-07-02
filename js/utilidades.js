@@ -33,3 +33,33 @@ export function limpiarEstados(selectorForm) {
     input.classList.remove("is-valid");
   }
 }
+
+export function lanzarToast(mensaje, tipo) {
+    const contenedor = document.querySelector(".toast-container");
+    if (!contenedor) return;
+
+    let bgClass; 
+    if (tipo === "verde") bgClass = "bg-success";
+    if (tipo === "rojo") bgClass = "bg-danger";
+
+    const toastDiv = document.createElement("div");
+    toastDiv.className = `toast align-items-center text-white ${bgClass} border-0 shadow`;
+    toastDiv.setAttribute("role", "alert");
+    toastDiv.setAttribute("aria-live", "assertive");
+    toastDiv.setAttribute("aria-atomic", "true");
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body fw-semibold h6 p-3">
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+        </div>
+    `;
+    contenedor.appendChild(toastDiv);
+    const bootstrapToast = new bootstrap.Toast(toastDiv, { delay: 3000 }); // 3 seg delay
+    bootstrapToast.show(); // lo muestra
+    toastDiv.addEventListener("hidden.bs.toast", () => { // lo borra del dom
+        toastDiv.remove();
+    });
+}

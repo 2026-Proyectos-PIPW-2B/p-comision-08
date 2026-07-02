@@ -219,6 +219,9 @@ footer a:hover {
 .border-rosa {
     border-color: var(--rosa-oscuro) !important;
 }
+.bg-rosa {
+  background-color: var(--rosa) !important;
+}
 
 /* para sacarle el selector de cantidad por defecto al input type="number */
 input[type="number"]::-webkit-outer-spin-button,

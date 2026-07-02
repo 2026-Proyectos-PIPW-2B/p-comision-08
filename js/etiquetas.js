@@ -9,7 +9,7 @@ import {
   borrarTodasLasEtiquetas,
   cargarListadoPredeterminadoEtiquetas,
 } from "./gestores/gestorEtiquetas.js";
-import { feedback, limpiarEstados } from "./utilidades.js";
+import { feedback, lanzarToast, limpiarEstados } from "./utilidades.js";
 
 const inputNombre = document.getElementById("inputNombre");
 const inputDescripcion = document.getElementById("inputDescripcion");
@@ -43,7 +43,7 @@ formAltaEtiqueta.addEventListener("submit", (e) => {
 
     agregarEtiqueta(validacion.obj);
 
-    alert("Etiqueta creada correctamente");
+    lanzarToast("Etiqueta creada correctamente","verde");
 
     formAltaEtiqueta.reset();
 
@@ -187,12 +187,13 @@ function editarEtiqueta(id) {
     btnCerrarModal.click();
     listarEtiquetas();
     modalFormAltaEtiqueta.reset();
-    alert("Etiqueta modificada correctamente");
+    lanzarToast("Etiqueta modificada correctamente","verde");
   }
 }
 
 function borrarEtiqueta(nombre) {
   eliminarEtiqueta(nombre);
+  lanzarToast("Etiqueta eliminada correctamente","verde");
   listarEtiquetas();
 }
 

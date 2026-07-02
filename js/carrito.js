@@ -13,6 +13,7 @@ import {
   modificarProducto,
 } from "./gestores/gestorProductos.js";
 import { agregarCarritoAlHistorial } from "./gestores/gestorUsuarios.js";
+import { lanzarToast } from "./utilidades.js";
 
 const btnFinalizar = document.getElementById("btnFinalizarCompra");
 const btnVaciar = document.getElementById("btnVaciarCarrito");
@@ -243,18 +244,19 @@ function accionVaciarCarrito() {
     !objetoCarrito.productos ||
     objetoCarrito.productos.length === 0
   ) {
-    alert("El carrito ya está vacío.");
+    lanzarToast("El carrito ya está vacío.","rojo");
     return;
   }
 
   vaciarCarrito();
+  lanzarToast("Carrito vaciado correctamente","verde")
   mostrarCarrito();
 }
 
 function finalizarCompra() {
   const sesion = obtenerUsuarioAutenticado();
   const objetoCarrito = traerCarrito();
-  alert("¡Gracias por tu compra!");
+  lanzarToast("¡Gracias por tu compra!","verde");
   agregarCarritoAlHistorial(sesion.id, objetoCarrito.productos);
   restarStock(objetoCarrito.productos);
   vaciarCarrito();

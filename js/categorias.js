@@ -9,7 +9,7 @@ import {
   borrarTodasLasCategorias,
   cargarListadoPredeterminadoCategorias,
 } from "./gestores/gestorCategorias.js";
-import { feedback, limpiarEstados } from "./utilidades.js";
+import { feedback, lanzarToast, limpiarEstados } from "./utilidades.js";
 
 const inputNombre = document.getElementById("inputNombre");
 const inputDescripcion = document.getElementById("inputDescripcion");
@@ -43,7 +43,7 @@ formAltaCategoria.addEventListener("submit", (e) => {
 
     agregarCategoria(validacion.obj);
 
-    alert("Categoria creada correctamente");
+    lanzarToast("Categoria creada correctamente","verde");
 
     formAltaCategoria.reset();
 
@@ -184,12 +184,13 @@ function editarCategoria(id) {
     btnCerrarModal.click();
     listarCategorias();
     modalFormAltaCategoria.reset();
-    alert("Categoria modificada correctamente");
+    lanzarToast("Categoria modificada correctamente","verde");
   }
 }
 
 function borrarCategoria(id) {
   eliminarCategoria(id);
+  lanzarToast("Categoría eliminada correctamente","verde")
   listarCategorias();
 }
 

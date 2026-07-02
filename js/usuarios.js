@@ -7,7 +7,7 @@ import {
 } from "./gestores/gestorUsuarios.js";
 import { autorizacion, cerrarSesion, obtenerUsuarioAutenticado } from "./gestores/gestorLogin.js";
 import { cargarDatosNavbar } from "./navbar.js";
-import { feedback, limpiarEstados } from "./utilidades.js";
+import { feedback, lanzarToast, limpiarEstados } from "./utilidades.js";
 
 const inputNombre = document.getElementById("inputNombre");
 const selectRol = document.getElementById("selectRol");
@@ -44,8 +44,7 @@ function inicializar() {
 }
 
 function mensajeExitoso(msj) {
-  alert(msj);
-  //TO-DO: cambiarlo a modal o Toast
+  lanzarToast(msj,"verde");
 }
 
 function validarFormAltaUsuario() {
@@ -121,18 +120,20 @@ function borrarUsuario(nombre) {
   const sesion = obtenerUsuarioAutenticado()
   if (sesion.nombre === nombre) {
     cerrarSesion()
-    alert("Usuario eliminado, cerrando sesión")
+    lanzarToast("Usuario eliminado, cerrando sesión","rojo")
   }
+  lanzarToast("Usuario eliminado correctamente","verde")
   listarUsuarios();
 }
 
 function cambiarEstado(nombre) {
-  cambiarDisponibilidad(nombre);
+  const estado = cambiarDisponibilidad(nombre);
   const sesion = obtenerUsuarioAutenticado()
   if (sesion.nombre === nombre) {
+    lanzarToast("Usuario inhabilitado, cerrando sesión","rojo")
     cerrarSesion()
-    alert("Usuario inhabilitado, cerrando sesión")
   }
+  lanzarToast(`Usuario ${estado ? "habilitado" : "inhabilitado"} correctamente`,"verde")
   listarUsuarios();
 }
 

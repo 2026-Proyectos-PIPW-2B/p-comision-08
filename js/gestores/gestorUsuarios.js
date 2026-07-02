@@ -50,15 +50,15 @@ export function buscarUsuarioPorID(id) {
 
 export function cambiarDisponibilidad(nombre) {
   const listaUsuarios = traerTodosLosUsuarios();
-  let cambiado = false;
+  let estado;
   for (const usuario of listaUsuarios) {
     if (usuario.nombre === nombre) {
       usuario.estado = !usuario.estado;
-      cambiado = true;
+      estado = usuario.estado;
     }
   }
   actualizarListadoUsuarios(listaUsuarios);
-  return cambiado;
+  return estado;
 }
 
 export function eliminarUsuario(nombre) {

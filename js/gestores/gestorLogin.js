@@ -1,3 +1,4 @@
+import { lanzarToast } from "../utilidades.js";
 import { buscarUsuario } from "./gestorUsuarios.js";
 
 export function autorizacion(rolPermitido) {
@@ -5,7 +6,7 @@ export function autorizacion(rolPermitido) {
   if (usuarioAutenticado) {
     const habilitado = buscarUsuario(usuarioAutenticado.nombre).estado;
     if (!habilitado) {
-      alert("Usuario inhabilitado. Cerrando sesión.");
+      lanzarToast("Usuario inhabilitado. Cerrando sesión.","rojo");
       cerrarSesion();
     }
     if (usuarioAutenticado.rol !== rolPermitido) {

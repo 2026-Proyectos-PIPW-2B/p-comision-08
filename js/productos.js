@@ -23,6 +23,7 @@ import { cargarDatosNavbar } from "./navbar.js";
 import {
   feedback,
   generarID,
+  lanzarToast,
   limpiarEstados,
   validarCadena,
 } from "./utilidades.js";
@@ -124,7 +125,7 @@ function cargarImagenVistaPrevia(idVistaPrevia, idInput, idSelect) {
 }
 
 function mensajeExitoso(msj) {
-  alert(msj);
+  lanzarToast(msj,"verde");
 }
 
 function validarFormRegistrarProd() {
@@ -408,6 +409,7 @@ function listarProductos() {
       btnEliminar.innerHTML = `<i class="bi bi-trash"></i>Eliminar`;
       btnEliminar.addEventListener("click", () => {
         eliminarProducto(prod.id);
+        lanzarToast("Producto eliminado correctamente","verde")
         listarProductos();
       });
 
