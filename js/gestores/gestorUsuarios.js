@@ -14,7 +14,7 @@ export function agregarUsuario(objUsuario) {
   listaUsuarios.push(nuevoUsuario);
   actualizarListadoUsuarios(listaUsuarios);
 }
-export function agregarAdminPorDefecto(objUsuario, esUsuario) {
+export function agregarAlInicializar(objUsuario, esUsuario) {
   const { nombre, rol, contrasenia } = objUsuario;
   const listaUsuarios = traerTodosLosUsuarios();
   const nuevoUsuario = {

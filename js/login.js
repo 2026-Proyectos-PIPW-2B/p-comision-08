@@ -4,7 +4,7 @@ import {
   autorizacion,
 } from "./gestores/gestorLogin.js";
 import {
-  agregarAdminPorDefecto,
+  agregarAlInicializar,
   buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
 import { cargarListadoPredeterminado } from "./productos.js";
@@ -64,19 +64,19 @@ function feedback(msj) {
 function cargarUsuario() {
   const usuario = buscarUsuario("usuario");
   if (!usuario) {
-    agregarAdminPorDefecto({
+    agregarAlInicializar({
       nombre: "usuario",
       contrasenia: "usuario",
       rol: "Usuario",
       estado: true,
-    });
+    },true);
   }
 }
 
 function cargarAdministrador() {
   const admin = buscarUsuario("administrador");
   if (!admin || !admin.estado) {
-    agregarAdminPorDefecto({
+    agregarAlInicializar({
       id: "admin",
       nombre: "administrador",
       contrasenia: "administrador",

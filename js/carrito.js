@@ -42,7 +42,7 @@ function mostrarCarrito() {
     <div class="text-center card p-4 shadow-sm">
         <p class="">Tu carrito está vacío.</p>
         <div class="">
-            <a href="/catalogo.html"><button type="button" class="btn btn-primary">Ir al catálogo</button></a>
+            <a href="catalogo.html"><button type="button" class="btn btn-primary">Ir al catálogo</button></a>
         </div>
     </div>
     `;
