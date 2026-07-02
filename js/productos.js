@@ -121,9 +121,9 @@ function cargarImagenVistaPrevia(idVistaPrevia, idInput, idSelect) {
     urlImg = urlPersonalizada;
   } else {
     if (nombreImagen === "sin-foto") {
-      urlImg = `/img/sin-foto.jpg`;
+      urlImg = `img/sin-foto.jpg`;
     } else {
-      urlImg = `/img/${nombreImagen}.png`;
+      urlImg = `img/${nombreImagen}.png`;
     }
     alt = nombreImagen;
   }
@@ -158,9 +158,9 @@ function validarFormRegistrarProd() {
   } else {
     // este if es porque la imagen "sin-foto.jpg" es jpg y el resto son png
     if (selectImagen.value === "sin-foto") {
-      imagenURL = `/img/${selectImagen.value}.jpg`;
+      imagenURL = `img/${selectImagen.value}.jpg`;
     } else {
-      imagenURL = `/img/${selectImagen.value}.png`;
+      imagenURL = `img/${selectImagen.value}.png`;
     }
   }
 
