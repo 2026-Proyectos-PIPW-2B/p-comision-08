@@ -754,7 +754,7 @@ function validarFormModal(obj) {
   return resultado;
 }
 
-export function cargarListadoPredeterminado(desdeLogin) {
+export function cargarListadoPredeterminado() {
   cargarListadoPredeterminadoCategorias();
   cargarCategoriasEnSelect("selectCategoria");
   cargarListadoPredeterminadoEtiquetas();
@@ -770,7 +770,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 180,
       categoria: "Chocolates",
       etiquetas: ["Nuevo"],
-      imagenURL: "/img/bon-o-bon.png",
+      imagenURL: "img/bon-o-bon.png",
     },
     {
       nombre: "Jorgito Blanco",
@@ -782,7 +782,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 120,
       categoria: "Alfajores",
       etiquetas: ["Nacional", "Oferta"],
-      imagenURL: "/img/jorgito-blanco.png",
+      imagenURL: "img/jorgito-blanco.png",
     },
     {
       nombre: "Guaymallén Triple Chocolate",
@@ -794,7 +794,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 95,
       categoria: "Alfajores",
       etiquetas: ["Nacional"],
-      imagenURL: "/img/guaymallen-triple-chocolate.png",
+      imagenURL: "img/guaymallen-triple-chocolate.png",
     },
     {
       nombre: "Mogul Extreme Frutilla",
@@ -806,7 +806,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 70,
       categoria: "Gomitas",
       etiquetas: ["Oferta"],
-      imagenURL: "/img/mogul-extreme-frutilla.png",
+      imagenURL: "img/mogul-extreme-frutilla.png",
     },
     {
       nombre: "Mogul Mix Ácido",
@@ -817,7 +817,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 55,
       categoria: "Gomitas",
       etiquetas: ["Nuevo", "Edición Limitada"],
-      imagenURL: "/img/mogul-mix-acido.png",
+      imagenURL: "img/mogul-mix-acido.png",
     },
     {
       nombre: "Fini Ositos Veganos",
@@ -829,7 +829,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 45,
       categoria: "Gomitas",
       etiquetas: ["Nuevo", "Edición Limitada", "Importado"],
-      imagenURL: "/img/fini-ositos-veganos.png",
+      imagenURL: "img/fini-ositos-veganos.png",
     },
     {
       nombre: "Chupetín Pico Dulce",
@@ -841,7 +841,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 500,
       categoria: "Chupetines",
       etiquetas: ["Oferta", "Nacional"],
-      imagenURL: "/img/pico-dulce.png",
+      imagenURL: "img/pico-dulce.png",
     },
     {
       nombre: "Chupetín Yummy Pop",
@@ -853,7 +853,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 320,
       categoria: "Chupetines",
       etiquetas: ["Nuevo", "Importado"],
-      imagenURL: "/img/chupetin.png",
+      imagenURL: "img/chupetin.png",
     },
     {
       nombre: "Milka Chocolate con Leche 55g",
@@ -865,7 +865,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 90,
       categoria: "Chocolates",
       etiquetas: ["Nuevo"],
-      imagenURL: "/img/milka-chocolate-con-leche.png",
+      imagenURL: "img/milka-chocolate-con-leche.png",
     },
     {
       nombre: "Arcor Butter Toffees",
@@ -877,7 +877,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 240,
       categoria: "Caramelos",
       etiquetas: ["Oferta"],
-      imagenURL: "/img/arcor-butter-toffees.png",
+      imagenURL: "img/arcor-butter-toffees.png",
     },
     {
       nombre: "Arcor Caramelos Mentol",
@@ -889,7 +889,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 210,
       categoria: "Caramelos",
       etiquetas: ["Oferta", "Edición Limitada"],
-      imagenURL: "/img/arcor-caramelos-mentol.png",
+      imagenURL: "img/arcor-caramelos-mentol.png",
     },
     {
       nombre: "Chocolate Águila Clásico 100g",
@@ -901,7 +901,7 @@ export function cargarListadoPredeterminado(desdeLogin) {
       stock: 65,
       categoria: "Chocolates",
       etiquetas: ["Nuevo", "Sin TACC"],
-      imagenURL: "/img/chocolate-aguila-clasico.png",
+      imagenURL: "img/chocolate-aguila-clasico.png",
     },
   ];
 
@@ -921,9 +921,6 @@ export function cargarListadoPredeterminado(desdeLogin) {
 
       agregarProducto(prod);
     }
-  }
-  if (desdeLogin) {
-    return;
   }
   listarProductos();
 }
