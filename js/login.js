@@ -1,13 +1,15 @@
+import { cargarListadoPredeterminadoCategorias } from "./gestores/gestorCategorias.js";
+import { cargarListadoPredeterminadoEtiquetas } from "./gestores/gestorEtiquetas.js";
 import {
   crearSesion,
   redirigir,
   autorizacion,
 } from "./gestores/gestorLogin.js";
+import { cargarListadoPredeterminadoProductos } from "./gestores/gestorProductos.js";
 import {
   agregarAlInicializar,
   buscarUsuario,
 } from "./gestores/gestorUsuarios.js";
-import { cargarListadoPredeterminado } from "./productos.js";
 
 const formLogin = document.getElementById("formLogin");
 const inputNombre = document.getElementById("inputNombre");
@@ -89,7 +91,9 @@ function cargarAdministrador() {
 function inicializarWeb() {
   cargarAdministrador();
   cargarUsuario();
-  cargarListadoPredeterminado();
+  cargarListadoPredeterminadoCategorias();
+  cargarListadoPredeterminadoEtiquetas();
+  cargarListadoPredeterminadoProductos()
 }
 
 const btnIniciarWeb = document.getElementById("btnIniciarWeb");
