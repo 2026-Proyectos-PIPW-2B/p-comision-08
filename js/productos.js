@@ -617,9 +617,9 @@ function guardarCambios(id) {
   } else {
     // este if es porque la imagen "sin-foto.jpg" es jpg y el resto son png
     if (modalSelectImagen.value === "sin-foto") {
-      imagenURL = `/img/${modalSelectImagen.value}.jpg`;
+      imagenURL = `img/${modalSelectImagen.value}.jpg`;
     } else {
-      imagenURL = `/img/${modalSelectImagen.value}.png`;
+      imagenURL = `img/${modalSelectImagen.value}.png`;
     }
   }
 
