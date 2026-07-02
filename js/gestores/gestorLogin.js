@@ -12,7 +12,7 @@ export function autorizacion(rolPermitido) {
       redirigir(usuarioAutenticado.rol);
     }
   } else {
-    if (window.location.pathname !== "/index.html") {
+    if (window.location.pathname !== "index.html") {
       redirigir();
     }
   }
@@ -29,15 +29,15 @@ export function crearSesion(id, nombre, rol) {
 
 export function cerrarSesion() {
   localStorage.removeItem("sesion");
-  location.assign("./index.html");
+  location.assign("index.html");
 }
 
 export function redirigir(rol) {
   if (rol === "Administrador") {
-    location.assign("./usuarios.html");
+    location.assign("usuarios.html");
   } else if (rol === "Usuario") {
-    location.assign("./catalogo.html");
+    location.assign("catalogo.html");
   } else {
-    location.assign("./index.html");
+    location.assign("index.html");
   }
 }
