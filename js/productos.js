@@ -245,16 +245,6 @@ function validarFormRegistrarProd() {
     feedback(inputStock, "feedbackStock");
   }
 
-  // if (categoria === "") {
-  //   validacion.resultado = false;
-  //   feedback(
-  //     selectCategoria,
-  //     "feedbackCategoria",
-  //     `ERROR: Debe seleccionar una categoría.`,
-  //   );
-  // } else {
-  //   feedback(selectCategoria, "feedbackCategoria");
-  // }
   feedback(selectCategoria, "feedbackCategoria");
 
   // es valido siempre porque son opcionales
@@ -744,16 +734,6 @@ function validarFormModal(obj) {
     feedback(modalInputStock, "feedbackStockModal");
   }
 
-  // if (obj.categoria === "") {
-  //   resultado = false;
-  //   feedback(
-  //     modalSelectCategoria,
-  //     "feedbackCategoriaModal",
-  //     `ERROR: Debe seleccionar una categoría.`,
-  //   );
-  // } else {
-  //   feedback(modalSelectCategoria, "feedbackCategoriaModal");
-  // }
   feedback(modalSelectCategoria, "feedbackCategoriaModal");
 
   // es valido siempre porque son opcionales
