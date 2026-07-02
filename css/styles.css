@@ -1,216 +1,226 @@
 /* --- CONFIGURACIÓN GLOBAL Y BASE --- */
 :root {
-  --rosa: #ff477e;
-  --rosa-oscuro: #e03265;
-  --rosa-sombra: rgba(255, 71, 126, 0.08);
-  --blanco: #ffffff;
-  --blanco-rosita: #fff3f3;
-  --violeta: #271441;
-  --fuente-poppins: "Poppins", "Segoe UI", sans-serif;
+    --rosa: #ff477e;
+    --rosa-oscuro: #e03265;
+    --rosa-sombra: rgba(255, 71, 126, 0.08);
+    --blanco: #ffffff;
+    --blanco-rosita: #fff3f3;
+    --violeta: #271441;
+    --fuente-poppins: "Poppins", "Segoe UI", sans-serif;
 }
 
 /* --- ESTILOS LOGO --- */
-.navbar-brand img{
-    transition: transform .2s ease;
+.navbar-brand img {
+    transition: transform 0.2s ease;
 }
 
-.navbar-brand:hover img{
+.navbar-brand:hover img {
     transform: scale(1.08);
 }
 
-
-
 body {
-  background-color: var(--blanco-rosita);
-  background-image:
-    radial-gradient(at 0% 0%, rgba(255, 71, 126, 0.4) 0px, transparent 45%),
-    radial-gradient(at 100% 0%, rgba(0, 212, 255, 0.35) 0px, transparent 40%),
-    radial-gradient(
-      at 50% 50%,
-      rgba(255, 237, 159, 0.432) 0px,
-      transparent 80%
-    ),
-    radial-gradient(at 0% 100%, rgba(0, 212, 255, 0.35) 0px, transparent 40%),
-    radial-gradient(at 100% 100%, rgba(255, 71, 126, 0.4) 0px, transparent 45%);
-  background-attachment: fixed;
-  background-size: cover;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--blanco-rosita);
+    background-image:
+        radial-gradient(at 0% 0%, rgba(255, 71, 126, 0.4) 0px, transparent 45%),
+        radial-gradient(
+            at 100% 0%,
+            rgba(0, 212, 255, 0.35) 0px,
+            transparent 40%
+        ),
+        radial-gradient(
+            at 50% 50%,
+            rgba(255, 237, 159, 0.432) 0px,
+            transparent 80%
+        ),
+        radial-gradient(
+            at 0% 100%,
+            rgba(0, 212, 255, 0.35) 0px,
+            transparent 40%
+        ),
+        radial-gradient(
+            at 100% 100%,
+            rgba(255, 71, 126, 0.4) 0px,
+            transparent 45%
+        );
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 h1,
 h2 {
-  color: var(--violeta) !important;
-  font-family: var(--fuente-poppins);
-  font-weight: 700;
-  letter-spacing: -0.5px;
+    color: var(--violeta) !important;
+    font-family: var(--fuente-poppins);
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 /* --- COMPONENTES REUTILIZABLES --- */
 .card {
-  background-color: var(--blanco) !important;
-  border: none !important;
-  border-radius: 12px;
-  /* box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05); */
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    background-color: var(--blanco) !important;
+    border: none !important;
+    border-radius: 12px;
+    /* box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05); */
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .card-img-top {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  padding: 15px;
-  background-color: var(--blanco);
-  object-fit: contain;
-  max-height: 260px;
-  width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 15px;
+    background-color: var(--blanco);
+    object-fit: contain;
+    max-height: 260px;
+    width: 100%;
 }
 
 form.bg-body-tertiary,
 .table-responsive {
-  background-color: var(--blanco) !important;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(43, 45, 66, 0.08) !important;
-  border: none !important;
+    background-color: var(--blanco) !important;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(43, 45, 66, 0.08) !important;
+    border: none !important;
 }
 
 .table th,
 .table td {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 /* --- BOTONES Y NAVEGACIÓN --- */
 .btn-primary {
-  background-color: var(--rosa) !important;
-  border-color: var(--rosa) !important;
-  transition: all 0.3s ease;
+    background-color: var(--rosa) !important;
+    border-color: var(--rosa) !important;
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: var(--rosa-oscuro) !important;
-  border-color: var(--rosa-oscuro) !important;
-  box-shadow: 0 4px 12px var(--rosa-sombra) !important;
+    background-color: var(--rosa-oscuro) !important;
+    border-color: var(--rosa-oscuro) !important;
+    box-shadow: 0 4px 12px var(--rosa-sombra) !important;
 }
 
 .btn-outline-primary {
-  color: var(--rosa) !important;
-  background-color: transparent !important;
-  border-color: var(--rosa) !important;
-  transition: all 0.3s ease;
+    color: var(--rosa) !important;
+    background-color: transparent !important;
+    border-color: var(--rosa) !important;
+    transition: all 0.3s ease;
 }
 
 .btn-outline-primary:hover,
 .btn-outline-primary:focus,
 .btn-outline-primary:active {
-  color: var(--blanco) !important;
-  background-color: var(--rosa) !important;
-  border-color: var(--rosa) !important;
-  box-shadow: 0 4px 12px var(--rosa-sombra) !important;
+    color: var(--blanco) !important;
+    background-color: var(--rosa) !important;
+    border-color: var(--rosa) !important;
+    box-shadow: 0 4px 12px var(--rosa-sombra) !important;
 }
 
 .nav-link.active {
-  color: var(--rosa) !important;
-  font-weight: 600;
+    color: var(--rosa) !important;
+    font-weight: 600;
 }
 
 .btn-cerrar-sesion {
-  color: var(--blanco) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important; 
-  background-color: transparent !important;
-  transition: all 0.2s ease;
+    color: var(--blanco) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    background-color: transparent !important;
+    transition: all 0.2s ease;
 }
 
 .btn-cerrar-sesion:hover {
-  background-color: var(--rosa-oscuro) !important; 
-  border-color: var(--rosa-oscuro) !important;
-  box-shadow: 0 0 10px var(--rosa-sombra) !important;
+    background-color: var(--rosa-oscuro) !important;
+    border-color: var(--rosa-oscuro) !important;
+    box-shadow: 0 0 10px var(--rosa-sombra) !important;
 }
 
 footer a {
-  transition: color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 footer a:hover {
-  color: var(--rosa) !important;
+    color: var(--rosa) !important;
 }
 
 /* --- SELECTORES ESPECÍFICOS (IDs) Y HOVERS --- */
 #titulo-login {
-  background: linear-gradient(
-    90deg,
-    #ff595e,
-    #ffca3a,
-    #8ac926,
-    #1982c4,
-    #6a4c93
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent !important;
-  font-weight: 700 !important;
-  font-size: 450%;
-  -webkit-text-stroke: 1px black;
+    background: linear-gradient(
+        90deg,
+        #ff595e,
+        #ffca3a,
+        #8ac926,
+        #1982c4,
+        #6a4c93
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 700 !important;
+    font-size: 450%;
+    -webkit-text-stroke: 1px black;
 }
 
 #descripcion-login {
-  font-weight: bold;
-  font-style: italic;
+    font-weight: bold;
+    font-style: italic;
 }
 
 #divContenedorListado .card:hover,
 #contenedorProductos .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 5px 10px var(--rosa-sombra) !important;
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 10px var(--rosa-sombra) !important;
 }
 
- /* Carrito */
+/* Carrito */
 .divImagen {
-  height: 70px; 
-  width: 70px; 
-  margin: 0 auto;
+    height: 70px;
+    width: 70px;
+    margin: 0 auto;
 }
 .divImagen img {
-  max-height: 100%;
+    max-height: 100%;
 }
 
 #contenedorCarrito .input-group {
-  max-width: 100px;
+    max-width: 100px;
 }
 
 .disabled {
-  filter: brightness(0.94);
+    filter: brightness(0.94);
 }
 
 /* --- CLASES AUXILIARES Y UTILIDADES --- */
 .extra-small {
-  font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 .text-pink {
-  color: var(--rosa-oscuro);
+    color: var(--rosa-oscuro);
 }
 
 .bg-violeta {
-  background-color: var(--violeta) !important;
+    background-color: var(--violeta) !important;
 }
 
 .border-bottom-rosa {
-  border-bottom: 2px solid var(--rosa);
+    border-bottom: 2px solid var(--rosa);
 }
 
 .border-rosa {
-  border-color: var(--rosa-oscuro) !important;
+    border-color: var(--rosa-oscuro) !important;
 }
 
 /* para sacarle el selector de cantidad por defecto al input type="number */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 input[type="number"] {
-  appearance: textfield;
-  -moz-appearance: textfield;
+    appearance: textfield;
+    -moz-appearance: textfield;
 }

@@ -1,130 +1,79 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <!-- <link
-      rel="icon"
-      href="./logo/logoDulceMax/logoDulceMaxCentroTransparente.png"
-      type="image/x-icon"
-    /> -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="img-src 'self' https: data:;"
-    />
-  </head>
-  <body class="d-flex flex-column min-vh-100">
-    <main
-      class="container col-xl-10 col-xxl-8 px-4 py-5 flex-fill d-flex align-items-center"
-    >
-      <div class="row align-items-center g-lg-5 py-5">
-        <div class="col-lg-7 text-center text-lg-start">
-          <h1
-            id="titulo-login"
-            class="display-4 fw-bold lh-1 text-body-emphasis mb-3"
-          >
-            Bienvenidos a Dulcemax
-          </h1>
-          <p id="descripcion-login" class="col-lg-10 fs-4">
-            La distribuidora de golosinas mas grande del sur argentino.
-          </p>
-        </div>
-        <div class="col-md-10 mx-auto col-lg-5">
-          <form
-            id="formLogin"
-            class="p-4 p-md-5 border rounded-3 bg-body-tertiary"
-          >
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="inputNombre" />
-              <label for="inputNombre">Nombre de usuario</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input
-                type="password"
-                class="form-control"
-                id="inputContrasenia"
-                placeholder="Password"
-              />
-              <label for="inputContrasenia">Contraseña</label>
-            </div>
 
-            <button class="w-100 btn btn-lg btn-primary" type="submit">
-              Iniciar sesión
-            </button>
-            <hr class="my-4" />
-            <small class="text-body-secondary"
-              >Al hacer click en iniciar sesion, estas aceptando los términos de
-              uso.</small
-            >
-          </form>
-          <div class="d-flex justify-content-end">
-            <button
-              class="btn btn-primary mt-3"
-              type="button"
-              id="btnIniciarWeb"
-            >
-              Incializar Web
-            </button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="icon" href="img/logo.png" type="image/x-icon">
+  <meta http-equiv="Content-Security-Policy" content="img-src 'self' https: data:;" />
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <main class="container col-xl-10 col-xxl-8 px-4 py-5 flex-fill d-flex align-items-center">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 id="titulo-login" class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
+          Bienvenidos a Dulcemax
+        </h1>
+        <p id="descripcion-login" class="col-lg-10 fs-4">
+          La distribuidora de golosinas mas grande del sur argentino.
+        </p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form id="formLogin" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="inputNombre" />
+            <label for="inputNombre">Nombre de usuario</label>
           </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="inputContrasenia" placeholder="Password" />
+            <label for="inputContrasenia">Contraseña</label>
+          </div>
+
+          <button class="w-100 btn btn-lg btn-primary" type="submit">
+            Iniciar sesión
+          </button>
+          <hr class="my-4" />
+          <small class="text-body-secondary">Al hacer click en iniciar sesion, estas aceptando los términos de
+            uso.</small>
+        </form>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary mt-3" type="button" id="btnIniciarWeb">
+            Incializar Web
+          </button>
         </div>
       </div>
-    </main>
-    <footer class="border-top mt-4">
-      <div
-        class="container d-flex flex-wrap justify-content-between align-items-center p-4"
-      >
-        <div class="col-md-4 d-flex align-items-center">
-          <a
-            href="/"
-            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1"
-            aria-label="Bootstrap"
-          >
+    </div>
+  </main>
+  <footer class="border-top mt-4">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center p-4">
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1" aria-label="Bootstrap">
+        </a>
+        <span class="mb-3 mb-md-0 text-body-secondary">© 2026 Dulcemax, Inc</span>
+      </div>
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3">
+          <a class="text-body-secondary" href="#" aria-label="WhatsAppBusiness" style="text-decoration: none">
+            <i class="bi bi-whatsapp"></i> 291-4543221
           </a>
-          <span class="mb-3 mb-md-0 text-body-secondary"
-            >© 2026 Dulcemax, Inc</span
-          >
-        </div>
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-          <li class="ms-3">
-            <a
-              class="text-body-secondary"
-              href="#"
-              aria-label="WhatsAppBusiness"
-              style="text-decoration: none"
-            >
-              <i class="bi bi-whatsapp"></i> 291-4543221
-            </a>
-          </li>
-          <li class="ms-3">
-            <a
-              class="text-body-secondary"
-              href="#"
-              aria-label="Email"
-              style="text-decoration: none"
-            >
-              <i class="bi bi-envelope-at"></i> contacto@dulcemax.com
-            </a>
-          </li>
-        </ul>
-      </div>
-    </footer>
-  </body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"
-  ></script>
-  <script type="module" src="./js/login.js"></script>
+        </li>
+        <li class="ms-3">
+          <a class="text-body-secondary" href="#" aria-label="Email" style="text-decoration: none">
+            <i class="bi bi-envelope-at"></i> contacto@dulcemax.com
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script type="module" src="./js/login.js"></script>
+
 </html>
