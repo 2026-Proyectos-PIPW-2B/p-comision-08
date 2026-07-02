@@ -12,7 +12,7 @@ export function autorizacion(rolPermitido) {
       redirigir(usuarioAutenticado.rol);
     }
   } else {
-    if (window.location.pathname !== "index.html") {
+    if (window.location.pathname.includes("index.html")) {
       redirigir();
     }
   }
