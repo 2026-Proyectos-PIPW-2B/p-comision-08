@@ -160,8 +160,14 @@ footer a:hover {
     background-clip: text;
     -webkit-text-fill-color: transparent !important;
     font-weight: 700 !important;
-    font-size: 450%;
-    -webkit-text-stroke: 1px black;
+    font-size: 4.5rem;
+    filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.8))
+        drop-shadow(-1px -1px 0px rgba(0, 0, 0, 0.8));
+}
+@media (min-width: 992px) {
+    #titulo-login {
+        font-size: 4.5rem;
+    }
 }
 
 #descripcion-login {
